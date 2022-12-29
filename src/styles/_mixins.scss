@@ -1,0 +1,89 @@
+@import "_variables";
+
+@mixin flexSpace {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin cardObject {
+  @include flexCenter;
+  margin: 0.5rem 0.5rem 0.5rem;
+  align-items: center;
+}
+
+@mixin winStateColors {
+  background-color: $green1;
+  border-color: $green2;
+}
+
+@mixin winStateHover {
+  &:hover {
+    @include winStateColors;
+  }
+}
+
+@mixin loseStateColors {
+  background-color: $red1;
+  border-color: $red2;
+}
+
+@mixin loseStateHover {
+  &:hover {
+    @include loseStateColors;
+  }
+}
+
+@mixin equalStateColors {
+  background-color: $blue1;
+  border-color: $blue2;
+}
+
+@mixin equalStateHover {
+  &:hover {
+    @include equalStateColors;
+  }
+}
+
+@mixin defaultHover {
+  &:hover {
+    background-color: $blue4;
+    color: $black;
+  }
+}
+
+@mixin bigButton {
+  justify-content: center;
+  font-size: 2rem;
+  margin-top: 0.5rem;
+  height: min-content;
+}
+
+@mixin gameEndMessage {
+  @include cardObject;
+  height: 30rem;
+  font-size: 4rem;
+}
+
+@mixin inputElement {
+  outline: none;
+  font-size: 1rem;
+  color: $white;
+  background-color: $buttonBackground;
+}
+
+@mixin defaultInputElement {
+  @include inputElement;
+  border-radius: 0.25rem;
+  border: 0.15rem solid $blue3;
+}
+
+@mixin defaultDropdownInput {
+  @include inputElement;
+  width: 10rem;
+  padding: 0.5rem;
+}

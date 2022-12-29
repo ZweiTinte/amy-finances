@@ -1,12 +1,14 @@
 import * as React from "react";
+import Accounts from "../components/template/accounts";
 import Sidebar from "../components/template/sidebar";
 
-const IndexPage = () => {
+const AccountsPage = () => {
   return (
     <>
       <Sidebar />
+      <Accounts />
     </>
   );
 };
 
-export default IndexPage;
+export default AccountsPage;

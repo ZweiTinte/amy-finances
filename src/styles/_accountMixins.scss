@@ -1,0 +1,7 @@
+@import "_variables";
+
+@mixin accountInfo {
+  color: $white;
+  padding-right: 1rem;
+  display: inline-block;
+}

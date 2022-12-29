@@ -1,0 +1,29 @@
+@import "_variables";
+@import "_headlineMixins";
+
+.headline {
+  @include headline;
+  height: 2.5rem;
+  width: 19rem;
+}
+
+.playerHeadline {
+  @include turnHeadline;
+}
+
+.opponentHeadline {
+  @include turnHeadline;
+  justify-content: right;
+}
+
+.infoboxHeadline {
+  @include bottomBorderHeadline;
+  height: 1.5rem;
+  width: 19rem;
+}
+
+.sidebarHeadline {
+  @include bottomBorderHeadline;
+  height: 1.5rem;
+  width: 14rem;
+}

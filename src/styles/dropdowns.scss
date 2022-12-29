@@ -1,0 +1,42 @@
+@import "_variables";
+@import "_mixins";
+
+.dropdown {
+  @include defaultHover;
+  @include inputElement;
+  width: 10rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  &:focus {
+    background-color: $blue4;
+    color: $black;
+  }
+}
+
+.dropdownInput {
+  @include defaultDropdownInput;
+  border-bottom: 0.15rem solid $blue3;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.dropdownEmpty {
+  @include defaultDropdownInput;
+  border: none;
+}
+
+.dropdownBorder {
+  border-radius: 0.25rem;
+  border: 0.15rem solid $blue3;
+}
+
+.selectedItem {
+  @include defaultHover;
+  @include inputElement;
+  width: 10rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: $blue4;
+  color: $black;
+}

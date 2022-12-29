@@ -1,0 +1,53 @@
+@use "sass:math";
+@import "_variables";
+@import "_mixins";
+
+button {
+  @include defaultHover;
+  @include defaultInputElement;
+  justify-content: left;
+  width: 20rem;
+  display: inline-flex;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.sidebarButton {
+  @include defaultHover;
+  @include defaultInputElement;
+  justify-content: left;
+  width: 14rem;
+  display: inline-flex;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nextButton {
+  @include bigButton;
+  width: math.div(20rem, 2);
+  &:hover {
+    background-color: $green1;
+    border-color: $green2;
+  }
+}
+
+.newGameButton {
+  @include bigButton;
+  @include defaultHover;
+  width: 20rem;
+}
+
+.winState {
+  @include winStateColors;
+  @include winStateHover;
+}
+
+.loseState {
+  @include loseStateColors;
+  @include loseStateHover;
+}
+
+.equalState {
+  @include equalStateColors;
+  @include equalStateHover;
+}

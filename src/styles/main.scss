@@ -1,2 +1,86 @@
 @import "_variables";
 @import "_mixins";
+
+.listItem {
+  text-align: left;
+  font-size: 1rem;
+  color: $white;
+  justify-content: left;
+  width: 19rem;
+  padding: 0.25rem 0;
+}
+
+body {
+  background-color: $black;
+  height: "100vh";
+  min-height: "100vh";
+  font-weight: 400;
+  font-family: "Ubuntu";
+}
+
+.buttonSpacer {
+  padding: 0.5rem;
+}
+
+.image {
+  width: 20rem;
+  height: auto;
+  padding: 0.5rem;
+}
+
+.card {
+  @include cardObject;
+  width: 21rem;
+  border-radius: 0.4rem;
+  border: 0.25rem solid $cardBorder;
+  background-color: $cardBackground;
+  flex-direction: column;
+}
+
+.gameLayout {
+  @include flexCenter;
+}
+
+.colLayout {
+  @include flexCenter;
+  flex-direction: column;
+  align-items: center;
+}
+
+.winMessage {
+  @include gameEndMessage;
+  color: $green1;
+}
+
+.loseMessage {
+  @include gameEndMessage;
+  color: $red1;
+}
+
+.equalMessage {
+  @include gameEndMessage;
+  color: $blue4;
+}
+
+.errorMessage {
+  @include flexCenter;
+  width: 80%;
+  margin: 0.5rem 0.5rem 0.5rem;
+  align-items: center;
+  height: 30rem;
+  font-size: 2rem;
+  color: $red1;
+}
+
+.sidebar {
+  position: fixed;
+  height: 100vw;
+  width: 14rem;
+  left: 0;
+  top: 0;
+  border-right: 0.25rem solid $cardBorder;
+  background-color: $cardBackground;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}

@@ -1,0 +1,69 @@
+@import "_variables";
+@import "_accountMixins";
+@import "_headlineMixins";
+
+.accountId {
+  @include accountInfo;
+  width: 1rem;
+}
+
+.accountIban {
+  @include accountInfo;
+  width: 13rem;
+}
+
+.accountName {
+  @include accountInfo;
+  width: 10rem;
+}
+
+.accountsSum {
+  @include accountInfo;
+  width: 24rem;
+}
+
+.accountBalance {
+  @include accountInfo;
+  width: 5rem;
+}
+
+.accountsCard {
+  margin: 0.5rem 0.5rem 0.5rem;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  display: flex;
+  align-items: left;
+  border-radius: 0.4rem;
+  border: 0.25rem solid $cardBorder;
+  background-color: $cardBackground;
+  flex-direction: column;
+}
+
+.accountProps {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  @include bottomBorderHeadline;
+}
+
+.accountInfos {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.accountsHeadline {
+  @include flexSpace;
+  color: $white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 1.5rem;
+  border-bottom: 0.15rem solid $cardBorder;
+  margin-bottom: 2rem;
+  width: max-content;
+}
+
+.accountsSummary {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  border-top: 0.15rem solid $cardBorder;
+  margin-top: 0.5rem;
+}

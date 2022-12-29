@@ -1,0 +1,22 @@
+@import "_variables";
+@import "_mixins";
+
+@mixin headline {
+  @include flexSpace;
+  color: $white;
+  padding-top: 0.5rem;
+  font-size: 1rem;
+}
+
+@mixin turnHeadline {
+  @include headline;
+  height: 1.5rem;
+  width: 43rem;
+  font-weight: bold;
+}
+
+@mixin bottomBorderHeadline {
+  @include headline;
+  border-bottom: 0.15rem solid $cardBorder;
+  margin-bottom: 0.5rem;
+}
