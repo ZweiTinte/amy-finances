@@ -1,0 +1,31 @@
+{
+  "name": "amy-finances",
+  "version": "1.0.0",
+  "private": true,
+  "description": "amy-finances",
+  "author": "ZweiTinte",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "gatsby": "^5.3.3",
+    "gatsby-plugin-sass": "^6.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.57.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.10",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "typescript": "^4.9.3"
+  }
+}
