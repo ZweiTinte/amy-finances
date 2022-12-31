@@ -3,9 +3,9 @@ import * as React from "react";
 import Button from "../atoms/button";
 import Headline from "../atoms/headline";
 
-const Sidebar = () => {
+const SidebarLeft = () => {
   return (
-    <div className="sidebar">
+    <div className="sidebarLeft">
       <Headline text={"Menu"} style="sidebarHeadline" />
       <Button
         color={"sidebarButton"}
@@ -16,4 +16,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SidebarLeft;

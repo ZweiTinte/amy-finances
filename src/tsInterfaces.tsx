@@ -11,4 +11,5 @@ interface Account {
   id: number;
   iban: string;
   name: string;
+  balance: number;
 }

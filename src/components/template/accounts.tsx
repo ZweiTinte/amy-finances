@@ -1,4 +1,5 @@
 import * as React from "react";
+import { euroFormat } from "../../helpers";
 import AccountItem from "../atoms/accountItem";
 import Headline from "../atoms/headline";
 import ErrorInfo from "../level1/errorInfo";
@@ -8,6 +9,7 @@ const Accounts = () => {
   const [accounts, setAccounts] = React.useState<Account[]>([]);
   const [error, setError] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
+  const [totalBalance, setTotalBalance] = React.useState<number>(0);
 
   function handleError(error: Error): void {
     setError(true);
@@ -16,6 +18,11 @@ const Accounts = () => {
 
   function resolveFetching(data: Account[]): void {
     setAccounts(data);
+    let total = 0;
+    data.forEach((account) => {
+      total += account.balance;
+    });
+    setTotalBalance(total);
     setTemplateReady(true);
   }
 
@@ -60,7 +67,9 @@ const Accounts = () => {
             })}
             <div className="accountsSummary">
               <span className="accountsSum">Total Balance:</span>
-              <span className="accountBalance">2.000,00€</span>
+              <span className="accountBalance">
+                {euroFormat.format(totalBalance)}
+              </span>
             </div>
           </div>
         </div>

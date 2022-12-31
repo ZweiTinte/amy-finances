@@ -34,9 +34,18 @@ input[type="number"] {
   line-height: 1.5rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  width: 10rem;
+  width: 14rem;
   -moz-appearance: textfield;
   appearance: textfield;
+}
+
+input[type="text"] {
+  @include defaultInputElement;
+  height: 1.9rem;
+  line-height: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  width: 14rem;
 }
 
 .formHeadline {

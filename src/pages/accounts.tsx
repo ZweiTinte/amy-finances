@@ -1,12 +1,12 @@
 import * as React from "react";
 import Accounts from "../components/template/accounts";
-import Sidebar from "../components/template/sidebar";
+import SidebarRight from "../components/template/sidebarRight";
 
 const AccountsPage = () => {
   return (
     <>
-      <Sidebar />
       <Accounts />
+      <SidebarRight />
     </>
   );
 };

@@ -24,7 +24,8 @@
 
 .accountBalance {
   @include accountInfo;
-  width: 5rem;
+  width: 8rem;
+  text-align: end;
 }
 
 .accountsCard {

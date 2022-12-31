@@ -1,4 +1,5 @@
 import * as React from "react";
+import { euroFormat } from "../../helpers";
 
 interface AccountProps {
   account: Account;
@@ -9,7 +10,9 @@ const AccountItem = ({ account }: AccountProps) => {
     <>
       <span className="accountIban">{account.iban}</span>
       <span className="accountName">{account.name}</span>
-      <span className="accountBalance">{"1.000,00€"}</span>
+      <span className="accountBalance">
+        {euroFormat.format(account.balance)}
+      </span>
     </>
   );
 };
