@@ -73,29 +73,15 @@ body {
 }
 
 .sidebarLeft {
-  position: fixed;
-  height: 100vw;
-  width: 14rem;
+  @include sidebar;
   left: 0;
-  top: 0;
   border-right: 0.25rem solid $cardBorder;
-  background-color: $cardBackground;
-  padding-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 .sidebarRight {
-  position: fixed;
-  height: 100vw;
-  width: 14rem;
+  @include sidebar;
   right: 0;
-  top: 0;
   border-left: 0.25rem solid $cardBorder;
-  background-color: $cardBackground;
-  padding-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 .spaceUp {

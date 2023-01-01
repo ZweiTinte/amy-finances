@@ -87,3 +87,12 @@
   width: 10rem;
   padding: 0.5rem;
 }
+
+@mixin sidebar {
+  position: fixed;
+  height: 100vw;
+  width: 14rem;
+  top: 0;
+  background-color: $cardBackground;
+  padding: 1rem 1rem 0 1rem;
+}
