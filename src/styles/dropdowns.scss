@@ -4,7 +4,7 @@
 .dropdown {
   @include defaultHover;
   @include inputElement;
-  width: 10rem;
+  width: 12.75rem;
   padding: 0.5rem;
   cursor: pointer;
   &:focus {

@@ -27,3 +27,11 @@
   height: 1.5rem;
   width: 14rem;
 }
+
+.sidebarSubHeadline {
+  @include headline;
+  border-top: 0.15rem solid $cardBorder;
+  margin-top: 0.5rem;
+  height: 1.5rem;
+  width: 14rem;
+}

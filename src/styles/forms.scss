@@ -67,6 +67,16 @@ input[type="text"] {
 
 .priority {
   position: absolute;
-  right: 0;
+  right: 1rem;
   z-index: 1;
+}
+
+.redButton {
+  @include loseStateColors;
+  @include loseStateHover;
+  @include defaultInputElement;
+  width: 10rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-top: 1rem;
 }
