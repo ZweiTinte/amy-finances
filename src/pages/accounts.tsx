@@ -6,6 +6,7 @@ import SidebarRight from "../components/template/sidebarRight";
 const AccountsPage = () => {
   const [templateReady, setTemplateReady] = React.useState<boolean>(false);
   const [accounts, setAccounts] = React.useState<Account[]>([]);
+  const [filteredAccounts, setFilteredAccounts] = React.useState<Account[]>([]);
   const [error, setError] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
   const [totalBalance, setTotalBalance] = React.useState<number>(0);
@@ -17,6 +18,7 @@ const AccountsPage = () => {
 
   function resolveFetching(data: Account[]): void {
     setAccounts(data);
+    setFilteredAccounts(data);
     let total = 0;
     data.forEach((account) => {
       total += account.balance;
@@ -50,8 +52,12 @@ const AccountsPage = () => {
     <>
       {templateReady && (
         <>
-          <Accounts accounts={accounts} totalBalance={totalBalance} />
-          <SidebarRight accounts={accounts} />
+          <Accounts accounts={filteredAccounts} totalBalance={totalBalance} />
+          <SidebarRight
+            accounts={accounts}
+            setFilteredAccounts={setFilteredAccounts}
+            filteredAccountsData={filteredAccounts}
+          />
         </>
       )}
       {error && <ErrorInfo message={errorMessage} tryAgain={loadAccounts} />}

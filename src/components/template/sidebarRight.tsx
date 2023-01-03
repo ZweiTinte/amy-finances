@@ -3,18 +3,32 @@ import * as React from "react";
 import Button from "../atoms/button";
 import Dropdown, { DropdownItem } from "../atoms/dropdown";
 import Headline from "../atoms/headline";
+import Multiselect from "../atoms/multiselect";
 
-const SidebarRight = ({ accounts }: { accounts: Account[] }) => {
+const SidebarRight = ({
+  accounts,
+  setFilteredAccounts,
+  filteredAccountsData,
+}: {
+  accounts: Account[];
+  filteredAccountsData: Account[];
+  setFilteredAccounts: React.Dispatch<React.SetStateAction<Account[]>>;
+}) => {
   const accountsData: DropdownItem[] = accounts.map((account) => {
     return { id: account.id, value: account.name };
   });
+  const filteredAccounts: DropdownItem[] = filteredAccountsData.map(
+    (account) => {
+      return { id: account.id, value: account.name };
+    }
+  );
   const [selectedAccount, setSelectedAccount] = React.useState<DropdownItem>(
     accountsData[0]
   );
 
   return (
     <div className="sidebarRight">
-      <Headline text={"Accounts Menu"} style="sidebarHeadline" />
+      <Headline text={"ACCOUNTS MENU"} style="sidebarHeadline" />
       <Button
         color={"sidebarButton"}
         onClick={() => navigate("/accounts/new")}
@@ -30,6 +44,18 @@ const SidebarRight = ({ accounts }: { accounts: Account[] }) => {
         color={"sidebarButton spaceUp"}
         onClick={() => navigate(`/accounts/${selectedAccount.id}`)}
         text={"Edit"}
+      />
+      <Headline text={"Filter Accounts"} style="sidebarSubHeadline" />
+      <Multiselect
+        dropDownItems={filteredAccounts}
+        setDropdownItems={setFilteredAccounts}
+        dropDownData={accountsData}
+        accounts={accounts}
+      />
+      <Button
+        color={"sidebarButton spaceUp"}
+        onClick={() => setFilteredAccounts(accounts)}
+        text={"Select all"}
       />
     </div>
   );
