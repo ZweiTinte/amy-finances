@@ -43,23 +43,23 @@ const Multiselect = ({
           return (
             <div
               className={
-                dropDownItems.map((el) => el.value).includes(item.value)
+                dropDownItems.map((el) => el.id).includes(item.id)
                   ? "selectedItem"
                   : "dropdown"
               }
               key={item.id}
               onClick={() => {
                 let newDropdownItems = accounts.filter((account) =>
-                  dropDownItems.map((el) => el.value).includes(account.name)
+                  dropDownItems.map((el) => el.id).includes(account.id)
                 );
-                if (dropDownItems.map((el) => el.value).includes(item.value)) {
+                if (dropDownItems.map((el) => el.id).includes(item.id)) {
                   newDropdownItems = newDropdownItems.filter(function (i) {
-                    return i.name !== item.value;
+                    return i.id !== item.id;
                   });
                 } else {
                   newDropdownItems = newDropdownItems.concat(
                     accounts.filter(function (i) {
-                      return i.name === item.value;
+                      return i.id === item.id;
                     })
                   );
                 }
