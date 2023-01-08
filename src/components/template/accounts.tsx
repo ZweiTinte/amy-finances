@@ -18,7 +18,7 @@ const Accounts = ({
           <div className="accountProps">
             <span className="accountIban">IBAN</span>
             <span className="accountName">Name</span>
-            <span className="accountBalance">Balance</span>
+            <span className="accountBalanceHeadline">Balance</span>
           </div>
           {accounts.map((item) => {
             return (

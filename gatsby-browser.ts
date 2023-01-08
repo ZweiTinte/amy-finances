@@ -4,6 +4,7 @@ import "./src/styles/forms.scss";
 import "./src/styles/dropdowns.scss";
 import "./src/styles/headlines.scss";
 import "./src/styles/accounts.scss";
+import "./src/styles/transactions.scss";
 
 import WrapRootElement from "./src/wrapRootElement";
 

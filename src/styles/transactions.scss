@@ -2,38 +2,48 @@
 @import "_accountMixins";
 @import "_headlineMixins";
 
-.accountId {
+.transactionId {
   @include accountInfo;
   width: 1rem;
 }
 
-.accountIban {
+.transactionDate {
   @include accountInfo;
-  width: 13rem;
+  width: 6rem;
 }
 
-.accountName {
+.transactionName {
+  @include accountInfo;
+  width: 15rem;
+}
+
+.transactionCategory {
   @include accountInfo;
   width: 10rem;
 }
 
-.accountsSum {
+.transactionAmount {
   @include accountInfo;
-  width: 24rem;
-}
-
-.accountBalance {
-  @include accountInfo;
-  width: 8rem;
+  width: 7rem;
   text-align: end;
 }
 
-.accountBalanceHeadline {
+.transactionAmountHeadline {
   @include accountInfo;
-  width: 8rem;
+  width: 7rem;
 }
 
-.accountsCard {
+.transactionFrom {
+  @include accountInfo;
+  width: 10rem;
+}
+
+.transactionTo {
+  @include accountInfo;
+  width: 10rem;
+}
+
+.transactionsCard {
   margin: 0.5rem 0.5rem 0.5rem;
   padding: 0.5rem;
   padding-left: 1rem;
@@ -45,18 +55,18 @@
   flex-direction: column;
 }
 
-.accountProps {
+.transactionProps {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   @include bottomBorderHeadline;
 }
 
-.accountInfos {
+.transactionInfos {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
-.accountsHeadline {
+.transactionsHeadline {
   @include flexSpace;
   color: $white;
   padding-top: 0.5rem;
@@ -65,11 +75,4 @@
   border-bottom: 0.15rem solid $cardBorder;
   margin-bottom: 2rem;
   width: max-content;
-}
-
-.accountsSummary {
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
-  border-top: 0.15rem solid $cardBorder;
-  margin-top: 0.5rem;
 }

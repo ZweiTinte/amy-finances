@@ -13,3 +13,13 @@ interface Account {
   name: string;
   balance: number;
 }
+
+interface Transaction {
+  id: number;
+  name: string;
+  amount: number;
+  category: string;
+  from: number;
+  to: number;
+  date: string;
+}

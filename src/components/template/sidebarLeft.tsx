@@ -12,6 +12,11 @@ const SidebarLeft = () => {
         onClick={() => navigate("/accounts")}
         text={"Accounts"}
       />
+      <Button
+        color={"sidebarButton spaceUp"}
+        onClick={() => navigate("/transactions")}
+        text={"Transactions"}
+      />
     </div>
   );
 };
