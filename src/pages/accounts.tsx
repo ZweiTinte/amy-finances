@@ -1,7 +1,7 @@
 import * as React from "react";
 import ErrorInfo from "../components/level1/errorInfo";
 import Accounts from "../components/template/accounts";
-import SidebarRight from "../components/template/sidebarRight";
+import AccountSidebarRight from "../components/template/accountSidebarRight";
 
 const AccountsPage = () => {
   const [templateReady, setTemplateReady] = React.useState<boolean>(false);
@@ -53,7 +53,7 @@ const AccountsPage = () => {
       {templateReady && (
         <>
           <Accounts accounts={filteredAccounts} totalBalance={totalBalance} />
-          <SidebarRight
+          <AccountSidebarRight
             accounts={accounts}
             setFilteredAccounts={setFilteredAccounts}
             filteredAccountsData={filteredAccounts}

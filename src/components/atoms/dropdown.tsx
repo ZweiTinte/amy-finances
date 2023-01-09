@@ -2,16 +2,22 @@ import * as React from "react";
 
 export type DropdownItem = { id: number; value: string };
 
+export enum DropdownTypes {
+  Id,
+  Value,
+}
 export interface DropdownProps {
   dropDownItem: DropdownItem;
   setDropdownItem: React.Dispatch<React.SetStateAction<DropdownItem>>;
   dropDownData: DropdownItem[];
+  type: DropdownTypes;
 }
 
 const Dropdown = ({
   dropDownItem,
   setDropdownItem,
   dropDownData,
+  type,
 }: DropdownProps) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const [open, setOpen] = React.useState<boolean>(false);
@@ -52,7 +58,7 @@ const Dropdown = ({
                 setOpen(false);
               }}
             >
-              {item.value}
+              {type === DropdownTypes.Value ? item.value : item.id}
             </div>
           );
         })}

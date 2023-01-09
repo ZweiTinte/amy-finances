@@ -19,6 +19,7 @@ const TransactionItem = ({ transaction, accounts }: TransactionProps) => {
 
   return (
     <>
+      <span className="transactionId">{transaction.id.toString()}</span>
       <span className="transactionDate">{transaction.date}</span>
       <span className="transactionName">{transaction.name}</span>
       <span className="transactionCategory">{transaction.category}</span>

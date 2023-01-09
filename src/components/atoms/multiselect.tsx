@@ -3,16 +3,16 @@ import { DropdownItem } from "./dropdown";
 
 interface MultiselectProps {
   dropDownItems: DropdownItem[];
-  setDropdownItems: React.Dispatch<React.SetStateAction<Account[]>>;
+  setDropdownItems: React.Dispatch<React.SetStateAction<any[]>>;
   dropDownData: DropdownItem[];
-  accounts: Account[];
+  items: any[];
 }
 
 const Multiselect = ({
   dropDownItems,
   setDropdownItems,
   dropDownData,
-  accounts,
+  items,
 }: MultiselectProps) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const [open, setOpen] = React.useState<boolean>(false);
@@ -49,8 +49,8 @@ const Multiselect = ({
               }
               key={item.id}
               onClick={() => {
-                let newDropdownItems = accounts.filter((account) =>
-                  dropDownItems.map((el) => el.id).includes(account.id)
+                let newDropdownItems = items.filter((i) =>
+                  dropDownItems.map((el) => el.id).includes(i.id)
                 );
                 if (dropDownItems.map((el) => el.id).includes(item.id)) {
                   newDropdownItems = newDropdownItems.filter(function (i) {
@@ -58,7 +58,7 @@ const Multiselect = ({
                   });
                 } else {
                   newDropdownItems = newDropdownItems.concat(
-                    accounts.filter(function (i) {
+                    items.filter(function (i) {
                       return i.id === item.id;
                     })
                   );

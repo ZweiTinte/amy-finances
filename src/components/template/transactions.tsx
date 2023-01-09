@@ -15,6 +15,7 @@ const Transactions = ({
         <div className="transactionsCard">
           <Headline text="Transactions Overview" style="transactionsHeadline" />
           <div className="transactionProps">
+            <span className="transactionId">ID</span>
             <span className="transactionDate">Date</span>
             <span className="transactionName">Name</span>
             <span className="transactionCategory">Category</span>
