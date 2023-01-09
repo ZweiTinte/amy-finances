@@ -36,33 +36,36 @@ const Dropdown = ({
   }, [ref]);
 
   return (
-    <div
-      className={`colLayout dropdownBorder ${open ? "priority" : ""}`}
-      ref={ref}
-    >
-      <div className="dropdown" onClick={() => setOpen(!open)}>
-        {dropDownItem.value}
+    <>
+      <div
+        className={`colLayout dropdownBorder ${open ? "priority" : ""}`}
+        ref={ref}
+      >
+        <div className="dropdown" onClick={() => setOpen(!open)}>
+          {dropDownItem.value}
+        </div>
+        {open &&
+          dropDownData.map((item) => {
+            return (
+              <div
+                className="dropdown"
+                key={item.id}
+                onClick={() => {
+                  setDropdownItem(
+                    dropDownData.filter(function (i) {
+                      return i.id === item.id;
+                    })[0]
+                  );
+                  setOpen(false);
+                }}
+              >
+                {type === DropdownTypes.Value ? item.value : item.id}
+              </div>
+            );
+          })}
       </div>
-      {open &&
-        dropDownData.map((item) => {
-          return (
-            <div
-              className="dropdown"
-              key={item.id}
-              onClick={() => {
-                setDropdownItem(
-                  dropDownData.filter(function (i) {
-                    return i.id === item.id;
-                  })[0]
-                );
-                setOpen(false);
-              }}
-            >
-              {type === DropdownTypes.Value ? item.value : item.id}
-            </div>
-          );
-        })}
-    </div>
+      <div className={`${open ? "dropdownSpacer" : ""}`}></div>
+    </>
   );
 };
 
