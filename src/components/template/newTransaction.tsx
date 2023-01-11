@@ -1,13 +1,11 @@
 import { navigate } from "gatsby";
 import * as React from "react";
 import Headline from "../atoms/headline";
-import NumberInput from "../atoms/numberInput";
-import TextInput from "../atoms/textInput";
-import DateInput from "../atoms/dateInput";
-import Dropdown, { DropdownItem, DropdownTypes } from "../atoms/dropdown";
-import { categories, postTransaction } from "../../transactionHelper";
+import { DropdownItem } from "../atoms/dropdown";
+import { postTransaction } from "../../transactionHelper";
 import ErrorInfo from "../level1/errorInfo";
 import { emptyAccountDDItem, fetchAccounts } from "../../accountsHelper";
+import NewTransactionForm from "../level2/newTransactionForm";
 
 const NewTransaction = () => {
   const [date, setDate] = React.useState<string>("");
@@ -72,53 +70,22 @@ const NewTransaction = () => {
               text="Add a new transaction"
               style="transactionsHeadline"
             />
-            <form onSubmit={submitHandler}>
-              <div className="formRow">
-                <label className="formLabel">Date:</label>
-                <DateInput value={date} setValue={setDate} />
-              </div>
-              <div className="formRow">
-                <label className="formLabel">Name:</label>
-                <TextInput value={name} setValue={setName} />
-              </div>
-              <div className="formRow">
-                <label className="formLabel">Category:</label>
-                <Dropdown
-                  dropDownItem={category}
-                  setDropdownItem={setCategory}
-                  dropDownData={categories}
-                  type={DropdownTypes.Value}
-                  verticalForm={false}
-                />
-              </div>
-              <div className="formRow">
-                <label className="formLabel">Amount:</label>
-                <NumberInput value={amount} setValue={setAmount} />
-              </div>
-              <div className="formRow">
-                <label className="formLabel">From:</label>
-                <Dropdown
-                  dropDownItem={from}
-                  setDropdownItem={setFrom}
-                  dropDownData={accounts}
-                  type={DropdownTypes.Value}
-                  verticalForm={false}
-                />
-              </div>
-              <div className="formRow">
-                <label className="formLabel">To:</label>
-                <Dropdown
-                  dropDownItem={to}
-                  setDropdownItem={setTo}
-                  dropDownData={accounts}
-                  type={DropdownTypes.Value}
-                  verticalForm={false}
-                />
-              </div>
-              <div className="formRow">
-                <input type="submit" value="Add transaction" />
-              </div>
-            </form>
+            <NewTransactionForm
+              submitHandler={submitHandler}
+              date={date}
+              setDate={setDate}
+              name={name}
+              setName={setName}
+              category={category}
+              setCategory={setCategory}
+              amount={amount}
+              setAmount={setAmount}
+              from={from}
+              setFrom={setFrom}
+              accounts={accounts}
+              to={to}
+              setTo={setTo}
+            />
           </div>
         </div>
       )}
