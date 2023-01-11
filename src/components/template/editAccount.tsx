@@ -1,6 +1,10 @@
 import { navigate } from "gatsby";
 import * as React from "react";
-import { fetchAccounts, updateAccounts } from "../../accountsHelper";
+import {
+  deleteAccount,
+  fetchAccount,
+  updateAccounts,
+} from "../../accountsHelper";
 import Button from "../atoms/button";
 import Headline from "../atoms/headline";
 import TextInput from "../atoms/textInput";
@@ -14,20 +18,8 @@ const EditAccount = ({ id }: { id: string }) => {
   const [name, setName] = React.useState<string>("");
   const [account, setAccount] = React.useState<Account | null>(null);
 
-  const deleteAccount = () => {
-    async function deleteAccounts(resolveUpdate: () => void): Promise<void> {
-      await fetch(`http://localhost:3000/api/accounts/${accountId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then(async (res) => {
-          await res.json().then(resolveUpdate).catch();
-        })
-        .catch();
-    }
-    deleteAccounts(resolveUpdate);
+  const deleteSelectedAccount = () => {
+    deleteAccount(resolveUpdate, accountId);
   };
 
   function handleError(error: Error): void {
@@ -54,15 +46,15 @@ const EditAccount = ({ id }: { id: string }) => {
     setTemplateReady(true);
   }
 
-  function loadAccounts(): void {
+  function loadAccount(): void {
     setTemplateReady(false);
     setError(false);
     setErrorMessage("");
-    fetchAccounts(resolveFetching, handleError, accountId);
+    fetchAccount(resolveFetching, handleError, accountId);
   }
 
   React.useEffect(() => {
-    loadAccounts();
+    loadAccount();
   }, []);
 
   return (
@@ -79,7 +71,7 @@ const EditAccount = ({ id }: { id: string }) => {
               <div className="formRow">
                 <input type="submit" value="Update account" />
                 <Button
-                  onClick={deleteAccount}
+                  onClick={deleteSelectedAccount}
                   text={"Delete Account"}
                   color="redButton"
                 />
@@ -88,7 +80,7 @@ const EditAccount = ({ id }: { id: string }) => {
           </div>
         </div>
       )}
-      {error && <ErrorInfo message={errorMessage} tryAgain={loadAccounts} />}
+      {error && <ErrorInfo message={errorMessage} tryAgain={loadAccount} />}
     </>
   );
 };

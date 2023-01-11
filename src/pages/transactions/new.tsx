@@ -1,12 +1,12 @@
 import * as React from "react";
-import NewAccount from "../../components/template/newAccount";
+import NewTransaction from "../../components/template/newTransaction";
 
-const AccountsPage = () => {
+const TransactionsPage = () => {
   return (
     <>
-      <NewAccount />
+      <NewTransaction />
     </>
   );
 };
 
-export default AccountsPage;
+export default TransactionsPage;

@@ -1,13 +1,11 @@
 import * as React from "react";
 
-const NumberInput = ({
+const DateInput = ({
   value,
   setValue,
-  step = "0.01",
 }: {
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
-  step?: string;
 }) => {
   return (
     <input
@@ -15,10 +13,9 @@ const NumberInput = ({
       onChange={(e) => {
         setValue(e.target.value);
       }}
-      type="number"
-      step={step}
+      type="date"
     />
   );
 };
 
-export default NumberInput;
+export default DateInput;

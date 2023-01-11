@@ -11,6 +11,7 @@ export interface DropdownProps {
   setDropdownItem: React.Dispatch<React.SetStateAction<DropdownItem>>;
   dropDownData: DropdownItem[];
   type: DropdownTypes;
+  verticalForm?: boolean;
 }
 
 const Dropdown = ({
@@ -18,9 +19,11 @@ const Dropdown = ({
   setDropdownItem,
   dropDownData,
   type,
+  verticalForm = true,
 }: DropdownProps) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const [open, setOpen] = React.useState<boolean>(false);
+  const priorityClass = verticalForm ? "priority" : "horizontalPriority";
 
   const handleClickOutside = (event: Event) => {
     if (ref.current && !ref.current.contains(event.target as HTMLDivElement)) {
@@ -38,17 +41,22 @@ const Dropdown = ({
   return (
     <>
       <div
-        className={`colLayout dropdownBorder ${open ? "priority" : ""}`}
+        className={`colLayout dropdownBorder ${open ? priorityClass : ""}`}
         ref={ref}
       >
-        <div className="dropdown" onClick={() => setOpen(!open)}>
+        <div
+          className={`${verticalForm ? "dropdown" : "horizontalDropdown"}`}
+          onClick={() => setOpen(!open)}
+        >
           {dropDownItem.value}
         </div>
         {open &&
           dropDownData.map((item) => {
             return (
               <div
-                className="dropdown"
+                className={`${
+                  verticalForm ? "dropdown" : "horizontalDropdown"
+                }`}
                 key={item.id}
                 onClick={() => {
                   setDropdownItem(
@@ -64,7 +72,9 @@ const Dropdown = ({
             );
           })}
       </div>
-      <div className={`${open ? "dropdownSpacer" : ""}`}></div>
+      {verticalForm && (
+        <div className={`${open ? "dropdownSpacer" : ""}`}></div>
+      )}
     </>
   );
 };

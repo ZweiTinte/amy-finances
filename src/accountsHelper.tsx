@@ -1,4 +1,6 @@
-export async function fetchAccounts(
+import { DropdownItem } from "./components/atoms/dropdown";
+
+export async function fetchAccount(
   resolveFetching: (data: Account) => void,
   handleError: (error: Error) => void,
   accountId: string
@@ -32,3 +34,32 @@ export async function updateAccounts(
     })
     .catch();
 }
+
+export async function fetchAccounts(
+  resolveFetching: (data: Account[]) => void,
+  handleError: (error: Error) => void
+): Promise<void> {
+  await fetch("http://localhost:3000/api/accounts")
+    .then(async (res) => {
+      await res.json().then(resolveFetching).catch(handleError);
+    })
+    .catch(handleError);
+}
+
+export async function deleteAccount(
+  resolveUpdate: () => void,
+  accountId: string
+): Promise<void> {
+  await fetch(`http://localhost:3000/api/accounts/${accountId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(async (res) => {
+      await res.json().then(resolveUpdate).catch();
+    })
+    .catch();
+}
+
+export const emptyAccountDDItem: DropdownItem = { id: 0, value: "Empty" };

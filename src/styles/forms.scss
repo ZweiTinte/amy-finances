@@ -48,6 +48,15 @@ input[type="text"] {
   width: 14rem;
 }
 
+input[type="date"] {
+  @include defaultInputElement;
+  height: 1.9rem;
+  line-height: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  width: 14rem;
+}
+
 .formHeadline {
   @include flexCenter;
   color: $white;
@@ -68,6 +77,12 @@ input[type="text"] {
 .priority {
   position: absolute;
   right: 1rem;
+  z-index: 1;
+}
+
+.horizontalPriority {
+  position: absolute;
+  right: 0rem;
   z-index: 1;
 }
 
