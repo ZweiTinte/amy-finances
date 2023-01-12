@@ -3,7 +3,8 @@ import NumberInput from "../atoms/numberInput";
 import TextInput from "../atoms/textInput";
 import DateInput from "../atoms/dateInput";
 import Dropdown, { DropdownItem, DropdownTypes } from "../atoms/dropdown";
-import { categories } from "../../transactionHelper";
+import { categories } from "../../categoriesHelper";
+import Button from "../atoms/button";
 
 const NewTransactionForm = ({
   submitHandler,
@@ -20,6 +21,7 @@ const NewTransactionForm = ({
   accounts,
   to,
   setTo,
+  deleteSelectedTransaction,
 }: {
   submitHandler: (e: React.SyntheticEvent) => void;
   date: string;
@@ -35,7 +37,10 @@ const NewTransactionForm = ({
   accounts: DropdownItem[];
   to: DropdownItem;
   setTo: React.Dispatch<React.SetStateAction<DropdownItem>>;
+  deleteSelectedTransaction?: () => void;
 }) => {
+  console.log(from, to, category, accounts);
+
   return (
     <form onSubmit={submitHandler}>
       <div className="formRow">
@@ -80,9 +85,20 @@ const NewTransactionForm = ({
           verticalForm={false}
         />
       </div>
-      <div className="formRow">
-        <input type="submit" value="Add transaction" />
-      </div>
+      {deleteSelectedTransaction === undefined ? (
+        <div className="formRow">
+          <input type="submit" value="Add transaction" />
+        </div>
+      ) : (
+        <div className="formRow">
+          <input type="submit" value="Update transaction" />
+          <Button
+            onClick={deleteSelectedTransaction}
+            text={"Delete Transaction"}
+            color="redButton"
+          />
+        </div>
+      )}
     </form>
   );
 };
