@@ -1,5 +1,5 @@
 import * as React from "react";
-import NewTransaction from "../../components/template/newTransaction";
+import NewTransaction from "../../components/template/transactions/newTransaction";
 
 const TransactionsPage = () => {
   return (

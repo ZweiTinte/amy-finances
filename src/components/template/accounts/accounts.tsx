@@ -1,7 +1,7 @@
 import * as React from "react";
-import { euroFormat } from "../../helpers";
-import AccountItem from "../atoms/accountItem";
-import Headline from "../atoms/headline";
+import { euroFormat } from "../../../helpers";
+import AccountItem from "../../atoms/accountItem";
+import Headline from "../../atoms/headline";
 
 const Accounts = ({
   accounts,

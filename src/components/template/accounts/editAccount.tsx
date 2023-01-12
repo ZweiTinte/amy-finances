@@ -4,11 +4,11 @@ import {
   deleteAccount,
   fetchAccount,
   updateAccounts,
-} from "../../accountsHelper";
-import Button from "../atoms/button";
-import Headline from "../atoms/headline";
-import TextInput from "../atoms/textInput";
-import ErrorInfo from "../level1/errorInfo";
+} from "../../../accountsHelper";
+import Button from "../../atoms/button";
+import Headline from "../../atoms/headline";
+import TextInput from "../../atoms/textInput";
+import ErrorInfo from "../../level1/errorInfo";
 
 const EditAccount = ({ id }: { id: string }) => {
   const accountId = id;

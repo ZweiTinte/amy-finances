@@ -1,7 +1,7 @@
 import * as React from "react";
 import ErrorInfo from "../components/level1/errorInfo";
-import Accounts from "../components/template/accounts";
-import AccountSidebarRight from "../components/template/accountSidebarRight";
+import Accounts from "../components/template/accounts/accounts";
+import AccountSidebarRight from "../components/template/accounts/accountSidebarRight";
 
 const AccountsPage = () => {
   const [templateReady, setTemplateReady] = React.useState<boolean>(false);

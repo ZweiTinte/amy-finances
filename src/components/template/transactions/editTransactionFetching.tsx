@@ -1,9 +1,9 @@
 import * as React from "react";
-import { fetchTransaction } from "../../transactionHelper";
-import ErrorInfo from "../level1/errorInfo";
-import { DropdownItem } from "../atoms/dropdown";
-import { emptyAccountDDItem } from "../../accountsHelper";
-import { categories } from "../../categoriesHelper";
+import { fetchTransaction } from "../../../transactionHelper";
+import ErrorInfo from "../../level1/errorInfo";
+import { DropdownItem } from "../../atoms/dropdown";
+import { emptyAccountDDItem } from "../../../accountsHelper";
+import { categories } from "../../../categoriesHelper";
 import EditTransaction from "./editTransaction";
 
 const EditTransactionFetching = ({

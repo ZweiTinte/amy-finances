@@ -1,8 +1,8 @@
 import { navigate } from "gatsby";
 import * as React from "react";
-import Headline from "../atoms/headline";
-import NumberInput from "../atoms/numberInput";
-import TextInput from "../atoms/textInput";
+import Headline from "../../atoms/headline";
+import NumberInput from "../../atoms/numberInput";
+import TextInput from "../../atoms/textInput";
 
 const NewAccount = () => {
   const [iban, setIban] = React.useState<string>("");

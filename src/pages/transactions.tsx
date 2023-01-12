@@ -1,7 +1,7 @@
 import * as React from "react";
 import ErrorInfo from "../components/level1/errorInfo";
-import Transactions from "../components/template/transactions";
-import TransactionSidebarRight from "../components/template/transactionSidebarRight";
+import Transactions from "../components/template/transactions/transactions";
+import TransactionSidebarRight from "../components/template/transactions/transactionSidebarRight";
 
 const TransactionsPage = () => {
   const [accountsReady, setAccountsReady] = React.useState<boolean>(false);

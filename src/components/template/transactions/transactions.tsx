@@ -1,6 +1,6 @@
 import * as React from "react";
-import Headline from "../atoms/headline";
-import TransactionItem from "../atoms/transactionItem";
+import Headline from "../../atoms/headline";
+import TransactionItem from "../../atoms/transactionItem";
 
 const Transactions = ({
   transactions,

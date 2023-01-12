@@ -1,9 +1,9 @@
 import { navigate } from "gatsby";
 import * as React from "react";
-import Button from "../atoms/button";
-import Dropdown, { DropdownItem, DropdownTypes } from "../atoms/dropdown";
-import Headline from "../atoms/headline";
-import Multiselect from "../atoms/multiselect";
+import Button from "../../atoms/button";
+import Dropdown, { DropdownItem, DropdownTypes } from "../../atoms/dropdown";
+import Headline from "../../atoms/headline";
+import Multiselect from "../../atoms/multiselect";
 
 const AccountSidebarRight = ({
   accounts,

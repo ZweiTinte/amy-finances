@@ -1,9 +1,12 @@
 import { navigate } from "gatsby";
 import * as React from "react";
-import { deleteTransaction, updateTransactions } from "../../transactionHelper";
-import Headline from "../atoms/headline";
-import TransactionForm from "../level2/transactionForm";
-import { EditTransactionProps } from "../../transactionTypes";
+import {
+  deleteTransaction,
+  updateTransactions,
+} from "../../../transactionHelper";
+import Headline from "../../atoms/headline";
+import TransactionForm from "../../level2/transactionForm";
+import { EditTransactionProps } from "../../../transactionTypes";
 
 const EditTransaction = ({
   id,
