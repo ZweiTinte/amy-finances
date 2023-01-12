@@ -5,7 +5,7 @@ import { DropdownItem } from "../atoms/dropdown";
 import { postTransaction } from "../../transactionHelper";
 import ErrorInfo from "../level1/errorInfo";
 import { emptyAccountDDItem, fetchAccounts } from "../../accountsHelper";
-import NewTransactionForm from "../level2/newTransactionForm";
+import TransactionForm from "../level2/transactionForm";
 
 const NewTransaction = () => {
   const [date, setDate] = React.useState<string>("");
@@ -70,7 +70,7 @@ const NewTransaction = () => {
               text="Add a new transaction"
               style="transactionsHeadline"
             />
-            <NewTransactionForm
+            <TransactionForm
               submitHandler={submitHandler}
               date={date}
               setDate={setDate}

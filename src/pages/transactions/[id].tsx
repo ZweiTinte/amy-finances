@@ -1,8 +1,8 @@
 import * as React from "react";
-import EditTransaction from "../../components/template/editTransaction";
 import { emptyAccountDDItem, fetchAccounts } from "../../accountsHelper";
 import { DropdownItem } from "../../components/atoms/dropdown";
 import ErrorInfo from "../../components/level1/errorInfo";
+import EditTransactionFetching from "../../components/template/editTransactionFetching";
 
 const TransactionEditPage = ({ params }: { params: { id: string } }) => {
   const [accounts, setAccounts] = React.useState<DropdownItem[]>([]);
@@ -37,7 +37,9 @@ const TransactionEditPage = ({ params }: { params: { id: string } }) => {
   }, []);
   return (
     <>
-      {accountsReady && <EditTransaction id={params.id} accounts={accounts} />}
+      {accountsReady && (
+        <EditTransactionFetching id={params.id} accounts={accounts} />
+      )}
       {error && <ErrorInfo message={errorMessage} tryAgain={loadAccounts} />}
     </>
   );
