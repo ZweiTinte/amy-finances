@@ -56,6 +56,14 @@ const AccountsFetching = ({
     fetchAccounts(resolveAccountsFetching, handleError);
   }
 
+  React.useEffect(() => {
+    let total = 0;
+    filteredAccounts.forEach((account) => {
+      total += account.balance;
+    });
+    setTotalBalance(total);
+  }, [filteredAccounts]);
+
   function loadData(): void {
     setError(false);
     setErrorMessage("");
