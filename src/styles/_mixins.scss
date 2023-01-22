@@ -90,7 +90,8 @@
 
 @mixin sidebar {
   position: fixed;
-  height: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
   width: 14rem;
   top: 0;
   background-color: $cardBackground;

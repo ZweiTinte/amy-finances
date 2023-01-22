@@ -56,3 +56,8 @@
 .dropdownSpacer {
   min-height: 2.45rem;
 }
+
+.dropdownContent {
+  max-height: 15rem;
+  overflow-y: scroll;
+}

@@ -4,6 +4,7 @@ import Button from "../../atoms/button";
 import Dropdown, { DropdownItem, DropdownTypes } from "../../atoms/dropdown";
 import Headline from "../../atoms/headline";
 import { categories } from "../../../categoriesHelper";
+import Multiselect from "../../atoms/multiselect";
 
 const TransactionSidebarRight = ({
   transactions,
@@ -21,20 +22,42 @@ const TransactionSidebarRight = ({
   );
   const [selectedTransaction, setSelectedTransaction] =
     React.useState<DropdownItem>(transactionsData[0]);
-  const [selectedCategory, setSelectedCategory] = React.useState<DropdownItem>({
-    id: 0,
-    value: "All Categories",
+  const [selectedCategories, setSelectedCategories] =
+    React.useState<DropdownItem[]>(categories);
+
+  let years: string[] = [];
+  transactions.forEach((trans) => {
+    const year = new Date(trans.date).getFullYear().toString();
+    if (!years.includes(year)) {
+      years.push(year);
+    }
   });
+  let yearId = 0;
+  const avaliableYears: DropdownItem[] = years.map((year) => {
+    yearId++;
+    return { id: yearId, value: year };
+  });
+  const [selectedYears, setSelectedYears] =
+    React.useState<DropdownItem[]>(avaliableYears);
 
   React.useEffect(() => {
     let newTransactions = transactions;
-    if (selectedCategory.id !== 0) {
-      newTransactions = transactions.filter((trans) => {
-        return trans.category === selectedCategory.value;
-      });
-    }
+    const filteredCategories: string[] = selectedCategories.map((category) => {
+      return category.value;
+    });
+    newTransactions = newTransactions.filter((trans) => {
+      return filteredCategories.includes(trans.category);
+    });
+    const filteredYears: string[] = selectedYears.map((year) => {
+      return year.value;
+    });
+    newTransactions = newTransactions.filter((trans) => {
+      return filteredYears.includes(
+        new Date(trans.date).getFullYear().toString()
+      );
+    });
     setFilteredTransactions(newTransactions);
-  }, [selectedCategory]);
+  }, [selectedCategories, selectedYears]);
 
   return (
     <div className="sidebarRight">
@@ -56,22 +79,37 @@ const TransactionSidebarRight = ({
         onClick={() => navigate(`/transactions/${selectedTransaction.id}`)}
         text={"Edit"}
       />
-      <Headline text={"Filter transactions"} style="sidebarSubHeadline" />
-      <Dropdown
-        dropDownItem={selectedCategory}
-        setDropdownItem={setSelectedCategory}
-        dropDownData={[
-          {
-            id: 0,
-            value: "All Categories",
-          },
-        ].concat(categories)}
-        type={DropdownTypes.Value}
+      <Headline text={"FILTERS"} style="sidebarSubHeadline" />
+      <Button
+        color={"sidebarButton spaceUp"}
+        onClick={() => {
+          setFilteredTransactions(transactions);
+          setSelectedCategories(categories);
+          setSelectedYears(avaliableYears);
+        }}
+        text={"Reset Filters"}
+      />
+      <Headline text={"Selected Categories"} style="sidebarDescription" />
+      <Multiselect
+        dropDownItems={selectedCategories}
+        setDropdownItems={setSelectedCategories}
+        dropDownData={categories}
+        items={categories}
       />
       <Button
         color={"sidebarButton spaceUp"}
-        onClick={() => setFilteredTransactions(transactions)}
-        text={"Show all"}
+        onClick={() => {
+          setSelectedCategories([]);
+        }}
+        text={"Empty Selection"}
+      />
+      <div className="spaceUp"></div>
+      <Headline text={"Selected Years"} style="sidebarDescription" />
+      <Multiselect
+        dropDownItems={selectedYears}
+        setDropdownItems={setSelectedYears}
+        dropDownData={avaliableYears}
+        items={avaliableYears}
       />
     </div>
   );
