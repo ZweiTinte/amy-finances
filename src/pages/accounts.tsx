@@ -1,66 +1,57 @@
 import * as React from "react";
 import ErrorInfo from "../components/level1/errorInfo";
-import Accounts from "../components/template/accounts/accounts";
-import AccountSidebarRight from "../components/template/accounts/accountSidebarRight";
+import AccountsFetching from "../components/template/accounts/accountsFetching";
 
 const AccountsPage = () => {
-  const [templateReady, setTemplateReady] = React.useState<boolean>(false);
-  const [accounts, setAccounts] = React.useState<Account[]>([]);
-  const [filteredAccounts, setFilteredAccounts] = React.useState<Account[]>([]);
+  const [transactionsReady, setTransactionsReady] =
+    React.useState<boolean>(false);
+  const [transactions, setTransactions] = React.useState<Transaction[]>([]);
   const [error, setError] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
-  const [totalBalance, setTotalBalance] = React.useState<number>(0);
 
   function handleError(error: Error): void {
     setError(true);
     setErrorMessage(error.message);
   }
 
-  function resolveFetching(data: Account[]): void {
-    setAccounts(data);
-    setFilteredAccounts(data);
-    let total = 0;
-    data.forEach((account) => {
-      total += account.balance;
-    });
-    setTotalBalance(total);
-    setTemplateReady(true);
+  function resolveFetching(data: Transaction[]): void {
+    setTransactions(data);
+    setTransactionsReady(true);
   }
 
-  function loadAccounts(): void {
-    setTemplateReady(false);
-    setError(false);
-    setErrorMessage("");
-    async function fetchAccounts(
-      resolveFetching: (data: Account[]) => void,
+  function loadTransactions(): void {
+    setTransactionsReady(false);
+    async function fetchTransactions(
+      resolveFetching: (data: Transaction[]) => void,
       handleError: (error: Error) => void
     ): Promise<void> {
-      await fetch("http://localhost:3000/api/accounts")
+      await fetch("http://localhost:3000/api/transactions")
         .then(async (res) => {
           await res.json().then(resolveFetching).catch(handleError);
         })
         .catch(handleError);
     }
-    fetchAccounts(resolveFetching, handleError);
+    fetchTransactions(resolveFetching, handleError);
+  }
+
+  function loadData(): void {
+    setError(false);
+    setErrorMessage("");
+    loadTransactions();
   }
 
   React.useEffect(() => {
-    loadAccounts();
+    loadData();
   }, []);
 
   return (
     <>
-      {templateReady && (
+      {transactionsReady && (
         <>
-          <Accounts accounts={filteredAccounts} totalBalance={totalBalance} />
-          <AccountSidebarRight
-            accounts={accounts}
-            setFilteredAccounts={setFilteredAccounts}
-            filteredAccountsData={filteredAccounts}
-          />
+          <AccountsFetching transactions={transactions} />
         </>
       )}
-      {error && <ErrorInfo message={errorMessage} tryAgain={loadAccounts} />}
+      {error && <ErrorInfo message={errorMessage} tryAgain={loadData} />}
     </>
   );
 };
