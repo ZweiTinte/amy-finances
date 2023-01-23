@@ -1,0 +1,8 @@
+@import "_variables";
+@import "_mixins";
+
+@mixin defaultFormRow {
+  @include flexSpace;
+  padding-bottom: 1rem;
+  position: relative;
+}

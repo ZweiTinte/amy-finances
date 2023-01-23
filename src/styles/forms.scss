@@ -1,9 +1,6 @@
 @import "_variables";
 @import "_mixins";
-
-form {
-  padding: 1rem 1rem 0rem;
-}
+@import "_formMixins";
 
 .formLabel {
   padding-top: 0.5rem;
@@ -13,10 +10,13 @@ form {
 }
 
 .formRow {
-  @include flexSpace;
-  padding-bottom: 1rem;
+  @include defaultFormRow;
   width: 23rem;
-  position: relative;
+}
+
+.formRowSmall {
+  @include defaultFormRow;
+  width: 14rem;
 }
 
 input[type="submit"] {

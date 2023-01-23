@@ -1,32 +1,29 @@
 import { navigate } from "gatsby";
 import * as React from "react";
 import Button from "../atoms/button";
-import Dropdown, { DropdownItem, DropdownTypes } from "../atoms/dropdown";
+import { DropdownItem } from "../atoms/dropdown";
 import Headline from "../atoms/headline";
 import { categories } from "../../categoriesHelper";
 import Multiselect from "../atoms/multiselect";
-import { getTransactionsData, getYears } from "../../filtersHelper";
+import { getMonths, getYears } from "../../filtersHelper";
+import EmptyAllButtonGroup from "../level1/emptyAllButtonGroup";
 
 const TransactionSidebarContent = ({
   transactions,
-  setFilteredTransactions,
-  filteredTransactionsData,
-  selectedTransaction,
-  setSelectedTransaction,
   selectedCategories,
   setSelectedCategories,
   selectedYears,
   setSelectedYears,
+  selectedMonths,
+  setSelectedMonths,
 }: {
   transactions: Transaction[];
-  filteredTransactionsData: Transaction[];
-  setFilteredTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>;
-  selectedTransaction: DropdownItem;
-  setSelectedTransaction: React.Dispatch<React.SetStateAction<DropdownItem>>;
   selectedCategories: DropdownItem[];
   setSelectedCategories: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
   selectedYears: DropdownItem[];
   setSelectedYears: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
+  selectedMonths: DropdownItem[];
+  setSelectedMonths: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
 }) => {
   return (
     <div className="sidebarRight">
@@ -36,25 +33,13 @@ const TransactionSidebarContent = ({
         onClick={() => navigate("/transactions/new")}
         text={"Add New Transaction"}
       />
-      <Headline text={"Edit Transaction"} style="sidebarSubHeadline" />
-      <Dropdown
-        dropDownItem={selectedTransaction}
-        setDropdownItem={setSelectedTransaction}
-        dropDownData={getTransactionsData(filteredTransactionsData)}
-        type={DropdownTypes.Id}
-      />
-      <Button
-        color={"sidebarButton spaceUp"}
-        onClick={() => navigate(`/transactions/${selectedTransaction.id}`)}
-        text={"Edit"}
-      />
       <Headline text={"FILTERS"} style="sidebarSubHeadline" />
       <Button
         color={"sidebarButton spaceUp"}
         onClick={() => {
-          setFilteredTransactions(transactions);
           setSelectedCategories(categories);
           setSelectedYears(getYears(transactions));
+          setSelectedMonths(getMonths(transactions));
         }}
         text={"Reset Filters"}
       />
@@ -65,12 +50,9 @@ const TransactionSidebarContent = ({
         dropDownData={categories}
         items={categories}
       />
-      <Button
-        color={"sidebarButton spaceUp"}
-        onClick={() => {
-          setSelectedCategories([]);
-        }}
-        text={"Empty Selection"}
+      <EmptyAllButtonGroup
+        onEmptyClick={() => setSelectedCategories([])}
+        onAllClick={() => setSelectedCategories(categories)}
       />
       <Headline text={"Selected Years"} style="sidebarDescription spaceUp" />
       <Multiselect
@@ -78,6 +60,21 @@ const TransactionSidebarContent = ({
         setDropdownItems={setSelectedYears}
         dropDownData={getYears(transactions)}
         items={getYears(transactions)}
+      />
+      <EmptyAllButtonGroup
+        onEmptyClick={() => setSelectedYears([])}
+        onAllClick={() => setSelectedYears(getYears(transactions))}
+      />
+      <Headline text={"Selected Months"} style="sidebarDescription spaceUp" />
+      <Multiselect
+        dropDownItems={selectedMonths}
+        setDropdownItems={setSelectedMonths}
+        dropDownData={getMonths(transactions)}
+        items={getMonths(transactions)}
+      />
+      <EmptyAllButtonGroup
+        onEmptyClick={() => setSelectedMonths([])}
+        onAllClick={() => setSelectedMonths(getMonths(transactions))}
       />
     </div>
   );

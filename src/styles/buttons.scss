@@ -22,6 +22,27 @@ button {
   padding: 0.5rem;
 }
 
+.sidebarSmallButton {
+  @include defaultHover;
+  @include defaultInputElement;
+  justify-content: left;
+  width: 6.75rem;
+  display: inline-flex;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.editButton {
+  @include defaultHover;
+  @include defaultInputElement;
+  justify-content: center;
+  width: 4rem;
+  height: 2rem;
+  display: inline-flex;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
 .nextButton {
   @include bigButton;
   width: math.div(20rem, 2);

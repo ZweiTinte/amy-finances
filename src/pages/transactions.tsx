@@ -85,7 +85,6 @@ const TransactionsPage = () => {
           <TransactionSidebarRight
             transactions={transactions}
             setFilteredTransactions={setFilteredTransactions}
-            filteredTransactionsData={filteredTransactions}
           />
         </>
       )}

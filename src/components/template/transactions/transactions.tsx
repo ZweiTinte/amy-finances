@@ -1,6 +1,6 @@
 import * as React from "react";
 import Headline from "../../atoms/headline";
-import TransactionItem from "../../atoms/transactionItem";
+import TransactionItem from "../../level1/transactionItem";
 
 const Transactions = ({
   transactions,

@@ -1,5 +1,7 @@
 import * as React from "react";
 import { euroFormat } from "../../helpers";
+import Button from "../atoms/button";
+import { navigate } from "gatsby";
 
 interface TransactionProps {
   transaction: Transaction;
@@ -30,6 +32,13 @@ const TransactionItem = ({ transaction, accounts }: TransactionProps) => {
         {getAccountName(transaction.from)}
       </span>
       <span className="transactionTo">{getAccountName(transaction.to)}</span>
+      <span>
+        <Button
+          color={"editButton"}
+          onClick={() => navigate(`/transactions/${transaction.id}`)}
+          text={"Edit"}
+        />
+      </span>
     </>
   );
 };

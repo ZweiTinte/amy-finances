@@ -1,26 +1,23 @@
 import * as React from "react";
 import { DropdownItem } from "../../atoms/dropdown";
 import { categories } from "../../../categoriesHelper";
-import { getTransactionsData, getYears } from "../../../filtersHelper";
-import TransactionSidebarContent from "../../level1/transactionSidebarContent";
+import { getMonths, getYears } from "../../../filtersHelper";
+import TransactionSidebarContent from "../../level2/transactionSidebarContent";
 
 const TransactionSidebarRight = ({
   transactions,
   setFilteredTransactions,
-  filteredTransactionsData,
 }: {
   transactions: Transaction[];
-  filteredTransactionsData: Transaction[];
   setFilteredTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>;
 }) => {
-  const [selectedTransaction, setSelectedTransaction] =
-    React.useState<DropdownItem>(
-      getTransactionsData(filteredTransactionsData)[0]
-    );
   const [selectedCategories, setSelectedCategories] =
     React.useState<DropdownItem[]>(categories);
   const [selectedYears, setSelectedYears] = React.useState<DropdownItem[]>(
     getYears(transactions)
+  );
+  const [selectedMonths, setSelectedMonths] = React.useState<DropdownItem[]>(
+    getMonths(transactions)
   );
 
   React.useEffect(() => {
@@ -39,20 +36,24 @@ const TransactionSidebarRight = ({
         new Date(trans.date).getFullYear().toString()
       );
     });
+    const filteredMonths: number[] = selectedMonths.map((month) => {
+      return month.id;
+    });
+    newTransactions = newTransactions.filter((trans) => {
+      return filteredMonths.includes(new Date(trans.date).getMonth());
+    });
     setFilteredTransactions(newTransactions);
-  }, [selectedCategories, selectedYears]);
+  }, [selectedCategories, selectedYears, selectedMonths]);
 
   return (
     <TransactionSidebarContent
       transactions={transactions}
-      filteredTransactionsData={filteredTransactionsData}
-      setFilteredTransactions={setFilteredTransactions}
-      selectedTransaction={selectedTransaction}
-      setSelectedTransaction={setSelectedTransaction}
       selectedCategories={selectedCategories}
       setSelectedCategories={setSelectedCategories}
       selectedYears={selectedYears}
       setSelectedYears={setSelectedYears}
+      selectedMonths={selectedMonths}
+      setSelectedMonths={setSelectedMonths}
     />
   );
 };
