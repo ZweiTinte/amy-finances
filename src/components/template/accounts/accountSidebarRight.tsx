@@ -4,6 +4,7 @@ import Button from "../../atoms/button";
 import Dropdown, { DropdownItem, DropdownTypes } from "../../atoms/dropdown";
 import Headline from "../../atoms/headline";
 import Multiselect from "../../atoms/multiselect";
+import EmptyAllButtonGroup from "../../level1/emptyAllButtonGroup";
 
 const AccountSidebarRight = ({
   accounts,
@@ -53,10 +54,9 @@ const AccountSidebarRight = ({
         dropDownData={accountsData}
         items={accounts}
       />
-      <Button
-        color={"sidebarButton spaceUp"}
-        onClick={() => setFilteredAccounts(accounts)}
-        text={"Select all"}
+      <EmptyAllButtonGroup
+        onEmptyClick={() => setFilteredAccounts([])}
+        onAllClick={() => setFilteredAccounts(accounts)}
       />
     </div>
   );
