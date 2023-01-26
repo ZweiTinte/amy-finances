@@ -84,6 +84,9 @@ const TransactionsPage = () => {
           />
           <TransactionSidebarRight
             transactions={transactions}
+            accounts={accounts.map((account) => {
+              return { id: account.id, value: account.name };
+            })}
             setFilteredTransactions={setFilteredTransactions}
           />
         </>

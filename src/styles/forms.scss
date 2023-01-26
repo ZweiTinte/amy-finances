@@ -14,6 +14,10 @@
   width: 23rem;
 }
 
+.formRowDefault {
+  @include defaultFormRow;
+}
+
 .formRowSmall {
   @include defaultFormRow;
   width: 14rem;
@@ -84,14 +88,4 @@ input[type="date"] {
   position: absolute;
   right: 0rem;
   z-index: 1;
-}
-
-.redButton {
-  @include loseStateColors;
-  @include loseStateHover;
-  @include defaultInputElement;
-  width: 10rem;
-  cursor: pointer;
-  padding: 0.5rem;
-  margin-top: 1rem;
 }

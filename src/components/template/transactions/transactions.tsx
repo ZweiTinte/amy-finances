@@ -1,6 +1,8 @@
 import * as React from "react";
 import Headline from "../../atoms/headline";
 import TransactionItem from "../../level1/transactionItem";
+import Button from "../../atoms/button";
+import { navigate } from "gatsby";
 
 const Transactions = ({
   transactions,
@@ -13,7 +15,17 @@ const Transactions = ({
     <>
       <div className="gameLayout">
         <div className="transactionsCard">
-          <Headline text="Transactions Overview" style="transactionsHeadline" />
+          <div className="formRowDefault">
+            <Headline
+              text="Transactions Overview"
+              style="transactionsHeadline"
+            />
+            <Button
+              color={"addButton"}
+              onClick={() => navigate("/transactions/new")}
+              text={"Add New Transaction"}
+            />
+          </div>
           <div className="transactionProps">
             <span className="transactionId">ID</span>
             <span className="transactionDate">Date</span>

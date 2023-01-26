@@ -43,6 +43,19 @@ button {
   padding: 0.25rem;
 }
 
+.addButton {
+  @include defaultHover;
+  @include defaultInputElement;
+  justify-content: center;
+  height: 2rem;
+  width: 12rem;
+  display: inline-flex;
+  cursor: pointer;
+  padding: 0.25rem;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .nextButton {
   @include bigButton;
   width: math.div(20rem, 2);
@@ -71,4 +84,14 @@ button {
 .equalState {
   @include equalStateColors;
   @include equalStateHover;
+}
+
+.redButton {
+  @include loseStateColors;
+  @include loseStateHover;
+  @include defaultInputElement;
+  width: 10rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-top: 1rem;
 }

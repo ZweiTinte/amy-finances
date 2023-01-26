@@ -1,4 +1,3 @@
-import { navigate } from "gatsby";
 import * as React from "react";
 import Button from "../atoms/button";
 import { DropdownItem } from "../atoms/dropdown";
@@ -16,6 +15,9 @@ const TransactionSidebarContent = ({
   setSelectedYears,
   selectedMonths,
   setSelectedMonths,
+  selectedAccounts,
+  setSelectedAccounts,
+  accounts,
 }: {
   transactions: Transaction[];
   selectedCategories: DropdownItem[];
@@ -24,16 +26,13 @@ const TransactionSidebarContent = ({
   setSelectedYears: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
   selectedMonths: DropdownItem[];
   setSelectedMonths: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
+  selectedAccounts: DropdownItem[];
+  setSelectedAccounts: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
+  accounts: DropdownItem[];
 }) => {
   return (
     <div className="sidebarRight">
-      <Headline text={"TRANSACTIONS MENU"} style="sidebarHeadline" />
-      <Button
-        color={"sidebarButton"}
-        onClick={() => navigate("/transactions/new")}
-        text={"Add New Transaction"}
-      />
-      <Headline text={"FILTERS"} style="sidebarSubHeadline" />
+      <Headline text={"TRANSACTION FILTERS"} style="sidebarHeadline" />
       <Button
         color={"sidebarButton spaceUp"}
         onClick={() => {
@@ -53,6 +52,17 @@ const TransactionSidebarContent = ({
       <EmptyAllButtonGroup
         onEmptyClick={() => setSelectedCategories([])}
         onAllClick={() => setSelectedCategories(categories)}
+      />
+      <Headline text={"Selected Accounts"} style="sidebarDescription spaceUp" />
+      <Multiselect
+        dropDownItems={selectedAccounts}
+        setDropdownItems={setSelectedAccounts}
+        dropDownData={accounts}
+        items={accounts}
+      />
+      <EmptyAllButtonGroup
+        onEmptyClick={() => setSelectedAccounts([])}
+        onAllClick={() => setSelectedAccounts(accounts)}
       />
       <Headline text={"Selected Years"} style="sidebarDescription spaceUp" />
       <Multiselect
