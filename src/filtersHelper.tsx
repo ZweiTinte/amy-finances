@@ -53,3 +53,17 @@ export function getTransactionsData(
     return { id: transaction.id, value: transaction.name };
   });
 }
+
+export function getAccountTypes(accounts: Account[]): DropdownItem[] {
+  let accountTypes: string[] = [];
+  accounts.forEach((account) => {
+    if (!accountTypes.includes(account.accountType)) {
+      accountTypes.push(account.accountType);
+    }
+  });
+  let id = 0;
+  return accountTypes.map((accountType) => {
+    id++;
+    return { id: id, value: accountType };
+  });
+}

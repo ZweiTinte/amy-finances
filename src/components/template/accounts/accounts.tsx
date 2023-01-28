@@ -1,7 +1,9 @@
 import * as React from "react";
 import { euroFormat } from "../../../helpers";
-import AccountItem from "../../atoms/accountItem";
+import AccountItem from "../../level1/accountItem";
 import Headline from "../../atoms/headline";
+import Button from "../../atoms/button";
+import { navigate } from "gatsby";
 
 const Accounts = ({
   accounts,
@@ -14,10 +16,18 @@ const Accounts = ({
     <>
       <div className="gameLayout">
         <div className="accountsCard">
-          <Headline text="Accounts Overview" style="accountsHeadline" />
+          <div className="formRowDefault">
+            <Headline text="Accounts Overview" style="accountsHeadline" />
+            <Button
+              color={"addButton"}
+              onClick={() => navigate("/accounts/new")}
+              text={"Add New Account"}
+            />
+          </div>
           <div className="accountProps">
             <span className="accountIban">IBAN</span>
             <span className="accountName">Name</span>
+            <span className="accountType">Type</span>
             <span className="accountBalanceHeadline">Balance</span>
           </div>
           {accounts.map((item) => {

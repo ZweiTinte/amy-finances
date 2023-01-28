@@ -12,6 +12,7 @@ interface Account {
   iban: string;
   name: string;
   balance: number;
+  accountType: string;
 }
 
 interface Transaction {

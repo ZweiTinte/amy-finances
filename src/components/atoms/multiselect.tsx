@@ -5,14 +5,12 @@ interface MultiselectProps {
   dropDownItems: DropdownItem[];
   setDropdownItems: React.Dispatch<React.SetStateAction<any[]>>;
   dropDownData: DropdownItem[];
-  items: any[];
 }
 
 const Multiselect = ({
   dropDownItems,
   setDropdownItems,
   dropDownData,
-  items,
 }: MultiselectProps) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const [open, setOpen] = React.useState<boolean>(false);
@@ -51,7 +49,7 @@ const Multiselect = ({
                   }
                   key={item.id}
                   onClick={() => {
-                    let newDropdownItems = items.filter((i) =>
+                    let newDropdownItems = dropDownData.filter((i) =>
                       dropDownItems.map((el) => el.id).includes(i.id)
                     );
                     if (dropDownItems.map((el) => el.id).includes(item.id)) {
@@ -60,7 +58,7 @@ const Multiselect = ({
                       });
                     } else {
                       newDropdownItems = newDropdownItems.concat(
-                        items.filter(function (i) {
+                        dropDownData.filter(function (i) {
                           return i.id === item.id;
                         })
                       );

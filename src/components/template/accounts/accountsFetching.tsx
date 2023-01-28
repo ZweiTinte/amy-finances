@@ -82,7 +82,6 @@ const AccountsFetching = ({
           <AccountSidebarRight
             accounts={accounts}
             setFilteredAccounts={setFilteredAccounts}
-            filteredAccountsData={filteredAccounts}
           />
         </>
       )}

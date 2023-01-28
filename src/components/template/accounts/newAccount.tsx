@@ -3,35 +3,23 @@ import * as React from "react";
 import Headline from "../../atoms/headline";
 import NumberInput from "../../atoms/numberInput";
 import TextInput from "../../atoms/textInput";
+import Dropdown, { DropdownItem, DropdownTypes } from "../../atoms/dropdown";
+import { accountTypes, postAccount } from "../../../accountsHelper";
 
 const NewAccount = () => {
   const [iban, setIban] = React.useState<string>("");
   const [name, setName] = React.useState<string>("");
   const [balance, setBalance] = React.useState<string>("");
+  const [accountType, setAccountType] = React.useState<DropdownItem>(
+    accountTypes[0]
+  );
 
   function resolveFetching(): void {
     navigate("/accounts");
   }
 
   function addNewAccount(): void {
-    async function fetchAccounts(resolveFetching: () => void): Promise<void> {
-      await fetch("http://localhost:3000/api/accounts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          iban: iban,
-          name: name,
-          balance: parseFloat(balance),
-        }),
-      })
-        .then(async (res) => {
-          await res.json().then(resolveFetching).catch();
-        })
-        .catch();
-    }
-    fetchAccounts(resolveFetching);
+    postAccount(resolveFetching, iban, name, balance, accountType.value);
   }
 
   const submitHandler = (e: React.SyntheticEvent) => {
@@ -56,6 +44,16 @@ const NewAccount = () => {
             <div className="formRow">
               <label className="formLabel">Balance:</label>
               <NumberInput value={balance} setValue={setBalance} />
+            </div>
+            <div className="formRow">
+              <label className="formLabel">Type:</label>
+              <Dropdown
+                dropDownItem={accountType}
+                setDropdownItem={setAccountType}
+                dropDownData={accountTypes}
+                type={DropdownTypes.Value}
+                verticalForm={false}
+              />
             </div>
             <div className="formRow">
               <input type="submit" value="Add new account" />

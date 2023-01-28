@@ -47,7 +47,6 @@ const TransactionSidebarContent = ({
         dropDownItems={selectedCategories}
         setDropdownItems={setSelectedCategories}
         dropDownData={categories}
-        items={categories}
       />
       <EmptyAllButtonGroup
         onEmptyClick={() => setSelectedCategories([])}
@@ -58,7 +57,6 @@ const TransactionSidebarContent = ({
         dropDownItems={selectedAccounts}
         setDropdownItems={setSelectedAccounts}
         dropDownData={accounts}
-        items={accounts}
       />
       <EmptyAllButtonGroup
         onEmptyClick={() => setSelectedAccounts([])}
@@ -69,7 +67,6 @@ const TransactionSidebarContent = ({
         dropDownItems={selectedYears}
         setDropdownItems={setSelectedYears}
         dropDownData={getYears(transactions)}
-        items={getYears(transactions)}
       />
       <EmptyAllButtonGroup
         onEmptyClick={() => setSelectedYears([])}
@@ -80,7 +77,6 @@ const TransactionSidebarContent = ({
         dropDownItems={selectedMonths}
         setDropdownItems={setSelectedMonths}
         dropDownData={getMonths(transactions)}
-        items={getMonths(transactions)}
       />
       <EmptyAllButtonGroup
         onEmptyClick={() => setSelectedMonths([])}

@@ -17,9 +17,14 @@
   width: 10rem;
 }
 
+.accountType {
+  @include accountInfo;
+  width: 6rem;
+}
+
 .accountsSum {
   @include accountInfo;
-  width: 24rem;
+  width: 31rem;
 }
 
 .accountBalance {
@@ -52,8 +57,8 @@
 }
 
 .accountInfos {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .accountsHeadline {
