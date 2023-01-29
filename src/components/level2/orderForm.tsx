@@ -1,20 +1,15 @@
 import * as React from "react";
 import NumberInput from "../atoms/numberInput";
-import TextInput from "../atoms/textInput";
 import DateInput from "../atoms/dateInput";
 import Dropdown, { DropdownTypes } from "../atoms/dropdown";
-import { categories } from "../../categoriesHelper";
-import Button from "../atoms/button";
-import { TransactionFormProps } from "../../transactionTypes";
+import { OrderFormProps } from "../../orderTypes";
+import { orderTypes } from "../../ordersHelper";
+import OrderFormSubmit from "../level1/orderFormSubmit";
 
-const TransactionForm = ({
+const OrderForm = ({
   submitHandler,
   date,
   setDate,
-  name,
-  setName,
-  category,
-  setCategory,
   amount,
   setAmount,
   from,
@@ -22,8 +17,17 @@ const TransactionForm = ({
   accounts,
   to,
   setTo,
-  deleteSelectedTransaction,
-}: TransactionFormProps) => {
+  stocks,
+  stock,
+  setStock,
+  price,
+  setPrice,
+  cost,
+  setCost,
+  orderType,
+  setOrderType,
+  deleteSelectedOrder,
+}: OrderFormProps) => {
   return (
     <form onSubmit={submitHandler}>
       <div className="formRow">
@@ -31,15 +35,21 @@ const TransactionForm = ({
         <DateInput value={date} setValue={setDate} />
       </div>
       <div className="formRow">
-        <label className="formLabel">Name:</label>
-        <TextInput value={name} setValue={setName} />
+        <label className="formLabel">Order Type:</label>
+        <Dropdown
+          dropDownItem={orderType}
+          setDropdownItem={setOrderType}
+          dropDownData={orderTypes}
+          type={DropdownTypes.Value}
+          verticalForm={false}
+        />
       </div>
       <div className="formRow">
-        <label className="formLabel">Category:</label>
+        <label className="formLabel">Stock:</label>
         <Dropdown
-          dropDownItem={category}
-          setDropdownItem={setCategory}
-          dropDownData={categories}
+          dropDownItem={stock}
+          setDropdownItem={setStock}
+          dropDownData={stocks}
           type={DropdownTypes.Value}
           verticalForm={false}
         />
@@ -47,6 +57,14 @@ const TransactionForm = ({
       <div className="formRow">
         <label className="formLabel">Amount:</label>
         <NumberInput value={amount} setValue={setAmount} />
+      </div>
+      <div className="formRow">
+        <label className="formLabel">Price:</label>
+        <NumberInput value={price} setValue={setPrice} />
+      </div>
+      <div className="formRow">
+        <label className="formLabel">Cost:</label>
+        <NumberInput value={cost} setValue={setCost} />
       </div>
       <div className="formRow">
         <label className="formLabel">From:</label>
@@ -68,22 +86,9 @@ const TransactionForm = ({
           verticalForm={false}
         />
       </div>
-      {deleteSelectedTransaction === undefined ? (
-        <div className="formRow">
-          <input type="submit" value="Add transaction" />
-        </div>
-      ) : (
-        <div className="formRow">
-          <input type="submit" value="Update transaction" />
-          <Button
-            onClick={deleteSelectedTransaction}
-            text={"Delete Transaction"}
-            color="redButton"
-          />
-        </div>
-      )}
+      <OrderFormSubmit deleteSelectedOrder={deleteSelectedOrder} />
     </form>
   );
 };
 
-export default TransactionForm;
+export default OrderForm;
