@@ -8,6 +8,10 @@ Installation:
 - install json-server: sudo npm install -g json-server
 - install gatsby: sudo npm install -g gatsby-cli
 
+Setup Env:
+
+- Create two files .env.development and .env.production in the root directory and copy the code from .env.example into these files
+
 Run the App:
 
 - gatsby develop

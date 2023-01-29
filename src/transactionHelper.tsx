@@ -9,7 +9,7 @@ export async function postTransaction(
   from: DropdownItem,
   to: DropdownItem
 ): Promise<void> {
-  await fetch("http://localhost:3000/api/transactions", {
+  await fetch(`${process.env.API_URL}transactions`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export async function deleteTransaction(
   resolveUpdate: () => void,
   transactionId: string
 ): Promise<void> {
-  await fetch(`http://localhost:3000/api/transactions/${transactionId}`, {
+  await fetch(`${process.env.API_URL}transactions/${transactionId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export async function fetchTransaction(
   handleError: (error: Error) => void,
   transactionId: string
 ): Promise<void> {
-  await fetch(`http://localhost:3000/api/transactions/${transactionId}`)
+  await fetch(`${process.env.API_URL}transactions/${transactionId}`)
     .then(async (res) => {
       await res.json().then(resolveFetching).catch(handleError);
     })
@@ -67,7 +67,7 @@ export async function updateTransactions(
   from: DropdownItem,
   to: DropdownItem
 ): Promise<void> {
-  await fetch(`http://localhost:3000/api/transactions/${transactionId}`, {
+  await fetch(`${process.env.API_URL}transactions/${transactionId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

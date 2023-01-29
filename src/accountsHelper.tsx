@@ -10,7 +10,7 @@ export async function fetchAccount(
   handleError: (error: Error) => void,
   accountId: string
 ): Promise<void> {
-  await fetch(`http://localhost:3000/api/accounts/${accountId}`)
+  await fetch(`${process.env.API_URL}accounts/${accountId}`)
     .then(async (res) => {
       await res.json().then(resolveFetching).catch(handleError);
     })
@@ -23,7 +23,7 @@ export async function updateAccounts(
   account: Account | null,
   name: string
 ): Promise<void> {
-  await fetch(`http://localhost:3000/api/accounts/${accountId}`, {
+  await fetch(`${process.env.API_URL}accounts/${accountId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export async function fetchAccounts(
   resolveFetching: (data: Account[]) => void,
   handleError: (error: Error) => void
 ): Promise<void> {
-  await fetch("http://localhost:3000/api/accounts")
+  await fetch(`${process.env.API_URL}accounts`)
     .then(async (res) => {
       await res.json().then(resolveFetching).catch(handleError);
     })
@@ -56,7 +56,7 @@ export async function deleteAccount(
   resolveUpdate: () => void,
   accountId: string
 ): Promise<void> {
-  await fetch(`http://localhost:3000/api/accounts/${accountId}`, {
+  await fetch(`${process.env.API_URL}accounts/${accountId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -77,7 +77,7 @@ export async function postAccount(
   balance: string,
   accountType: string
 ): Promise<void> {
-  await fetch("http://localhost:3000/api/accounts", {
+  await fetch(`${process.env.API_URL}accounts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
