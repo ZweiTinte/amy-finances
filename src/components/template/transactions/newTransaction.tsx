@@ -4,8 +4,9 @@ import Headline from "../../atoms/headline";
 import { DropdownItem } from "../../atoms/dropdown";
 import { postTransaction } from "../../../transactionHelper";
 import ErrorInfo from "../../level1/errorInfo";
-import { emptyAccountDDItem, fetchAccounts } from "../../../accountsHelper";
+import { emptyAccountDDItem } from "../../../accountsHelper";
 import TransactionForm from "../../level2/transactionForm";
+import { fetchAccounts } from "../../../accountsApi";
 
 const NewTransaction = () => {
   const [date, setDate] = React.useState<string>("");

@@ -50,27 +50,29 @@ const Dropdown = ({
         >
           {dropDownItem.value}
         </div>
-        {open &&
-          dropDownData.map((item) => {
-            return (
-              <div
-                className={`${
-                  verticalForm ? "dropdown" : "horizontalDropdown"
-                }`}
-                key={item.id}
-                onClick={() => {
-                  setDropdownItem(
-                    dropDownData.filter(function (i) {
-                      return i.id === item.id;
-                    })[0]
-                  );
-                  setOpen(false);
-                }}
-              >
-                {type === DropdownTypes.Value ? item.value : item.id}
-              </div>
-            );
-          })}
+        <div className="dropdownContent">
+          {open &&
+            dropDownData.map((item) => {
+              return (
+                <div
+                  className={`${
+                    verticalForm ? "dropdown" : "horizontalDropdown"
+                  }`}
+                  key={item.id}
+                  onClick={() => {
+                    setDropdownItem(
+                      dropDownData.filter(function (i) {
+                        return i.id === item.id;
+                      })[0]
+                    );
+                    setOpen(false);
+                  }}
+                >
+                  {type === DropdownTypes.Value ? item.value : item.id}
+                </div>
+              );
+            })}
+        </div>
       </div>
       {verticalForm && (
         <div className={`${open ? "dropdownSpacer" : ""}`}></div>

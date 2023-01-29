@@ -4,7 +4,7 @@ import {
   deleteAccount,
   fetchAccount,
   updateAccounts,
-} from "../../../accountsHelper";
+} from "../../../accountsApi";
 import Button from "../../atoms/button";
 import Headline from "../../atoms/headline";
 import TextInput from "../../atoms/textInput";

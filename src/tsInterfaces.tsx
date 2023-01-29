@@ -24,3 +24,23 @@ interface Transaction {
   to: number;
   date: string;
 }
+
+interface Order {
+  id: number;
+  name: string;
+  amount: number;
+  from: number;
+  to: number;
+  date: string;
+  price: number;
+  sum: number;
+  cost: number;
+  stock: number;
+  orderType: string;
+}
+
+interface Stock {
+  id: number;
+  isin: string;
+  name: string;
+}

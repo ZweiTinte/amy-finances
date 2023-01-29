@@ -1,0 +1,13 @@
+@import "_variables";
+@import "_accountMixins";
+@import "_headlineMixins";
+
+.stockIsin {
+  @include accountInfo;
+  width: 8rem;
+}
+
+.stockName {
+  @include accountInfo;
+  width: 8rem;
+}

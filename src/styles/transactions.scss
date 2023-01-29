@@ -26,11 +26,13 @@
   @include accountInfo;
   width: 7rem;
   text-align: end;
+  padding-right: 1rem;
 }
 
 .transactionAmountHeadline {
   @include accountInfo;
   width: 7rem;
+  padding-right: 1rem;
 }
 
 .transactionFrom {

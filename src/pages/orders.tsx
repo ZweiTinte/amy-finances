@@ -1,9 +1,9 @@
 import * as React from "react";
 import ErrorInfo from "../components/level1/errorInfo";
 import { fetchAccounts } from "../accountsApi";
-import TransactionsFetching from "../components/template/transactions/transactionsFetching";
+import StocksFetching from "../components/template/stocks/stocksFetching";
 
-const TransactionsPage = () => {
+const OrdersPage = () => {
   const [accountsReady, setAccountsReady] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
@@ -38,7 +38,7 @@ const TransactionsPage = () => {
     <>
       {accountsReady && (
         <>
-          <TransactionsFetching accounts={accounts} />
+          <StocksFetching accounts={accounts} />
         </>
       )}
       {error && <ErrorInfo message={errorMessage} tryAgain={loadData} />}
@@ -46,4 +46,4 @@ const TransactionsPage = () => {
   );
 };
 
-export default TransactionsPage;
+export default OrdersPage;

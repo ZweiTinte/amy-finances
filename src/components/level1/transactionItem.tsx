@@ -2,6 +2,7 @@ import * as React from "react";
 import { euroFormat } from "../../helpers";
 import Button from "../atoms/button";
 import { navigate } from "gatsby";
+import { getAccountName } from "../../accountsHelper";
 
 interface TransactionProps {
   transaction: Transaction;
@@ -9,16 +10,6 @@ interface TransactionProps {
 }
 
 const TransactionItem = ({ transaction, accounts }: TransactionProps) => {
-  function getAccountName(accountId: number): string {
-    if (accountId === 0) {
-      return "";
-    } else {
-      return accounts.filter((account) => {
-        return account.id === accountId;
-      })[0].name;
-    }
-  }
-
   return (
     <>
       <span className="transactionId">{transaction.id.toString()}</span>
@@ -29,9 +20,11 @@ const TransactionItem = ({ transaction, accounts }: TransactionProps) => {
         {euroFormat.format(transaction.amount)}
       </span>
       <span className="transactionFrom">
-        {getAccountName(transaction.from)}
+        {getAccountName(transaction.from, accounts)}
       </span>
-      <span className="transactionTo">{getAccountName(transaction.to)}</span>
+      <span className="transactionTo">
+        {getAccountName(transaction.to, accounts)}
+      </span>
       <span>
         <Button
           color={"editButton"}

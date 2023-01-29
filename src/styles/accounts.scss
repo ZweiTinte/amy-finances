@@ -9,7 +9,7 @@
 
 .accountIban {
   @include accountInfo;
-  width: 13rem;
+  width: 14rem;
 }
 
 .accountName {
@@ -24,7 +24,7 @@
 
 .accountsSum {
   @include accountInfo;
-  width: 31rem;
+  width: 30rem;
 }
 
 .accountBalance {
