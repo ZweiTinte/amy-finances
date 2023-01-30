@@ -1,6 +1,5 @@
 import * as React from "react";
-import NewOrder from "../../components/template/orders/newOrder";
-import { fetchStocks } from "../../stocksHelper";
+import { fetchStocks } from "../../api/stocksApi";
 import ErrorInfo from "../../components/level1/errorInfo";
 import AccountsFetching from "../../components/template/orders/accountsFetching";
 

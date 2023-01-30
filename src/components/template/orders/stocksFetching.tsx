@@ -1,7 +1,7 @@
 import * as React from "react";
 import ErrorInfo from "../../level1/errorInfo";
 import OrdersFetching from "./ordersFetching";
-import { fetchStocks } from "../../../stocksHelper";
+import { fetchStocks } from "../../../api/stocksApi";
 
 const StocksFetching = ({ accounts }: { accounts: Account[] }) => {
   const [stocksReady, setStocksReady] = React.useState<boolean>(false);

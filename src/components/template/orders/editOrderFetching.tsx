@@ -4,7 +4,7 @@ import { getOrderType, orderTypes } from "../../../helpers/ordersHelper";
 import EditOrder from "./editOrder";
 import ErrorInfo from "../../level1/errorInfo";
 import { fetchOrder } from "../../../api/ordersApi";
-import { getStockDDItems } from "../../../stocksHelper";
+import { getStockDDItems } from "../../../helpers/stocksHelper";
 import { getAccountDDItem } from "../../../helpers/accountsHelper";
 
 const EditOrderFetching = ({

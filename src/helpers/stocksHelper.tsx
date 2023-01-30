@@ -1,15 +1,4 @@
-import { DropdownItem } from "./components/atoms/dropdown";
-
-export async function fetchStocks(
-  resolveFetching: (data: Stock[]) => void,
-  handleError: (error: Error) => void
-): Promise<void> {
-  await fetch(`${process.env.GATSBY_API_URL}stocks`)
-    .then(async (res) => {
-      await res.json().then(resolveFetching).catch(handleError);
-    })
-    .catch(handleError);
-}
+import { DropdownItem } from "../components/atoms/dropdown";
 
 export function getStocks(stockId: number, stocks: Stock[]): Stock[] {
   if (stockId === 0) {

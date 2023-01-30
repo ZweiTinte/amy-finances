@@ -3,7 +3,7 @@ import { euroFormat } from "../../helpers/helpers";
 import Button from "../atoms/button";
 import { navigate } from "gatsby";
 import { getAccountName } from "../../helpers/accountsHelper";
-import { getStocks } from "../../stocksHelper";
+import { getStocks } from "../../helpers/stocksHelper";
 
 interface OrderProps {
   order: Order;
