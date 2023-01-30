@@ -1,7 +1,7 @@
 import * as React from "react";
 import ErrorInfo from "../components/level1/errorInfo";
 import { fetchAccounts } from "../accountsApi";
-import StocksFetching from "../components/template/stocks/stocksFetching";
+import StocksFetching from "../components/template/orders/stocksFetching";
 
 const OrdersPage = () => {
   const [accountsReady, setAccountsReady] = React.useState<boolean>(false);

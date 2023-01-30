@@ -13,7 +13,6 @@ const EditTransactionFetching = ({
   id: string;
   accounts: DropdownItem[];
 }) => {
-  const transactionId = id;
   const [transactionReady, setTransactionReady] =
     React.useState<boolean>(false);
   const [date, setDate] = React.useState<string>("");
@@ -59,7 +58,7 @@ const EditTransactionFetching = ({
     setTransactionReady(false);
     setError(false);
     setErrorMessage("");
-    fetchTransaction(resolveFetching, handleError, transactionId);
+    fetchTransaction(resolveFetching, handleError, id);
   }
 
   React.useEffect(() => {

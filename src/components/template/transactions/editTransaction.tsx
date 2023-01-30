@@ -24,10 +24,8 @@ const EditTransaction = ({
   to,
   setTo,
 }: EditTransactionProps) => {
-  const transactionId = id;
-
   const deleteSelectedTransaction = () => {
-    deleteTransaction(resolveUpdate, transactionId);
+    deleteTransaction(resolveUpdate, id);
   };
 
   function resolveUpdate(): void {
@@ -37,7 +35,7 @@ const EditTransaction = ({
   function updateTransaction(): void {
     updateTransactions(
       resolveUpdate,
-      transactionId,
+      id,
       date,
       name,
       category,

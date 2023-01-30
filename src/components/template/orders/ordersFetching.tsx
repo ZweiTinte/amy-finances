@@ -1,7 +1,7 @@
 import * as React from "react";
 import ErrorInfo from "../../level1/errorInfo";
-import { fetchOrders } from "../../../ordersHelper";
 import Orders from "./orders";
+import { fetchOrders } from "../../../ordersApi";
 
 const OrdersFetching = ({
   accounts,

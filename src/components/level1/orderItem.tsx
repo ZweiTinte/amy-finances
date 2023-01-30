@@ -3,7 +3,7 @@ import { euroFormat } from "../../helpers";
 import Button from "../atoms/button";
 import { navigate } from "gatsby";
 import { getAccountName } from "../../accountsHelper";
-import { getStock } from "../../stocksHelper";
+import { getStocks } from "../../stocksHelper";
 
 interface OrderProps {
   order: Order;
@@ -12,10 +12,10 @@ interface OrderProps {
 }
 
 const OrderItem = ({ order, accounts, stocks }: OrderProps) => {
-  const stock: Stock | null = getStock(order.stock, stocks);
+  const stock: Stock = getStocks(order.stock, stocks)[0];
   return (
     <>
-      <span className="transactionId">{order.id.toString()}</span>
+      <span className="transactionId">{order.id!.toString()}</span>
       <span className="transactionDate">{order.date}</span>
       <span className="orderType">{order.orderType}</span>
       <span className="stockIsin">{stock?.isin}</span>

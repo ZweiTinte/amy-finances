@@ -1,6 +1,6 @@
 import * as React from "react";
 import ErrorInfo from "../../level1/errorInfo";
-import OrdersFetching from "../orders/ordersFetching";
+import OrdersFetching from "./ordersFetching";
 import { fetchStocks } from "../../../stocksHelper";
 
 const StocksFetching = ({ accounts }: { accounts: Account[] }) => {

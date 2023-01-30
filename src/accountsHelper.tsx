@@ -16,3 +16,9 @@ export function getAccountName(accountId: number, accounts: Account[]): string {
     })[0].name;
   }
 }
+
+export function getAccountDDItem(accountId: number, accounts: DropdownItem[]) {
+  return accounts.filter((a) => {
+    return a.id === accountId;
+  })[0];
+}

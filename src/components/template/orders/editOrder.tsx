@@ -1,37 +1,43 @@
 import { navigate } from "gatsby";
 import * as React from "react";
 import Headline from "../../atoms/headline";
-import { DropdownItem } from "../../atoms/dropdown";
-import { calculateOrderSum, orderTypes } from "../../../ordersHelper";
+import { deleteOrder, updateOrder } from "../../../ordersApi";
 import OrderForm from "../../level2/orderForm";
-import { postOrder } from "../../../ordersApi";
+import { EditOrderProps } from "../../../orderTypes";
+import { calculateOrderSum } from "../../../ordersHelper";
 
-const NewOrder = ({
+const EditOrder = ({
   stocks,
   accounts,
-}: {
-  stocks: Stock[];
-  accounts: DropdownItem[];
-}) => {
-  const [date, setDate] = React.useState<string>("");
-  const [orderType, setOrderType] = React.useState<DropdownItem>(orderTypes[0]);
-  const [stock, setStock] = React.useState<DropdownItem>(
-    stocks.map((stock) => {
-      return { id: stock.id, value: stock.name };
-    })[0]
-  );
-  const [amount, setAmount] = React.useState<string>("");
-  const [price, setPrice] = React.useState<string>("");
-  const [cost, setCost] = React.useState<string>("");
-  const [from, setFrom] = React.useState<DropdownItem>(accounts[0]);
-  const [to, setTo] = React.useState<DropdownItem>(accounts[0]);
+  id,
+  date,
+  setDate,
+  amount,
+  setAmount,
+  from,
+  setFrom,
+  to,
+  setTo,
+  stock,
+  setStock,
+  price,
+  setPrice,
+  cost,
+  setCost,
+  orderType,
+  setOrderType,
+}: EditOrderProps) => {
+  const deleteSelectedOrder = () => {
+    deleteOrder(resolveUpdate, id);
+  };
 
-  function resolvePost(): void {
+  function resolveUpdate(): void {
     navigate("/orders");
   }
 
-  function addNewOrder(): void {
-    postOrder(resolvePost, {
+  function editOrder(): void {
+    updateOrder(resolveUpdate, {
+      id: parseInt(id),
       date: date,
       orderType: orderType.value,
       stock: stock.id,
@@ -46,7 +52,7 @@ const NewOrder = ({
 
   const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    addNewOrder();
+    editOrder();
   };
 
   return (
@@ -72,13 +78,12 @@ const NewOrder = ({
           stock={stock}
           setStock={setStock}
           accounts={accounts}
-          stocks={stocks.map((stock) => {
-            return { id: stock.id, value: stock.name };
-          })}
+          stocks={stocks}
+          deleteSelectedOrder={deleteSelectedOrder}
         />
       </div>
     </div>
   );
 };
 
-export default NewOrder;
+export default EditOrder;

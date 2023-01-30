@@ -1,3 +1,5 @@
+import { DropdownItem } from "./components/atoms/dropdown";
+
 export async function fetchStocks(
   resolveFetching: (data: Stock[]) => void,
   handleError: (error: Error) => void
@@ -9,12 +11,26 @@ export async function fetchStocks(
     .catch(handleError);
 }
 
-export function getStock(stockId: number, stocks: Stock[]): Stock | null {
+export function getStocks(stockId: number, stocks: Stock[]): Stock[] {
   if (stockId === 0) {
-    return null;
+    return [];
   } else {
     return stocks.filter((stock) => {
       return stock.id === stockId;
-    })[0];
+    });
   }
+}
+
+export function getStockDDItems(
+  stockId: number,
+  stocks: Stock[],
+  filter: boolean = true
+): DropdownItem[] {
+  const stocksFound = filter ? getStocks(stockId, stocks) : stocks;
+  if (stocksFound.length > 0) {
+    return stocksFound.map((stock) => {
+      return { id: stock.id, value: stock.name };
+    });
+  }
+  return [];
 }

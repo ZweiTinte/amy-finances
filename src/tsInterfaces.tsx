@@ -26,8 +26,7 @@ interface Transaction {
 }
 
 interface Order {
-  id: number;
-  name: string;
+  id?: number;
   amount: number;
   from: number;
   to: number;
