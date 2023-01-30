@@ -1,6 +1,6 @@
 import * as React from "react";
 import ErrorInfo from "../components/level1/errorInfo";
-import { fetchAccounts } from "../accountsApi";
+import { fetchAccounts } from "../api/accountsApi";
 import StocksFetching from "../components/template/orders/stocksFetching";
 
 const OrdersPage = () => {

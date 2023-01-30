@@ -3,7 +3,7 @@ import * as React from "react";
 import {
   deleteTransaction,
   updateTransactions,
-} from "../../../transactionHelper";
+} from "../../../api/transactionApi";
 import Headline from "../../atoms/headline";
 import TransactionForm from "../../level2/transactionForm";
 import { EditTransactionProps } from "../../../transactionTypes";

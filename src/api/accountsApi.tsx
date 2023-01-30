@@ -38,7 +38,6 @@ export async function fetchAccounts(
   resolveFetching: (data: Account[]) => void,
   handleError: (error: Error) => void
 ): Promise<void> {
-  console.log(`${process.env.GATSBY_API_URL}accounts`);
   await fetch(`${process.env.GATSBY_API_URL}accounts`)
     .then(async (res) => {
       await res.json().then(resolveFetching).catch(handleError);

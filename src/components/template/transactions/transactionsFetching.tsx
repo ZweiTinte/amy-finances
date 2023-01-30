@@ -1,5 +1,5 @@
 import * as React from "react";
-import { fetchTransactions } from "../../../transactionHelper";
+import { fetchTransactions } from "../../../api/transactionApi";
 import ErrorInfo from "../../level1/errorInfo";
 import TransactionSidebarRight from "./transactionSidebarRight";
 import Transactions from "./transactions";

@@ -1,4 +1,4 @@
-import { DropdownItem } from "./components/atoms/dropdown";
+import { DropdownItem } from "../components/atoms/dropdown";
 
 export const categories: DropdownItem[] = [
   { id: 1, value: "Clothing" },

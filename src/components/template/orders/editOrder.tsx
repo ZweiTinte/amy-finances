@@ -1,10 +1,10 @@
 import { navigate } from "gatsby";
 import * as React from "react";
 import Headline from "../../atoms/headline";
-import { deleteOrder, updateOrder } from "../../../ordersApi";
+import { deleteOrder, updateOrder } from "../../../api/ordersApi";
 import OrderForm from "../../level2/orderForm";
 import { EditOrderProps } from "../../../orderTypes";
-import { calculateOrderSum } from "../../../ordersHelper";
+import { calculateOrderSum } from "../../../helpers/ordersHelper";
 
 const EditOrder = ({
   stocks,

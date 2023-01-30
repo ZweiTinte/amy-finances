@@ -1,5 +1,4 @@
 import * as React from "react";
-import NewOrder from "../../components/template/orders/newOrder";
 import { fetchStocks } from "../../stocksHelper";
 import ErrorInfo from "../../components/level1/errorInfo";
 import AccountsFetching from "../../components/template/orders/accountsFetching";
@@ -39,11 +38,7 @@ const OrdersPage = () => {
     <>
       {stocksReady && (
         <>
-          <AccountsFetching
-            stocks={stocks.map((stock) => {
-              return { id: stock.id, value: stock.name };
-            })}
-          />
+          <AccountsFetching stocks={stocks} />
         </>
       )}
       {error && <ErrorInfo message={errorMessage} tryAgain={loadData} />}

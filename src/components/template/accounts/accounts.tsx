@@ -1,5 +1,5 @@
 import * as React from "react";
-import { euroFormat } from "../../../helpers";
+import { euroFormat } from "../../../helpers/helpers";
 import AccountItem from "../../level1/accountItem";
 import Headline from "../../atoms/headline";
 import Button from "../../atoms/button";

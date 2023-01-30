@@ -3,7 +3,7 @@ import NumberInput from "../atoms/numberInput";
 import TextInput from "../atoms/textInput";
 import DateInput from "../atoms/dateInput";
 import Dropdown, { DropdownTypes } from "../atoms/dropdown";
-import { categories } from "../../categoriesHelper";
+import { categories } from "../../helpers/categoriesHelper";
 import Button from "../atoms/button";
 import { TransactionFormProps } from "../../transactionTypes";
 

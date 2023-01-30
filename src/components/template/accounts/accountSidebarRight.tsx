@@ -4,8 +4,8 @@ import { DropdownItem } from "../../atoms/dropdown";
 import Headline from "../../atoms/headline";
 import Multiselect from "../../atoms/multiselect";
 import EmptyAllButtonGroup from "../../level1/emptyAllButtonGroup";
-import { accountTypes } from "../../../accountsHelper";
-import { getAccountTypes } from "../../../filtersHelper";
+import { accountTypes } from "../../../helpers/accountsHelper";
+import { getAccountTypes } from "../../../helpers/filtersHelper";
 
 const AccountSidebarRight = ({
   accounts,

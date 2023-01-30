@@ -4,8 +4,8 @@ import Headline from "../../atoms/headline";
 import NumberInput from "../../atoms/numberInput";
 import TextInput from "../../atoms/textInput";
 import Dropdown, { DropdownItem, DropdownTypes } from "../../atoms/dropdown";
-import { accountTypes } from "../../../accountsHelper";
-import { postAccount } from "../../../accountsApi";
+import { accountTypes } from "../../../helpers/accountsHelper";
+import { postAccount } from "../../../api/accountsApi";
 
 const NewAccount = () => {
   const [iban, setIban] = React.useState<string>("");

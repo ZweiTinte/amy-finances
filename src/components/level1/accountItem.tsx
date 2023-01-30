@@ -1,5 +1,5 @@
 import * as React from "react";
-import { euroFormat } from "../../helpers";
+import { euroFormat } from "../../helpers/helpers";
 import Button from "../atoms/button";
 import { navigate } from "gatsby";
 

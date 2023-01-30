@@ -2,6 +2,7 @@ import * as React from "react";
 import Accounts from "./accounts";
 import AccountSidebarRight from "./accountSidebarRight";
 import ErrorInfo from "../../level1/errorInfo";
+import { fetchAccounts } from "../../../api/accountsApi";
 
 const AccountsFetching = ({
   transactions,
@@ -43,16 +44,6 @@ const AccountsFetching = ({
 
   function loadAccounts(): void {
     setAccountsReady(false);
-    async function fetchAccounts(
-      resolveFetching: (data: Account[]) => void,
-      handleError: (error: Error) => void
-    ): Promise<void> {
-      await fetch("http://localhost:3000/api/accounts")
-        .then(async (res) => {
-          await res.json().then(resolveFetching).catch(handleError);
-        })
-        .catch(handleError);
-    }
     fetchAccounts(resolveAccountsFetching, handleError);
   }
 

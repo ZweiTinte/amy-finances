@@ -2,11 +2,11 @@ import { navigate } from "gatsby";
 import * as React from "react";
 import Headline from "../../atoms/headline";
 import { DropdownItem } from "../../atoms/dropdown";
-import { postTransaction } from "../../../transactionHelper";
+import { postTransaction } from "../../../api/transactionApi";
 import ErrorInfo from "../../level1/errorInfo";
-import { emptyAccountDDItem } from "../../../accountsHelper";
+import { emptyAccountDDItem } from "../../../helpers/accountsHelper";
 import TransactionForm from "../../level2/transactionForm";
-import { fetchAccounts } from "../../../accountsApi";
+import { fetchAccounts } from "../../../api/accountsApi";
 
 const NewTransaction = () => {
   const [date, setDate] = React.useState<string>("");

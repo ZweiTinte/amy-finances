@@ -1,4 +1,4 @@
-import { DropdownItem } from "./components/atoms/dropdown";
+import { DropdownItem } from "../components/atoms/dropdown";
 
 export const accountTypes = [
   { id: 0, value: "Cash" },

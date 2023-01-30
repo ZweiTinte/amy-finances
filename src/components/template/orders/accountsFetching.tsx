@@ -1,6 +1,6 @@
 import * as React from "react";
 import { DropdownItem } from "../../atoms/dropdown";
-import { fetchAccounts } from "../../../accountsApi";
+import { fetchAccounts } from "../../../api/accountsApi";
 import ErrorInfo from "../../level1/errorInfo";
 import NewOrder from "./newOrder";
 import EditOrderFetching from "./editOrderFetching";

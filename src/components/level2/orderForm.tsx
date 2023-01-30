@@ -3,7 +3,7 @@ import NumberInput from "../atoms/numberInput";
 import DateInput from "../atoms/dateInput";
 import Dropdown, { DropdownTypes } from "../atoms/dropdown";
 import { OrderFormProps } from "../../orderTypes";
-import { orderTypes } from "../../ordersHelper";
+import { orderTypes } from "../../helpers/ordersHelper";
 import OrderFormSubmit from "../level1/orderFormSubmit";
 
 const OrderForm = ({

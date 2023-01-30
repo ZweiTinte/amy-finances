@@ -2,9 +2,9 @@ import { navigate } from "gatsby";
 import * as React from "react";
 import Headline from "../../atoms/headline";
 import { DropdownItem } from "../../atoms/dropdown";
-import { calculateOrderSum, orderTypes } from "../../../ordersHelper";
+import { calculateOrderSum, orderTypes } from "../../../helpers/ordersHelper";
 import OrderForm from "../../level2/orderForm";
-import { postOrder } from "../../../ordersApi";
+import { postOrder } from "../../../api/ordersApi";
 
 const NewOrder = ({
   stocks,

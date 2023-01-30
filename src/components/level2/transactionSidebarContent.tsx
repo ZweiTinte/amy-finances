@@ -2,9 +2,9 @@ import * as React from "react";
 import Button from "../atoms/button";
 import { DropdownItem } from "../atoms/dropdown";
 import Headline from "../atoms/headline";
-import { categories } from "../../categoriesHelper";
+import { categories } from "../../helpers/categoriesHelper";
 import Multiselect from "../atoms/multiselect";
-import { getMonths, getYears } from "../../filtersHelper";
+import { getMonths, getYears } from "../../helpers/filtersHelper";
 import EmptyAllButtonGroup from "../level1/emptyAllButtonGroup";
 
 const TransactionSidebarContent = ({
