@@ -11,3 +11,27 @@
   @include accountInfo;
   width: 8rem;
 }
+
+.stockProps {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  @include bottomBorderHeadline;
+}
+
+.stockInfos {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.stocksCard {
+  min-width: 25rem;
+  margin: 0.5rem 0.5rem 0.5rem;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  display: flex;
+  align-items: left;
+  border-radius: 0.4rem;
+  border: 0.25rem solid $cardBorder;
+  background-color: $cardBackground;
+  flex-direction: column;
+}
