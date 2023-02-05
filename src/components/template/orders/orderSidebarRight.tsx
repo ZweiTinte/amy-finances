@@ -1,33 +1,30 @@
 import * as React from "react";
 import { DropdownItem } from "../../atoms/dropdown";
 import { categories } from "../../../helpers/categoriesHelper";
-import TransactionSidebarContent from "../../level2/transactionSidebarContent";
 import { getMonths, getYears } from "../../../helpers/helpers";
+import OrderSidebarContent from "../../level2/orderSidebarContent";
 
-const TransactionSidebarRight = ({
-  transactions,
+const OrderSidebarRight = ({
+  orders,
   accounts,
-  setFilteredTransactions,
+  stocks,
+  setFilteredOrders,
 }: {
-  transactions: Transaction[];
+  orders: Order[];
   accounts: DropdownItem[];
-  setFilteredTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>;
+  stocks: DropdownItem[];
+  setFilteredOrders: React.Dispatch<React.SetStateAction<Order[]>>;
 }) => {
-  const [selectedCategories, setSelectedCategories] =
-    React.useState<DropdownItem[]>(categories);
   const [selectedAccounts, setSelectedAccounts] =
     React.useState<DropdownItem[]>(accounts);
   const [selectedYears, setSelectedYears] = React.useState<DropdownItem[]>(
-    getYears(transactions)
+    getYears(orders)
   );
   const [selectedMonths, setSelectedMonths] = React.useState<DropdownItem[]>(
-    getMonths(transactions)
+    getMonths(orders)
   );
 
   React.useEffect(() => {
-    const filteredCategories: string[] = selectedCategories.map((category) => {
-      return category.value;
-    });
     const filteredYears: string[] = selectedYears.map((year) => {
       return year.value;
     });
@@ -37,23 +34,20 @@ const TransactionSidebarRight = ({
     const filteredAccounts: number[] = selectedAccounts.map((account) => {
       return account.id;
     });
-    const newTransactions = transactions.filter((trans) => {
+    const newTransactions = orders.filter((trans) => {
       return (
         (filteredAccounts.includes(trans.from) ||
           filteredAccounts.includes(trans.to)) &&
         filteredMonths.includes(new Date(trans.date).getMonth()) &&
-        filteredYears.includes(new Date(trans.date).getFullYear().toString()) &&
-        filteredCategories.includes(trans.category)
+        filteredYears.includes(new Date(trans.date).getFullYear().toString())
       );
     });
-    setFilteredTransactions(newTransactions);
-  }, [selectedCategories, selectedYears, selectedMonths, selectedAccounts]);
+    setFilteredOrders(newTransactions);
+  }, [selectedYears, selectedMonths, selectedAccounts]);
 
   return (
-    <TransactionSidebarContent
-      transactions={transactions}
-      selectedCategories={selectedCategories}
-      setSelectedCategories={setSelectedCategories}
+    <OrderSidebarContent
+      orders={orders}
       selectedYears={selectedYears}
       setSelectedYears={setSelectedYears}
       selectedMonths={selectedMonths}
@@ -65,4 +59,4 @@ const TransactionSidebarRight = ({
   );
 };
 
-export default TransactionSidebarRight;
+export default OrderSidebarRight;

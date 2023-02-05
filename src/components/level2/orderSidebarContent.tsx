@@ -2,15 +2,12 @@ import * as React from "react";
 import Button from "../atoms/button";
 import { DropdownItem } from "../atoms/dropdown";
 import Headline from "../atoms/headline";
-import { categories } from "../../helpers/categoriesHelper";
 import Multiselect from "../atoms/multiselect";
 import EmptyAllButtonGroup from "../level1/emptyAllButtonGroup";
 import { getMonths, getYears } from "../../helpers/helpers";
 
-const TransactionSidebarContent = ({
-  transactions,
-  selectedCategories,
-  setSelectedCategories,
+const OrderSidebarContent = ({
+  orders,
   selectedYears,
   setSelectedYears,
   selectedMonths,
@@ -19,9 +16,7 @@ const TransactionSidebarContent = ({
   setSelectedAccounts,
   accounts,
 }: {
-  transactions: Transaction[];
-  selectedCategories: DropdownItem[];
-  setSelectedCategories: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
+  orders: Order[];
   selectedYears: DropdownItem[];
   setSelectedYears: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
   selectedMonths: DropdownItem[];
@@ -32,28 +27,17 @@ const TransactionSidebarContent = ({
 }) => {
   return (
     <div className="sidebarRight">
-      <Headline text={"TRANSACTION FILTERS"} style="sidebarHeadline" />
+      <Headline text={"ORDER FILTERS"} style="sidebarHeadline" />
       <Button
         color={"sidebarButton spaceUp"}
         onClick={() => {
-          setSelectedCategories(categories);
-          setSelectedYears(getYears(transactions));
-          setSelectedMonths(getMonths(transactions));
+          setSelectedYears(getYears(orders));
+          setSelectedMonths(getMonths(orders));
           setSelectedAccounts(accounts);
         }}
         text={"Reset Filters"}
       />
-      <Headline text={"Selected Categories"} style="sidebarDescription" />
-      <Multiselect
-        dropDownItems={selectedCategories}
-        setDropdownItems={setSelectedCategories}
-        dropDownData={categories}
-      />
-      <EmptyAllButtonGroup
-        onEmptyClick={() => setSelectedCategories([])}
-        onAllClick={() => setSelectedCategories(categories)}
-      />
-      <Headline text={"Selected Accounts"} style="sidebarDescription spaceUp" />
+      <Headline text={"Selected Accounts"} style="sidebarDescription" />
       <Multiselect
         dropDownItems={selectedAccounts}
         setDropdownItems={setSelectedAccounts}
@@ -67,24 +51,24 @@ const TransactionSidebarContent = ({
       <Multiselect
         dropDownItems={selectedYears}
         setDropdownItems={setSelectedYears}
-        dropDownData={getYears(transactions)}
+        dropDownData={getYears(orders)}
       />
       <EmptyAllButtonGroup
         onEmptyClick={() => setSelectedYears([])}
-        onAllClick={() => setSelectedYears(getYears(transactions))}
+        onAllClick={() => setSelectedYears(getYears(orders))}
       />
       <Headline text={"Selected Months"} style="sidebarDescription spaceUp" />
       <Multiselect
         dropDownItems={selectedMonths}
         setDropdownItems={setSelectedMonths}
-        dropDownData={getMonths(transactions)}
+        dropDownData={getMonths(orders)}
       />
       <EmptyAllButtonGroup
         onEmptyClick={() => setSelectedMonths([])}
-        onAllClick={() => setSelectedMonths(getMonths(transactions))}
+        onAllClick={() => setSelectedMonths(getMonths(orders))}
       />
     </div>
   );
 };
 
-export default TransactionSidebarContent;
+export default OrderSidebarContent;

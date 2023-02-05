@@ -2,6 +2,7 @@ import * as React from "react";
 import ErrorInfo from "../../level1/errorInfo";
 import Orders from "./orders";
 import { fetchOrders } from "../../../api/ordersApi";
+import OrderSidebarRight from "./orderSidebarRight";
 
 const OrdersFetching = ({
   accounts,
@@ -52,6 +53,16 @@ const OrdersFetching = ({
             })}
             accounts={accounts}
             stocks={stocks}
+          />
+          <OrderSidebarRight
+            orders={orders}
+            stocks={stocks.map((stock) => {
+              return { id: stock.id, value: stock.name };
+            })}
+            accounts={accounts.map((account) => {
+              return { id: account.id, value: account.name };
+            })}
+            setFilteredOrders={setFilteredOrders}
           />
         </>
       )}
