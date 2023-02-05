@@ -19,6 +19,11 @@ const SidebarLeft = () => {
       />
       <Button
         color={"sidebarButton spaceUp"}
+        onClick={() => navigate("/stocks")}
+        text={"Stocks"}
+      />
+      <Button
+        color={"sidebarButton spaceUp"}
         onClick={() => navigate("/orders")}
         text={"Orders"}
       />
