@@ -19,7 +19,7 @@ const AccountItem = ({ account }: AccountProps) => {
       <span>
         <Button
           color={"editButton"}
-          onClick={() => navigate(`/transactions/${account.id}`)}
+          onClick={() => navigate(`/accounts/${account.id}`)}
           text={"Edit"}
         />
       </span>

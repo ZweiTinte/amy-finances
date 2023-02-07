@@ -1,25 +1,20 @@
 import { navigate } from "gatsby";
 import * as React from "react";
-import {
-  deleteAccount,
-  fetchAccount,
-  updateAccount,
-} from "../../../api/accountsApi";
 import Button from "../../atoms/button";
 import Headline from "../../atoms/headline";
 import TextInput from "../../atoms/textInput";
 import ErrorInfo from "../../level1/errorInfo";
+import { deleteStock, fetchStock, updateStock } from "../../../api/stocksApi";
 
-const EditAccount = ({ id }: { id: string }) => {
-  const accountId = id;
+const EditStock = ({ id }: { id: string }) => {
   const [templateReady, setTemplateReady] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
   const [name, setName] = React.useState<string>("");
-  const [account, setAccount] = React.useState<Account | null>(null);
+  const [isin, setIsin] = React.useState<string>("");
 
-  const deleteSelectedAccount = () => {
-    deleteAccount(resolveUpdate, accountId);
+  const deleteSelectedStock = () => {
+    deleteStock(resolveUpdate, id);
   };
 
   function handleError(error: Error): void {
@@ -28,51 +23,55 @@ const EditAccount = ({ id }: { id: string }) => {
   }
 
   function resolveUpdate(): void {
-    navigate("/accounts");
+    navigate("/stocks");
   }
 
-  function updateAccountItem(): void {
-    updateAccount(resolveUpdate, accountId, account, name);
+  function updateStockItem(): void {
+    updateStock(resolveUpdate, id, isin, name);
   }
 
   const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    updateAccountItem();
+    updateStockItem();
   };
 
-  function resolveFetching(data: Account): void {
+  function resolveFetching(data: Stock): void {
     setName(data.name);
-    setAccount(data);
+    setIsin(data.isin);
     setTemplateReady(true);
   }
 
-  function loadAccount(): void {
+  function loadStock(): void {
     setTemplateReady(false);
     setError(false);
     setErrorMessage("");
-    fetchAccount(resolveFetching, handleError, accountId);
+    fetchStock(resolveFetching, handleError, id);
   }
 
   React.useEffect(() => {
-    loadAccount();
+    loadStock();
   }, []);
 
   return (
     <>
       {templateReady && (
         <div className="gameLayout">
-          <div className="accountsCard">
-            <Headline text="Edit account" style="accountsHeadline" />
+          <div className="stocksCard">
+            <Headline text="Edit stock" style="accountsHeadline" />
             <form onSubmit={submitHandler}>
+              <div className="formRow">
+                <label className="formLabel">ISIN:</label>
+                <TextInput value={isin} setValue={setIsin} />
+              </div>
               <div className="formRow">
                 <label className="formLabel">Name:</label>
                 <TextInput value={name} setValue={setName} />
               </div>
               <div className="formRow">
-                <input type="submit" value="Update account" />
+                <input type="submit" value="Update stock" />
                 <Button
-                  onClick={deleteSelectedAccount}
-                  text={"Delete Account"}
+                  onClick={deleteSelectedStock}
+                  text={"Delete Stock"}
                   color="redButton"
                 />
               </div>
@@ -80,9 +79,9 @@ const EditAccount = ({ id }: { id: string }) => {
           </div>
         </div>
       )}
-      {error && <ErrorInfo message={errorMessage} tryAgain={loadAccount} />}
+      {error && <ErrorInfo message={errorMessage} tryAgain={loadStock} />}
     </>
   );
 };
 
-export default EditAccount;
+export default EditStock;

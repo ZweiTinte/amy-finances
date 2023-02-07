@@ -77,7 +77,7 @@ const TransactionForm = ({
           <input type="submit" value="Update transaction" />
           <Button
             onClick={deleteSelectedTransaction}
-            text={"Delete Transaction"}
+            text={"Delete transaction"}
             color="redButton"
           />
         </div>

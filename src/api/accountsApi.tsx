@@ -10,7 +10,7 @@ export async function fetchAccount(
     .catch(handleError);
 }
 
-export async function updateAccounts(
+export async function updateAccount(
   resolveUpdate: () => void,
   accountId: string,
   account: Account | null,
