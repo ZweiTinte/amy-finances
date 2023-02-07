@@ -14,7 +14,8 @@ export async function updateAccount(
   resolveUpdate: () => void,
   accountId: string,
   account: Account | null,
-  name: string
+  name: string,
+  accountType: string
 ): Promise<void> {
   await fetch(`${process.env.GATSBY_API_URL}accounts/${accountId}`, {
     method: "PUT",
@@ -25,7 +26,7 @@ export async function updateAccount(
       name: name,
       iban: account?.iban,
       balance: account?.balance,
-      accountType: account?.accountType,
+      accountType: accountType,
     }),
   })
     .then(async (res) => {

@@ -5,10 +5,11 @@ import {
   fetchAccount,
   updateAccount,
 } from "../../../api/accountsApi";
-import Button from "../../atoms/button";
 import Headline from "../../atoms/headline";
-import TextInput from "../../atoms/textInput";
 import ErrorInfo from "../../level1/errorInfo";
+import { DropdownItem } from "../../atoms/dropdown";
+import { accountTypes } from "../../../helpers/accountsHelper";
+import AccountForm from "../../level2/accountForm";
 
 const EditAccount = ({ id }: { id: string }) => {
   const accountId = id;
@@ -17,6 +18,9 @@ const EditAccount = ({ id }: { id: string }) => {
   const [errorMessage, setErrorMessage] = React.useState<string>("");
   const [name, setName] = React.useState<string>("");
   const [account, setAccount] = React.useState<Account | null>(null);
+  const [accountType, setAccountType] = React.useState<DropdownItem>(
+    accountTypes[0]
+  );
 
   const deleteSelectedAccount = () => {
     deleteAccount(resolveUpdate, accountId);
@@ -32,7 +36,7 @@ const EditAccount = ({ id }: { id: string }) => {
   }
 
   function updateAccountItem(): void {
-    updateAccount(resolveUpdate, accountId, account, name);
+    updateAccount(resolveUpdate, accountId, account, name, accountType.value);
   }
 
   const submitHandler = (e: React.SyntheticEvent) => {
@@ -42,6 +46,11 @@ const EditAccount = ({ id }: { id: string }) => {
 
   function resolveFetching(data: Account): void {
     setName(data.name);
+    setAccountType(
+      accountTypes.filter((type) => {
+        return type.value === data.accountType;
+      })[0]
+    );
     setAccount(data);
     setTemplateReady(true);
   }
@@ -63,20 +72,14 @@ const EditAccount = ({ id }: { id: string }) => {
         <div className="gameLayout">
           <div className="accountsCard">
             <Headline text="Edit account" style="accountsHeadline" />
-            <form onSubmit={submitHandler}>
-              <div className="formRow">
-                <label className="formLabel">Name:</label>
-                <TextInput value={name} setValue={setName} />
-              </div>
-              <div className="formRow">
-                <input type="submit" value="Update account" />
-                <Button
-                  onClick={deleteSelectedAccount}
-                  text={"Delete Account"}
-                  color="redButton"
-                />
-              </div>
-            </form>
+            <AccountForm
+              submitHandler={submitHandler}
+              name={name}
+              setName={setName}
+              accountType={accountType}
+              setAccountType={setAccountType}
+              deleteSelectedAccount={deleteSelectedAccount}
+            />
           </div>
         </div>
       )}
