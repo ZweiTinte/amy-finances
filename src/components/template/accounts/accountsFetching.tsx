@@ -6,8 +6,10 @@ import { fetchAccounts } from "../../../api/accountsApi";
 
 const AccountsFetching = ({
   transactions,
+  orders,
 }: {
   transactions: Transaction[];
+  orders: Order[];
 }) => {
   const [accountsReady, setAccountsReady] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
@@ -28,6 +30,16 @@ const AccountsFetching = ({
           account.balance -= trans.amount;
         } else if (trans.to === account.id) {
           account.balance += trans.amount;
+        }
+      });
+      orders.forEach((order) => {
+        if (order.from === account.id && account.accountType === "Clearing") {
+          account.balance -= order.sum;
+        } else if (
+          order.to === account.id &&
+          account.accountType === "Clearing"
+        ) {
+          account.balance += order.sum;
         }
       });
       return account;
