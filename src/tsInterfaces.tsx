@@ -42,4 +42,5 @@ interface Stock {
   id: number;
   isin: string;
   name: string;
+  amount: number;
 }

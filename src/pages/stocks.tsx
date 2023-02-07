@@ -1,35 +1,33 @@
 import * as React from "react";
 import ErrorInfo from "../components/level1/errorInfo";
-import { fetchStocks } from "../api/stocksApi";
-import Stocks from "../components/template/stocks/stocks";
+import StocksFetching from "../components/template/stocks/stocksFetching";
+import { fetchOrders } from "../api/ordersApi";
 
 const StocksPage = () => {
-  const [stocksReady, setStocksReady] = React.useState<boolean>(false);
+  const [templateReady, setTemplateReady] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
-  const [stocks, setStocks] = React.useState<Stock[]>([]);
-  const [filteredStocks, setFilteredStocks] = React.useState<Stock[]>([]);
+  const [orders, setOrders] = React.useState<Order[]>([]);
 
   function handleError(error: Error): void {
     setError(true);
     setErrorMessage(error.message);
   }
 
-  function resolveStocksFetching(data: Stock[]): void {
-    setStocks(data);
-    setFilteredStocks(data);
-    setStocksReady(true);
+  function resolveFetching(data: Order[]): void {
+    setOrders(data);
+    setTemplateReady(true);
   }
 
-  function loadStocks(): void {
-    setStocksReady(false);
-    fetchStocks(resolveStocksFetching, handleError);
+  function loadOrders(): void {
+    setTemplateReady(false);
+    fetchOrders(resolveFetching, handleError);
   }
 
   function loadData(): void {
     setError(false);
     setErrorMessage("");
-    loadStocks();
+    loadOrders();
   }
 
   React.useEffect(() => {
@@ -38,13 +36,9 @@ const StocksPage = () => {
 
   return (
     <>
-      {stocksReady && (
+      {templateReady && (
         <>
-          <Stocks
-            stocks={filteredStocks.sort((a, b) => {
-              return a.name.localeCompare(b.name);
-            })}
-          />
+          <StocksFetching orders={orders} />
         </>
       )}
       {error && <ErrorInfo message={errorMessage} tryAgain={loadData} />}

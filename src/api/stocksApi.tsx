@@ -22,6 +22,7 @@ export async function postStock(
     body: JSON.stringify({
       isin: isin,
       name: name,
+      amount: 0,
     }),
   })
     .then(async (res) => {

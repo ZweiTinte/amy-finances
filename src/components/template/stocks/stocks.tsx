@@ -20,6 +20,7 @@ const Stocks = ({ stocks }: { stocks: Stock[] }) => {
           <div className="stockProps">
             <span className="stockIsin">ISIN</span>
             <span className="stockName">Name</span>
+            <span className="orderAmount">Amount</span>
           </div>
           {stocks.map((item) => {
             return (
