@@ -2,6 +2,7 @@ import * as React from "react";
 import { fetchStocks } from "../../../api/stocksApi";
 import ErrorInfo from "../../level1/errorInfo";
 import Stocks from "./stocks";
+import StocksSidebarRight from "./stocksSidebarRight";
 
 const StocksFetching = ({ orders }: { orders: Order[] }) => {
   const [stocksReady, setStocksReady] = React.useState<boolean>(false);
@@ -54,6 +55,10 @@ const StocksFetching = ({ orders }: { orders: Order[] }) => {
             stocks={filteredStocks.sort((a, b) => {
               return a.name.localeCompare(b.name);
             })}
+          />
+          <StocksSidebarRight
+            stocks={stocks}
+            setFilteredStocks={setFilteredStocks}
           />
         </>
       )}

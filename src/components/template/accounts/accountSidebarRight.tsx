@@ -17,9 +17,6 @@ const AccountSidebarRight = ({
   const accountsData: DropdownItem[] = accounts.map((account) => {
     return { id: account.id, value: account.name };
   });
-  const [selectedAccount, setSelectedAccount] = React.useState<DropdownItem>(
-    accountsData[0]
-  );
   const [selectedAccountTypes, setSelectedAccountTypes] =
     React.useState<DropdownItem[]>(accountTypes);
   const [selectedAccounts, setSelectedAccounts] =
