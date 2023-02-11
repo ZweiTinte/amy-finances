@@ -23,6 +23,14 @@
   width: 14rem;
 }
 
+.checkbox {
+  padding-bottom: 1rem;
+  position: relative;
+  display: flex;
+  justify-items: center;
+  width: 14rem;
+}
+
 input[type="submit"] {
   @include winStateHover;
   @include defaultInputElement;
@@ -33,32 +41,26 @@ input[type="submit"] {
 }
 
 input[type="number"] {
-  @include defaultInputElement;
-  height: 1.9rem;
-  line-height: 1.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  width: 14rem;
+  @include inputField;
   -moz-appearance: textfield;
   appearance: textfield;
 }
 
 input[type="text"] {
-  @include defaultInputElement;
-  height: 1.9rem;
-  line-height: 1.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  width: 14rem;
+  @include inputField;
 }
 
 input[type="date"] {
+  @include inputField;
+}
+
+input[type="checkbox"] {
   @include defaultInputElement;
-  height: 1.9rem;
-  line-height: 1.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  width: 14rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  margin-right: 0.5rem;
+  appearance: none;
+  cursor: pointer;
 }
 
 .formHeadline {
@@ -78,14 +80,19 @@ input[type="date"] {
   flex-direction: column;
 }
 
-.priority {
-  position: absolute;
-  right: 1rem;
-  z-index: 1;
+.checkboxLabel {
+  font-size: 1rem;
+  padding-top: 0.25rem;
+  color: $white;
+  cursor: pointer;
 }
 
-.horizontalPriority {
+.checkmark {
+  color: $white;
+  font-size: 0.9rem;
   position: absolute;
-  right: 0rem;
-  z-index: 1;
+  left: 0.6rem;
+  top: 0.25rem;
+  font-weight: bold;
+  cursor: pointer;
 }

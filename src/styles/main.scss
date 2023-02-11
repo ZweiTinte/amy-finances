@@ -22,12 +22,6 @@ body {
   padding: 0.5rem;
 }
 
-.image {
-  width: 20rem;
-  height: auto;
-  padding: 0.5rem;
-}
-
 .card {
   @include cardObject;
   width: 21rem;
@@ -86,4 +80,16 @@ body {
 
 .spaceUp {
   margin-top: 0.5rem;
+}
+
+.priority {
+  position: absolute;
+  right: 1rem;
+  z-index: 1;
+}
+
+.horizontalPriority {
+  position: absolute;
+  right: 0rem;
+  z-index: 1;
 }

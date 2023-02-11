@@ -6,3 +6,12 @@
   padding-bottom: 1rem;
   position: relative;
 }
+
+@mixin inputField {
+  @include defaultInputElement;
+  height: 1.9rem;
+  line-height: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  width: 14rem;
+}

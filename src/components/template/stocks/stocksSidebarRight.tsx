@@ -4,6 +4,7 @@ import Headline from "../../atoms/headline";
 import Button from "../../atoms/button";
 import Multiselect from "../../atoms/multiselect";
 import EmptyAllButtonGroup from "../../level1/emptyAllButtonGroup";
+import Checkbox from "../../atoms/checkbox";
 
 const StocksSidebarRight = ({
   stocks,
@@ -17,16 +18,20 @@ const StocksSidebarRight = ({
   });
   const [selectedStocks, setSelectedStocks] =
     React.useState<DropdownItem[]>(stocksData);
+  const [hideEmptyStocks, setHideEmptyStocks] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const filteredStocks: number[] = selectedStocks.map((stock) => {
       return stock.id;
     });
     const newStocks = stocks.filter((stock) => {
-      return filteredStocks.includes(stock.id);
+      return (
+        filteredStocks.includes(stock.id) &&
+        (hideEmptyStocks ? stock.amount !== 0 : true)
+      );
     });
     setFilteredStocks(newStocks);
-  }, [selectedStocks]);
+  }, [selectedStocks, hideEmptyStocks]);
 
   return (
     <div className="sidebarRight">
@@ -35,6 +40,7 @@ const StocksSidebarRight = ({
         color={"sidebarButton spaceUp"}
         onClick={() => {
           setSelectedStocks(stocksData);
+          setHideEmptyStocks(false);
         }}
         text={"Reset Filters"}
       />
@@ -47,6 +53,11 @@ const StocksSidebarRight = ({
       <EmptyAllButtonGroup
         onEmptyClick={() => setSelectedStocks([])}
         onAllClick={() => setSelectedStocks(stocksData)}
+      />
+      <Checkbox
+        label={"Hide Empty Stocks"}
+        onClick={() => setHideEmptyStocks(!hideEmptyStocks)}
+        checked={hideEmptyStocks}
       />
     </div>
   );
