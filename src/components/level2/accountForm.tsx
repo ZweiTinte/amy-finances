@@ -1,9 +1,9 @@
 import * as React from "react";
 import TextInput from "../atoms/textInput";
 import Dropdown, { DropdownTypes } from "../atoms/dropdown";
-import Button from "../atoms/button";
 import { accountTypes } from "../../helpers/accountsHelper";
 import { AccountFormProps } from "../../accountTypes";
+import EditFormSubmit from "../level1/editFormSubmit";
 
 const AccountForm = ({
   submitHandler,
@@ -13,7 +13,6 @@ const AccountForm = ({
   setAccountType,
   deleteSelectedAccount,
 }: AccountFormProps) => {
-  const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(false);
   return (
     <form onSubmit={submitHandler}>
       <div className="formRow">
@@ -30,35 +29,10 @@ const AccountForm = ({
           verticalForm={false}
         />
       </div>
-      {deleteSelectedAccount === undefined ? (
-        <div className="formRow">
-          <input type="submit" value="Add account" />
-        </div>
-      ) : (
-        <>
-          <div className="formRow">
-            <input type="submit" value="Update account" />
-            <Button
-              onClick={(e: React.SyntheticEvent) => {
-                e.preventDefault();
-                setDeleteConfirm(true);
-              }}
-              text={"Delete Account"}
-              color="redButton"
-            />
-          </div>
-          {deleteConfirm && (
-            <div className="deleteConfirmRow">
-              <label className="formLabel">Are you sure?</label>
-              <Button
-                onClick={deleteSelectedAccount}
-                text={"Yes!"}
-                color="redButton"
-              />
-            </div>
-          )}
-        </>
-      )}
+      <EditFormSubmit
+        deleteSelectedItem={deleteSelectedAccount}
+        itemName={"Account"}
+      />
     </form>
   );
 };

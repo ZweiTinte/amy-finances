@@ -1,11 +1,11 @@
 import { navigate } from "gatsby";
 import * as React from "react";
-import Button from "../../atoms/button";
 import Headline from "../../atoms/headline";
 import TextInput from "../../atoms/textInput";
 import ErrorInfo from "../../level1/errorInfo";
 import { deleteStock, fetchStock, updateStock } from "../../../api/stocksApi";
 import NumberInput from "../../atoms/numberInput";
+import EditFormSubmit from "../../level1/editFormSubmit";
 
 const EditStock = ({ id }: { id: string }) => {
   const [templateReady, setTemplateReady] = React.useState<boolean>(false);
@@ -74,14 +74,10 @@ const EditStock = ({ id }: { id: string }) => {
                 <label className="formLabel">Price:</label>
                 <NumberInput value={price} setValue={setPrice} />
               </div>
-              <div className="formRow">
-                <input type="submit" value="Update stock" />
-                <Button
-                  onClick={deleteSelectedStock}
-                  text={"Delete Stock"}
-                  color="redButton"
-                />
-              </div>
+              <EditFormSubmit
+                deleteSelectedItem={deleteSelectedStock}
+                itemName={"Stock"}
+              />
             </form>
           </div>
         </div>

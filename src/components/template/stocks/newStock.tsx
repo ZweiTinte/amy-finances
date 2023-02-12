@@ -2,9 +2,9 @@ import * as React from "react";
 import TextInput from "../../atoms/textInput";
 import { navigate } from "gatsby";
 import { postStock } from "../../../api/stocksApi";
-import StockFormSubmit from "../../level1/stockFormSubmit";
 import Headline from "../../atoms/headline";
 import NumberInput from "../../atoms/numberInput";
+import EditFormSubmit from "../../level1/editFormSubmit";
 
 const NewStock = () => {
   const [isin, setIsin] = React.useState<string>("");
@@ -41,7 +41,7 @@ const NewStock = () => {
             <label className="formLabel">Price:</label>
             <NumberInput value={price} setValue={setPrice} />
           </div>
-          <StockFormSubmit />
+          <EditFormSubmit itemName={"Stock"} />
         </form>
       </div>
     </div>

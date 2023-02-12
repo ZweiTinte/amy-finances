@@ -4,8 +4,8 @@ import TextInput from "../atoms/textInput";
 import DateInput from "../atoms/dateInput";
 import Dropdown, { DropdownTypes } from "../atoms/dropdown";
 import { categories } from "../../helpers/categoriesHelper";
-import Button from "../atoms/button";
 import { TransactionFormProps } from "../../transactionTypes";
+import EditFormSubmit from "../level1/editFormSubmit";
 
 const TransactionForm = ({
   submitHandler,
@@ -24,6 +24,8 @@ const TransactionForm = ({
   setTo,
   deleteSelectedTransaction,
 }: TransactionFormProps) => {
+  const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(false);
+
   return (
     <form onSubmit={submitHandler}>
       <div className="formRow">
@@ -68,20 +70,10 @@ const TransactionForm = ({
           verticalForm={false}
         />
       </div>
-      {deleteSelectedTransaction === undefined ? (
-        <div className="formRow">
-          <input type="submit" value="Add transaction" />
-        </div>
-      ) : (
-        <div className="formRow">
-          <input type="submit" value="Update transaction" />
-          <Button
-            onClick={deleteSelectedTransaction}
-            text={"Delete transaction"}
-            color="redButton"
-          />
-        </div>
-      )}
+      <EditFormSubmit
+        deleteSelectedItem={deleteSelectedTransaction}
+        itemName={"Transaction"}
+      />
     </form>
   );
 };

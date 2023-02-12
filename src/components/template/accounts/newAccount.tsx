@@ -6,6 +6,7 @@ import TextInput from "../../atoms/textInput";
 import Dropdown, { DropdownItem, DropdownTypes } from "../../atoms/dropdown";
 import { accountTypes } from "../../../helpers/accountsHelper";
 import { postAccount } from "../../../api/accountsApi";
+import EditFormSubmit from "../../level1/editFormSubmit";
 
 const NewAccount = () => {
   const [iban, setIban] = React.useState<string>("");
@@ -56,9 +57,7 @@ const NewAccount = () => {
                 verticalForm={false}
               />
             </div>
-            <div className="formRow">
-              <input type="submit" value="Add new account" />
-            </div>
+            <EditFormSubmit itemName={"Account"} />
           </form>
         </div>
       </div>

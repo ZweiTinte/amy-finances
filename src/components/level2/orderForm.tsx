@@ -4,7 +4,7 @@ import DateInput from "../atoms/dateInput";
 import Dropdown, { DropdownTypes } from "../atoms/dropdown";
 import { OrderFormProps } from "../../orderTypes";
 import { orderTypes } from "../../helpers/ordersHelper";
-import OrderFormSubmit from "../level1/orderFormSubmit";
+import EditFormSubmit from "../level1/editFormSubmit";
 
 const OrderForm = ({
   submitHandler,
@@ -86,7 +86,10 @@ const OrderForm = ({
           verticalForm={false}
         />
       </div>
-      <OrderFormSubmit deleteSelectedOrder={deleteSelectedOrder} />
+      <EditFormSubmit
+        deleteSelectedItem={deleteSelectedOrder}
+        itemName={"Order"}
+      />
     </form>
   );
 };
