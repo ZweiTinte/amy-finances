@@ -1,13 +1,17 @@
 import * as React from "react";
-import ErrorInfo from "../../level1/errorInfo";
-import { fetchOrders } from "../../../api/ordersApi";
+import ErrorInfo from "../level1/errorInfo";
+import { fetchOrders } from "../../api/ordersApi";
 
 const OrdersFetching = ({
   children,
   transactions,
+  accounts,
+  stocks,
 }: {
   children: JSX.Element;
   transactions?: Transaction[];
+  accounts?: Account[];
+  stocks?: Stock[];
 }) => {
   const [templateReady, setTemplateReady] = React.useState<boolean>(false);
   const [orders, setOrders] = React.useState<Order[]>([]);
@@ -41,11 +45,13 @@ const OrdersFetching = ({
 
   return (
     <>
-      {templateReady && transactions && (
+      {templateReady && (
         <>
           {React.cloneElement(children, {
             transactions: transactions,
             orders: orders,
+            accounts: accounts,
+            stocks: stocks,
           })}
         </>
       )}

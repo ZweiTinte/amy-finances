@@ -1,40 +1,42 @@
 import * as React from "react";
-import ErrorInfo from "../../level1/errorInfo";
-import { fetchStocks } from "../../../api/stocksApi";
+import ErrorInfo from "../level1/errorInfo";
+import { fetchAccounts } from "../../api/accountsApi";
 
-const StocksFetching = ({
+const AccountsFetching = ({
   children,
   transactions,
   orders,
+  stocks,
 }: {
   children: JSX.Element;
   transactions?: Transaction[];
   orders?: Order[];
+  stocks?: Stock[];
 }) => {
-  const [templateReady, setTemplateReady] = React.useState<boolean>(false);
-  const [stocks, setStocks] = React.useState<Stock[]>([]);
+  const [accountsReady, setAccountsReady] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
+  const [accounts, setAccounts] = React.useState<Account[]>([]);
 
   function handleError(error: Error): void {
     setError(true);
     setErrorMessage(error.message);
   }
 
-  function resolveFetching(data: Stock[]): void {
-    setStocks(data);
-    setTemplateReady(true);
+  function resolveAccountsFetching(data: Account[]): void {
+    setAccounts(data);
+    setAccountsReady(true);
   }
 
-  function loadStocks(): void {
-    setTemplateReady(false);
-    fetchStocks(resolveFetching, handleError);
+  function loadAccounts(): void {
+    setAccountsReady(false);
+    fetchAccounts(resolveAccountsFetching, handleError);
   }
 
   function loadData(): void {
     setError(false);
     setErrorMessage("");
-    loadStocks();
+    loadAccounts();
   }
 
   React.useEffect(() => {
@@ -43,12 +45,13 @@ const StocksFetching = ({
 
   return (
     <>
-      {templateReady && transactions && orders && (
+      {accountsReady && (
         <>
           {React.cloneElement(children, {
             transactions: transactions,
             orders: orders,
             stocks: stocks,
+            accounts: accounts,
           })}
         </>
       )}
@@ -57,4 +60,4 @@ const StocksFetching = ({
   );
 };
 
-export default StocksFetching;
+export default AccountsFetching;

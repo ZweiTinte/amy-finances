@@ -1,6 +1,6 @@
 import * as React from "react";
-import { fetchTransactions } from "../../../api/transactionApi";
-import ErrorInfo from "../../level1/errorInfo";
+import { fetchTransactions } from "../../api/transactionApi";
+import ErrorInfo from "../level1/errorInfo";
 
 const TransactionFetching = ({ children }: { children: JSX.Element }) => {
   const [transactionsReady, setTransactionsReady] =

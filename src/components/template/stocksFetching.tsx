@@ -1,10 +1,19 @@
 import * as React from "react";
-import ErrorInfo from "../../level1/errorInfo";
-import OrdersFetching from "./ordersFetching";
-import { fetchStocks } from "../../../api/stocksApi";
+import ErrorInfo from "../level1/errorInfo";
+import { fetchStocks } from "../../api/stocksApi";
 
-const StocksFetching = ({ accounts }: { accounts: Account[] }) => {
-  const [stocksReady, setStocksReady] = React.useState<boolean>(false);
+const StocksFetching = ({
+  children,
+  transactions,
+  orders,
+  accounts,
+}: {
+  children: JSX.Element;
+  transactions?: Transaction[];
+  orders?: Order[];
+  accounts?: Account[];
+}) => {
+  const [templateReady, setTemplateReady] = React.useState<boolean>(false);
   const [stocks, setStocks] = React.useState<Stock[]>([]);
   const [error, setError] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
@@ -16,11 +25,11 @@ const StocksFetching = ({ accounts }: { accounts: Account[] }) => {
 
   function resolveFetching(data: Stock[]): void {
     setStocks(data);
-    setStocksReady(true);
+    setTemplateReady(true);
   }
 
   function loadStocks(): void {
-    setStocksReady(false);
+    setTemplateReady(false);
     fetchStocks(resolveFetching, handleError);
   }
 
@@ -36,9 +45,14 @@ const StocksFetching = ({ accounts }: { accounts: Account[] }) => {
 
   return (
     <>
-      {stocksReady && (
+      {templateReady && (
         <>
-          <OrdersFetching stocks={stocks} accounts={accounts} />
+          {React.cloneElement(children, {
+            transactions: transactions,
+            orders: orders,
+            stocks: stocks,
+            accounts: accounts,
+          })}
         </>
       )}
       {error && <ErrorInfo message={errorMessage} tryAgain={loadData} />}
