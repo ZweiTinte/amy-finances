@@ -2,7 +2,13 @@ import * as React from "react";
 import { fetchTransactions } from "../../api/transactionApi";
 import ErrorInfo from "../level1/errorInfo";
 
-const TransactionFetching = ({ children }: { children: JSX.Element }) => {
+const TransactionFetching = ({
+  children,
+  accounts,
+}: {
+  children: JSX.Element;
+  accounts?: Account[];
+}) => {
   const [transactionsReady, setTransactionsReady] =
     React.useState<boolean>(false);
   const [transactions, setTransactions] = React.useState<Transaction[]>([]);
@@ -40,6 +46,7 @@ const TransactionFetching = ({ children }: { children: JSX.Element }) => {
         <>
           {React.cloneElement(children, {
             transactions: transactions,
+            accounts: accounts,
           })}
         </>
       )}
