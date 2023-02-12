@@ -1,7 +1,6 @@
 import * as React from "react";
 import ErrorInfo from "../../level1/errorInfo";
 import { fetchOrders } from "../../../api/ordersApi";
-import StocksFetching from "./stocksFetching";
 
 const OrdersFetching = ({
   children,

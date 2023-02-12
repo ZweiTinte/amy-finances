@@ -3,18 +3,19 @@ import TransactionFetching from "../components/template/accounts/transactionFetc
 import OrdersFetching from "../components/template/accounts/ordersFetching";
 import StocksFetching from "../components/template/accounts/stocksFetching";
 import AccountsFetching from "../components/template/accounts/accountsFetching";
+import AccountsOverview from "../components/template/accounts/accountsOverview";
 
 const AccountsPage = () => {
   return (
-    <>
-      <TransactionFetching>
-        <OrdersFetching>
-          <StocksFetching>
-            <AccountsFetching />
-          </StocksFetching>
-        </OrdersFetching>
-      </TransactionFetching>
-    </>
+    <TransactionFetching>
+      <OrdersFetching>
+        <StocksFetching>
+          <AccountsFetching>
+            <AccountsOverview />
+          </AccountsFetching>
+        </StocksFetching>
+      </OrdersFetching>
+    </TransactionFetching>
   );
 };
 

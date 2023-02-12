@@ -1,5 +1,4 @@
 import * as React from "react";
-import AccountsFetching from "./accountsFetching";
 import ErrorInfo from "../../level1/errorInfo";
 import { fetchStocks } from "../../../api/stocksApi";
 

@@ -1,15 +1,14 @@
 import * as React from "react";
-import Accounts from "./accounts";
-import AccountSidebarRight from "./accountSidebarRight";
 import ErrorInfo from "../../level1/errorInfo";
 import { fetchAccounts } from "../../../api/accountsApi";
-import { calculateAccountBalance } from "../../../helpers/accountsHelper";
 
 const AccountsFetching = ({
+  children,
   transactions,
   orders,
   stocks,
 }: {
+  children: JSX.Element;
   transactions?: Transaction[];
   orders?: Order[];
   stocks?: Stock[];
@@ -18,8 +17,6 @@ const AccountsFetching = ({
   const [error, setError] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
   const [accounts, setAccounts] = React.useState<Account[]>([]);
-  const [filteredAccounts, setFilteredAccounts] = React.useState<Account[]>([]);
-  const [totalBalance, setTotalBalance] = React.useState<number>(0);
 
   function handleError(error: Error): void {
     setError(true);
@@ -27,36 +24,14 @@ const AccountsFetching = ({
   }
 
   function resolveAccountsFetching(data: Account[]): void {
-    if (transactions && orders && stocks) {
-      data = calculateAccountBalance(data, stocks, orders, transactions);
-      setAccounts(data);
-      setFilteredAccounts(data);
-      let total = 0;
-      data.forEach((account) => {
-        total += account.balance;
-      });
-      setTotalBalance(total);
-      setAccountsReady(true);
-    } else {
-      setError(true);
-      setErrorMessage(
-        "Transactions, Orders or Stocks weren't passed to this component!"
-      );
-    }
+    setAccounts(data);
+    setAccountsReady(true);
   }
 
   function loadAccounts(): void {
     setAccountsReady(false);
     fetchAccounts(resolveAccountsFetching, handleError);
   }
-
-  React.useEffect(() => {
-    let total = 0;
-    filteredAccounts.forEach((account) => {
-      total += account.balance;
-    });
-    setTotalBalance(total);
-  }, [filteredAccounts]);
 
   function loadData(): void {
     setError(false);
@@ -70,13 +45,14 @@ const AccountsFetching = ({
 
   return (
     <>
-      {accountsReady && (
+      {accountsReady && transactions && orders && stocks && (
         <>
-          <Accounts accounts={filteredAccounts} totalBalance={totalBalance} />
-          <AccountSidebarRight
-            accounts={accounts}
-            setFilteredAccounts={setFilteredAccounts}
-          />
+          {React.cloneElement(children, {
+            transactions: transactions,
+            orders: orders,
+            stocks: stocks,
+            accounts: accounts,
+          })}
         </>
       )}
       {error && <ErrorInfo message={errorMessage} tryAgain={loadData} />}
