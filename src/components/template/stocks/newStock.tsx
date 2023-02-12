@@ -4,17 +4,19 @@ import { navigate } from "gatsby";
 import { postStock } from "../../../api/stocksApi";
 import StockFormSubmit from "../../level1/stockFormSubmit";
 import Headline from "../../atoms/headline";
+import NumberInput from "../../atoms/numberInput";
 
 const NewStock = () => {
   const [isin, setIsin] = React.useState<string>("");
   const [name, setName] = React.useState<string>("");
+  const [price, setPrice] = React.useState<string>("");
 
   function resolvePost(): void {
     navigate("/stocks");
   }
 
   function addNewStock(): void {
-    postStock(resolvePost, isin, name);
+    postStock(resolvePost, isin, name, parseFloat(price));
   }
 
   const submitHandler = (e: React.SyntheticEvent) => {
@@ -34,6 +36,10 @@ const NewStock = () => {
           <div className="formRow">
             <label className="formLabel">Name:</label>
             <TextInput value={name} setValue={setName} />
+          </div>
+          <div className="formRow">
+            <label className="formLabel">Price:</label>
+            <NumberInput value={price} setValue={setPrice} />
           </div>
           <StockFormSubmit />
         </form>

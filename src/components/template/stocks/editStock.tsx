@@ -5,6 +5,7 @@ import Headline from "../../atoms/headline";
 import TextInput from "../../atoms/textInput";
 import ErrorInfo from "../../level1/errorInfo";
 import { deleteStock, fetchStock, updateStock } from "../../../api/stocksApi";
+import NumberInput from "../../atoms/numberInput";
 
 const EditStock = ({ id }: { id: string }) => {
   const [templateReady, setTemplateReady] = React.useState<boolean>(false);
@@ -12,6 +13,7 @@ const EditStock = ({ id }: { id: string }) => {
   const [errorMessage, setErrorMessage] = React.useState<string>("");
   const [name, setName] = React.useState<string>("");
   const [isin, setIsin] = React.useState<string>("");
+  const [price, setPrice] = React.useState<string>("");
 
   const deleteSelectedStock = () => {
     deleteStock(resolveUpdate, id);
@@ -27,7 +29,7 @@ const EditStock = ({ id }: { id: string }) => {
   }
 
   function updateStockItem(): void {
-    updateStock(resolveUpdate, id, isin, name);
+    updateStock(resolveUpdate, id, isin, name, parseFloat(price));
   }
 
   const submitHandler = (e: React.SyntheticEvent) => {
@@ -38,6 +40,7 @@ const EditStock = ({ id }: { id: string }) => {
   function resolveFetching(data: Stock): void {
     setName(data.name);
     setIsin(data.isin);
+    setPrice(data.price.toString());
     setTemplateReady(true);
   }
 
@@ -66,6 +69,10 @@ const EditStock = ({ id }: { id: string }) => {
               <div className="formRow">
                 <label className="formLabel">Name:</label>
                 <TextInput value={name} setValue={setName} />
+              </div>
+              <div className="formRow">
+                <label className="formLabel">Price:</label>
+                <NumberInput value={price} setValue={setPrice} />
               </div>
               <div className="formRow">
                 <input type="submit" value="Update stock" />

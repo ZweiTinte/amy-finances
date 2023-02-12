@@ -2,11 +2,6 @@ interface TextProps {
   text: string;
 }
 
-interface ButtonProps extends TextProps {
-  color?: string;
-  onClick: (params: any) => void;
-}
-
 interface Account {
   id: number;
   iban: string;
@@ -43,4 +38,5 @@ interface Stock {
   isin: string;
   name: string;
   amount: number;
+  price: number;
 }
