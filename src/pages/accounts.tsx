@@ -1,48 +1,19 @@
 import * as React from "react";
-import ErrorInfo from "../components/level1/errorInfo";
+import TransactionFetching from "../components/template/accounts/transactionFetching";
 import OrdersFetching from "../components/template/accounts/ordersFetching";
-import { fetchTransactions } from "../api/transactionApi";
+import StocksFetching from "../components/template/accounts/stocksFetching";
+import AccountsFetching from "../components/template/accounts/accountsFetching";
 
 const AccountsPage = () => {
-  const [transactionsReady, setTransactionsReady] =
-    React.useState<boolean>(false);
-  const [transactions, setTransactions] = React.useState<Transaction[]>([]);
-  const [error, setError] = React.useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = React.useState<string>("");
-
-  function handleError(error: Error): void {
-    setError(true);
-    setErrorMessage(error.message);
-  }
-
-  function resolveFetching(data: Transaction[]): void {
-    setTransactions(data);
-    setTransactionsReady(true);
-  }
-
-  function loadTransactions(): void {
-    setTransactionsReady(false);
-    fetchTransactions(resolveFetching, handleError);
-  }
-
-  function loadData(): void {
-    setError(false);
-    setErrorMessage("");
-    loadTransactions();
-  }
-
-  React.useEffect(() => {
-    loadData();
-  }, []);
-
   return (
     <>
-      {transactionsReady && (
-        <>
-          <OrdersFetching transactions={transactions} />
-        </>
-      )}
-      {error && <ErrorInfo message={errorMessage} tryAgain={loadData} />}
+      <TransactionFetching>
+        <OrdersFetching>
+          <StocksFetching>
+            <AccountsFetching />
+          </StocksFetching>
+        </OrdersFetching>
+      </TransactionFetching>
     </>
   );
 };

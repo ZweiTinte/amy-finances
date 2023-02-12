@@ -20,8 +20,7 @@
   display: flex;
   align-items: left;
   border-radius: 0.4rem;
-  border: 0.25rem solid $cardBorder;
-  background-color: $cardBackground;
+  @include defaultCardBorder;
   flex-direction: column;
 }
 

@@ -4,11 +4,13 @@ import ErrorInfo from "../../level1/errorInfo";
 import { fetchStocks } from "../../../api/stocksApi";
 
 const StocksFetching = ({
+  children,
   transactions,
   orders,
 }: {
-  transactions: Transaction[];
-  orders: Order[];
+  children: JSX.Element;
+  transactions?: Transaction[];
+  orders?: Order[];
 }) => {
   const [templateReady, setTemplateReady] = React.useState<boolean>(false);
   const [stocks, setStocks] = React.useState<Stock[]>([]);
@@ -42,13 +44,13 @@ const StocksFetching = ({
 
   return (
     <>
-      {templateReady && (
+      {templateReady && transactions && orders && (
         <>
-          <AccountsFetching
-            transactions={transactions}
-            orders={orders}
-            stocks={stocks}
-          />
+          {React.cloneElement(children, {
+            transactions: transactions,
+            orders: orders,
+            stocks: stocks,
+          })}
         </>
       )}
       {error && <ErrorInfo message={errorMessage} tryAgain={loadData} />}

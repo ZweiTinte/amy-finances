@@ -17,35 +17,25 @@
 }
 
 @mixin winStateColors {
-  background-color: $green1;
-  border-color: $green2;
+  background-color: $green1 !important;
+  border-color: $green2 !important;
 }
 
 @mixin winStateHover {
   &:hover {
+    color: $black !important;
     @include winStateColors;
   }
 }
 
 @mixin loseStateColors {
-  background-color: $red1;
-  border-color: $red2;
+  background-color: $red1 !important;
+  border-color: $red2 !important;
 }
 
 @mixin loseStateHover {
   &:hover {
     @include loseStateColors;
-  }
-}
-
-@mixin equalStateColors {
-  background-color: $blue1;
-  border-color: $blue2;
-}
-
-@mixin equalStateHover {
-  &:hover {
-    @include equalStateColors;
   }
 }
 
@@ -96,4 +86,14 @@
   top: 0;
   background-color: $cardBackground;
   padding: 1rem 1rem 0 1rem;
+}
+
+@mixin defaultFont {
+  font-size: 1rem;
+  color: $white;
+}
+
+@mixin defaultCardBorder {
+  border: 0.25rem solid $cardBorder;
+  background-color: $cardBackground;
 }

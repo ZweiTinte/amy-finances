@@ -26,8 +26,7 @@ body {
   @include cardObject;
   width: 21rem;
   border-radius: 0.4rem;
-  border: 0.25rem solid $cardBorder;
-  background-color: $cardBackground;
+  @include defaultCardBorder;
   flex-direction: column;
 }
 

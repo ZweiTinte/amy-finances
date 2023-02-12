@@ -42,3 +42,11 @@
   height: 1.5rem;
   width: 14rem;
 }
+
+.formHeadline {
+  @include flexCenter;
+  color: $white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 2rem;
+}

@@ -1,17 +1,12 @@
 import * as React from "react";
+import { fetchTransactions } from "../../../api/transactionApi";
+import OrdersFetching from "./ordersFetching";
 import ErrorInfo from "../../level1/errorInfo";
-import { fetchOrders } from "../../../api/ordersApi";
-import StocksFetching from "./stocksFetching";
 
-const OrdersFetching = ({
-  children,
-  transactions,
-}: {
-  children: JSX.Element;
-  transactions?: Transaction[];
-}) => {
-  const [templateReady, setTemplateReady] = React.useState<boolean>(false);
-  const [orders, setOrders] = React.useState<Order[]>([]);
+const TransactionFetching = ({ children }: { children: JSX.Element }) => {
+  const [transactionsReady, setTransactionsReady] =
+    React.useState<boolean>(false);
+  const [transactions, setTransactions] = React.useState<Transaction[]>([]);
   const [error, setError] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
 
@@ -20,20 +15,20 @@ const OrdersFetching = ({
     setErrorMessage(error.message);
   }
 
-  function resolveFetching(data: Order[]): void {
-    setOrders(data);
-    setTemplateReady(true);
+  function resolveFetching(data: Transaction[]): void {
+    setTransactions(data);
+    setTransactionsReady(true);
   }
 
-  function loadOrders(): void {
-    setTemplateReady(false);
-    fetchOrders(resolveFetching, handleError);
+  function loadTransactions(): void {
+    setTransactionsReady(false);
+    fetchTransactions(resolveFetching, handleError);
   }
 
   function loadData(): void {
     setError(false);
     setErrorMessage("");
-    loadOrders();
+    loadTransactions();
   }
 
   React.useEffect(() => {
@@ -42,11 +37,10 @@ const OrdersFetching = ({
 
   return (
     <>
-      {templateReady && transactions && (
+      {transactionsReady && (
         <>
           {React.cloneElement(children, {
             transactions: transactions,
-            orders: orders,
           })}
         </>
       )}
@@ -55,4 +49,4 @@ const OrdersFetching = ({
   );
 };
 
-export default OrdersFetching;
+export default TransactionFetching;

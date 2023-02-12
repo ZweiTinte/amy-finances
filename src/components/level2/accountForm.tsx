@@ -13,6 +13,7 @@ const AccountForm = ({
   setAccountType,
   deleteSelectedAccount,
 }: AccountFormProps) => {
+  const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(false);
   return (
     <form onSubmit={submitHandler}>
       <div className="formRow">
@@ -34,14 +35,29 @@ const AccountForm = ({
           <input type="submit" value="Add account" />
         </div>
       ) : (
-        <div className="formRow">
-          <input type="submit" value="Update account" />
-          <Button
-            onClick={deleteSelectedAccount}
-            text={"Delete Account"}
-            color="redButton"
-          />
-        </div>
+        <>
+          <div className="formRow">
+            <input type="submit" value="Update account" />
+            <Button
+              onClick={(e: React.SyntheticEvent) => {
+                e.preventDefault();
+                setDeleteConfirm(true);
+              }}
+              text={"Delete Account"}
+              color="redButton"
+            />
+          </div>
+          {deleteConfirm && (
+            <div className="deleteConfirmRow">
+              <label className="formLabel">Are you sure?</label>
+              <Button
+                onClick={deleteSelectedAccount}
+                text={"Yes!"}
+                color="redButton"
+              />
+            </div>
+          )}
+        </>
       )}
     </form>
   );

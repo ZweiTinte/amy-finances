@@ -10,9 +10,9 @@ const AccountsFetching = ({
   orders,
   stocks,
 }: {
-  transactions: Transaction[];
-  orders: Order[];
-  stocks: Stock[];
+  transactions?: Transaction[];
+  orders?: Order[];
+  stocks?: Stock[];
 }) => {
   const [accountsReady, setAccountsReady] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
@@ -27,15 +27,22 @@ const AccountsFetching = ({
   }
 
   function resolveAccountsFetching(data: Account[]): void {
-    data = calculateAccountBalance(data, stocks, orders, transactions);
-    setAccounts(data);
-    setFilteredAccounts(data);
-    let total = 0;
-    data.forEach((account) => {
-      total += account.balance;
-    });
-    setTotalBalance(total);
-    setAccountsReady(true);
+    if (transactions && orders && stocks) {
+      data = calculateAccountBalance(data, stocks, orders, transactions);
+      setAccounts(data);
+      setFilteredAccounts(data);
+      let total = 0;
+      data.forEach((account) => {
+        total += account.balance;
+      });
+      setTotalBalance(total);
+      setAccountsReady(true);
+    } else {
+      setError(true);
+      setErrorMessage(
+        "Transactions, Orders or Stocks weren't passed to this component!"
+      );
+    }
   }
 
   function loadAccounts(): void {

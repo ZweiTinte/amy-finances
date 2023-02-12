@@ -5,7 +5,7 @@
 button {
   @include defaultHover;
   @include defaultInputElement;
-  justify-content: left;
+  justify-content: center;
   width: 20rem;
   display: inline-flex;
   cursor: pointer;
@@ -25,7 +25,7 @@ button {
 .sidebarSmallButton {
   @include defaultHover;
   @include defaultInputElement;
-  justify-content: left;
+  justify-content: center;
   width: 6.75rem;
   display: inline-flex;
   cursor: pointer;
@@ -80,11 +80,6 @@ button {
 .loseState {
   @include loseStateColors;
   @include loseStateHover;
-}
-
-.equalState {
-  @include equalStateColors;
-  @include equalStateHover;
 }
 
 .redButton {
