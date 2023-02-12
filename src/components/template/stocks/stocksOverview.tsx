@@ -4,11 +4,19 @@ import ErrorInfo from "../../level1/errorInfo";
 import Stocks from "./stocks";
 import StocksSidebarRight from "./stocksSidebarRight";
 
-const StocksFetching = ({ orders }: { orders: Order[] }) => {
+const StocksOverview = ({
+  orders,
+  stocks,
+}: {
+  orders?: Order[];
+  stocks?: Stock[];
+}) => {
   const [stocksReady, setStocksReady] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
-  const [stocks, setStocks] = React.useState<Stock[]>([]);
+  const [calculatedStocks, setCalculatedStocks] = React.useState<Stock[]>(
+    stocks || []
+  );
   const [filteredStocks, setFilteredStocks] = React.useState<Stock[]>([]);
 
   function handleError(error: Error): void {
@@ -17,19 +25,25 @@ const StocksFetching = ({ orders }: { orders: Order[] }) => {
   }
 
   function resolveStocksFetching(data: Stock[]): void {
-    data = data.map((stock) => {
-      orders.forEach((order) => {
-        if (order.stock === stock.id && order.orderType === "Buy") {
-          stock.amount += order.amount;
-        } else if (order.stock === stock.id && order.orderType === "Sell") {
-          stock.amount -= order.amount;
-        }
-      });
-      return stock;
-    });
-    setStocks(data);
-    setFilteredStocks(data);
-    setStocksReady(true);
+    if (orders) {
+      setCalculatedStocks(
+        data.map((stock) => {
+          orders.forEach((order) => {
+            if (order.stock === stock.id && order.orderType === "Buy") {
+              stock.amount += order.amount;
+            } else if (order.stock === stock.id && order.orderType === "Sell") {
+              stock.amount -= order.amount;
+            }
+          });
+          return stock;
+        })
+      );
+      setFilteredStocks(calculatedStocks);
+      setStocksReady(true);
+    } else {
+      setError(true);
+      setErrorMessage("Problem with fetching orders!");
+    }
   }
 
   function loadStocks(): void {
@@ -57,7 +71,7 @@ const StocksFetching = ({ orders }: { orders: Order[] }) => {
             })}
           />
           <StocksSidebarRight
-            stocks={stocks}
+            stocks={calculatedStocks}
             setFilteredStocks={setFilteredStocks}
           />
         </>
@@ -67,4 +81,4 @@ const StocksFetching = ({ orders }: { orders: Order[] }) => {
   );
 };
 
-export default StocksFetching;
+export default StocksOverview;
