@@ -3,13 +3,16 @@ import Accounts from "./accounts";
 import AccountSidebarRight from "./accountSidebarRight";
 import ErrorInfo from "../../level1/errorInfo";
 import { fetchAccounts } from "../../../api/accountsApi";
+import { calculateAccountBalance } from "../../../helpers/accountsHelper";
 
 const AccountsFetching = ({
   transactions,
   orders,
+  stocks,
 }: {
   transactions: Transaction[];
   orders: Order[];
+  stocks: Stock[];
 }) => {
   const [accountsReady, setAccountsReady] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
@@ -24,26 +27,7 @@ const AccountsFetching = ({
   }
 
   function resolveAccountsFetching(data: Account[]): void {
-    data = data.map((account) => {
-      transactions.forEach((trans) => {
-        if (trans.from === account.id) {
-          account.balance -= trans.amount;
-        } else if (trans.to === account.id) {
-          account.balance += trans.amount;
-        }
-      });
-      orders.forEach((order) => {
-        if (order.from === account.id && account.accountType === "Clearing") {
-          account.balance -= order.sum;
-        } else if (
-          order.to === account.id &&
-          account.accountType === "Clearing"
-        ) {
-          account.balance += order.sum;
-        }
-      });
-      return account;
-    });
+    data = calculateAccountBalance(data, stocks, orders, transactions);
     setAccounts(data);
     setFilteredAccounts(data);
     let total = 0;

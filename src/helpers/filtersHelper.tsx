@@ -15,7 +15,7 @@ export function getAccountTypes(accounts: Account[]): DropdownItem[] {
       accountTypes.push(account.accountType);
     }
   });
-  let id = 0;
+  let id = -1;
   return accountTypes.map((accountType) => {
     id++;
     return { id: id, value: accountType };

@@ -1,11 +1,17 @@
 import * as React from "react";
+import AccountsFetching from "./accountsFetching";
 import ErrorInfo from "../../level1/errorInfo";
-import { fetchOrders } from "../../../api/ordersApi";
-import StocksFetching from "./stocksFetching";
+import { fetchStocks } from "../../../api/stocksApi";
 
-const OrdersFetching = ({ transactions }: { transactions: Transaction[] }) => {
+const StocksFetching = ({
+  transactions,
+  orders,
+}: {
+  transactions: Transaction[];
+  orders: Order[];
+}) => {
   const [templateReady, setTemplateReady] = React.useState<boolean>(false);
-  const [orders, setOrders] = React.useState<Order[]>([]);
+  const [stocks, setStocks] = React.useState<Stock[]>([]);
   const [error, setError] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
 
@@ -14,20 +20,20 @@ const OrdersFetching = ({ transactions }: { transactions: Transaction[] }) => {
     setErrorMessage(error.message);
   }
 
-  function resolveFetching(data: Order[]): void {
-    setOrders(data);
+  function resolveFetching(data: Stock[]): void {
+    setStocks(data);
     setTemplateReady(true);
   }
 
-  function loadOrders(): void {
+  function loadStocks(): void {
     setTemplateReady(false);
-    fetchOrders(resolveFetching, handleError);
+    fetchStocks(resolveFetching, handleError);
   }
 
   function loadData(): void {
     setError(false);
     setErrorMessage("");
-    loadOrders();
+    loadStocks();
   }
 
   React.useEffect(() => {
@@ -38,7 +44,11 @@ const OrdersFetching = ({ transactions }: { transactions: Transaction[] }) => {
     <>
       {templateReady && (
         <>
-          <StocksFetching transactions={transactions} orders={orders} />
+          <AccountsFetching
+            transactions={transactions}
+            orders={orders}
+            stocks={stocks}
+          />
         </>
       )}
       {error && <ErrorInfo message={errorMessage} tryAgain={loadData} />}
@@ -46,4 +56,4 @@ const OrdersFetching = ({ transactions }: { transactions: Transaction[] }) => {
   );
 };
 
-export default OrdersFetching;
+export default StocksFetching;
