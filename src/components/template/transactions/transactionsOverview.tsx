@@ -18,9 +18,13 @@ const TransactionsOverview = ({
       {transactions && accounts && (
         <>
           <Transactions
-            transactions={filteredTransactions.sort((a, b) => {
-              return Date.parse(a.date) - Date.parse(b.date);
-            })}
+            transactions={
+              transactions.length > 1
+                ? filteredTransactions.sort((a, b) => {
+                    return Date.parse(a.date) - Date.parse(b.date);
+                  })
+                : transactions
+            }
             accounts={accounts}
           />
           <TransactionSidebarRight

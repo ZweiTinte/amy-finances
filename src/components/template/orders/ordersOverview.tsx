@@ -20,9 +20,13 @@ const OrdersOverview = ({
       {orders && accounts && stocks && (
         <>
           <Orders
-            orders={filteredOrders.sort((a, b) => {
-              return Date.parse(a.date) - Date.parse(b.date);
-            })}
+            orders={
+              orders.length > 1
+                ? filteredOrders.sort((a, b) => {
+                    return Date.parse(a.date) - Date.parse(b.date);
+                  })
+                : orders
+            }
             accounts={accounts}
             stocks={stocks}
           />

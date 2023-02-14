@@ -63,12 +63,16 @@ const StocksOverview = ({
 
   return (
     <>
-      {stocksReady && (
+      {stocksReady && stocks && (
         <>
           <Stocks
-            stocks={filteredStocks.sort((a, b) => {
-              return a.name.localeCompare(b.name);
-            })}
+            stocks={
+              stocks.length > 1
+                ? filteredStocks.sort((a, b) => {
+                    return a.name.localeCompare(b.name);
+                  })
+                : stocks
+            }
           />
           <StocksSidebarRight
             stocks={calculatedStocks}

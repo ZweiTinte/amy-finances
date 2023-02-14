@@ -40,3 +40,13 @@ interface Stock {
   amount: number;
   price: number;
 }
+
+interface Dividend {
+  id: number;
+  payDate: string;
+  exDate: string;
+  amountBeforeTax: number;
+  taxAmount: number;
+  stock: number;
+  toAccount: number;
+}

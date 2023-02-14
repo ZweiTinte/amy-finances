@@ -6,8 +6,8 @@ import Multiselect from "../atoms/multiselect";
 import EmptyAllButtonGroup from "../level1/emptyAllButtonGroup";
 import { getMonths, getYears } from "../../helpers/helpers";
 
-const OrderSidebarContent = ({
-  orders,
+const DividendSidebarContent = ({
+  dividends,
   selectedYears,
   setSelectedYears,
   selectedMonths,
@@ -19,7 +19,7 @@ const OrderSidebarContent = ({
   setSelectedStocks,
   stocks,
 }: {
-  orders: Order[];
+  dividends: Dividend[];
   selectedYears: DropdownItem[];
   setSelectedYears: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
   selectedMonths: DropdownItem[];
@@ -33,12 +33,12 @@ const OrderSidebarContent = ({
 }) => {
   return (
     <div className="sidebarRight">
-      <Headline text={"ORDER FILTERS"} style="sidebarHeadline" />
+      <Headline text={"DIVIDEND FILTERS"} style="sidebarHeadline" />
       <Button
         color={"sidebarButton spaceUp"}
         onClick={() => {
-          setSelectedYears(getYears(orders));
-          setSelectedMonths(getMonths(orders));
+          setSelectedYears(getYears(dividends));
+          setSelectedMonths(getMonths(dividends));
           setSelectedAccounts(accounts);
           setSelectedStocks(stocks);
         }}
@@ -68,24 +68,24 @@ const OrderSidebarContent = ({
       <Multiselect
         dropDownItems={selectedYears}
         setDropdownItems={setSelectedYears}
-        dropDownData={getYears(orders)}
+        dropDownData={getYears(dividends)}
       />
       <EmptyAllButtonGroup
         onEmptyClick={() => setSelectedYears([])}
-        onAllClick={() => setSelectedYears(getYears(orders))}
+        onAllClick={() => setSelectedYears(getYears(dividends))}
       />
       <Headline text={"Selected Months"} style="sidebarDescription spaceUp" />
       <Multiselect
         dropDownItems={selectedMonths}
         setDropdownItems={setSelectedMonths}
-        dropDownData={getMonths(orders)}
+        dropDownData={getMonths(dividends)}
       />
       <EmptyAllButtonGroup
         onEmptyClick={() => setSelectedMonths([])}
-        onAllClick={() => setSelectedMonths(getMonths(orders))}
+        onAllClick={() => setSelectedMonths(getMonths(dividends))}
       />
     </div>
   );
 };
 
-export default OrderSidebarContent;
+export default DividendSidebarContent;

@@ -1,28 +1,28 @@
 import * as React from "react";
 import { DropdownItem } from "../../atoms/dropdown";
 import { getMonths, getYears } from "../../../helpers/helpers";
-import OrderSidebarContent from "../../level2/orderSidebarContent";
+import DividendSidebarContent from "../../level2/dividendSidebarContent";
 
-const OrderSidebarRight = ({
-  orders,
+const DividendSidebarRight = ({
+  dividends,
   accounts,
   stocks,
-  setFilteredOrders,
+  setFilteredDividends,
 }: {
-  orders: Order[];
+  dividends: Dividend[];
   accounts: DropdownItem[];
   stocks: DropdownItem[];
-  setFilteredOrders: React.Dispatch<React.SetStateAction<Order[]>>;
+  setFilteredDividends: React.Dispatch<React.SetStateAction<Dividend[]>>;
 }) => {
   const [selectedAccounts, setSelectedAccounts] =
     React.useState<DropdownItem[]>(accounts);
   const [selectedStocks, setSelectedStocks] =
     React.useState<DropdownItem[]>(stocks);
   const [selectedYears, setSelectedYears] = React.useState<DropdownItem[]>(
-    getYears(orders)
+    getYears(dividends)
   );
   const [selectedMonths, setSelectedMonths] = React.useState<DropdownItem[]>(
-    getMonths(orders)
+    getMonths(dividends)
   );
 
   React.useEffect(() => {
@@ -38,33 +38,34 @@ const OrderSidebarRight = ({
     const filteredStocks: number[] = selectedStocks.map((stock) => {
       return stock.id;
     });
-    const newOrders = orders.filter((order) => {
+    const newDividends = dividends.filter((dividend) => {
       return (
-        (filteredAccounts.includes(order.from) ||
-          filteredAccounts.includes(order.to)) &&
-        filteredStocks.includes(order.stock) &&
-        filteredMonths.includes(new Date(order.date).getMonth()) &&
-        filteredYears.includes(new Date(order.date).getFullYear().toString())
+        filteredAccounts.includes(dividend.toAccount) &&
+        filteredStocks.includes(dividend.stock) &&
+        filteredMonths.includes(new Date(dividend.payDate).getMonth()) &&
+        filteredYears.includes(
+          new Date(dividend.payDate).getFullYear().toString()
+        )
       );
     });
-    setFilteredOrders(newOrders);
+    setFilteredDividends(newDividends);
   }, [selectedYears, selectedMonths, selectedAccounts, selectedStocks]);
 
   return (
-    <OrderSidebarContent
-      orders={orders}
+    <DividendSidebarContent
+      dividends={dividends}
       selectedYears={selectedYears}
       setSelectedYears={setSelectedYears}
       selectedMonths={selectedMonths}
       setSelectedMonths={setSelectedMonths}
       selectedAccounts={selectedAccounts}
-      setSelectedAccounts={setSelectedAccounts}
       setSelectedStocks={setSelectedStocks}
       selectedStocks={selectedStocks}
+      setSelectedAccounts={setSelectedAccounts}
       accounts={accounts}
       stocks={stocks}
     />
   );
 };
 
-export default OrderSidebarRight;
+export default DividendSidebarRight;
