@@ -50,11 +50,6 @@ body {
   color: $red1;
 }
 
-.equalMessage {
-  @include gameEndMessage;
-  color: $blue4;
-}
-
 .errorMessage {
   @include flexCenter;
   width: 80%;
@@ -79,13 +74,7 @@ body {
 }
 
 .sidebarRight {
-  position: fixed;
-  height: 100vh;
-  overflow-y: scroll;
-  width: 14rem;
-  top: 0;
-  background-color: $cardBackground;
-  padding: 1rem 1rem 0 1rem;
+  @include sidebar;
   right: 0;
   border-left: 0.25rem solid $cardBorder;
 }
