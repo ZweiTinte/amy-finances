@@ -4,6 +4,7 @@ import OrdersFetching from "../components/template/ordersFetching";
 import StocksFetching from "../components/template/stocksFetching";
 import AccountsFetching from "../components/template/accountsFetching";
 import AccountsOverview from "../components/template/accounts/accountsOverview";
+import DividendsFetching from "../components/template/dividendsFetching";
 
 const AccountsPage = () => {
   return (
@@ -11,7 +12,9 @@ const AccountsPage = () => {
       <OrdersFetching>
         <StocksFetching>
           <AccountsFetching>
-            <AccountsOverview />
+            <DividendsFetching>
+              <AccountsOverview />
+            </DividendsFetching>
           </AccountsFetching>
         </StocksFetching>
       </OrdersFetching>

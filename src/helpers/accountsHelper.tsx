@@ -28,7 +28,8 @@ export function calculateAccountBalance(
   data: Account[],
   stocks: Stock[],
   orders: Order[],
-  transactions: Transaction[]
+  transactions: Transaction[],
+  dividends: Dividend[]
 ): Account[] {
   return data.map((account) => {
     let accountStocks = stocks.map((stock) => {
@@ -39,6 +40,11 @@ export function calculateAccountBalance(
         account.balance -= trans.amount;
       } else if (trans.to === account.id) {
         account.balance += trans.amount;
+      }
+    });
+    dividends.forEach((dividend) => {
+      if (dividend.toAccount === account.id) {
+        account.balance += dividend.amountBeforeTax - dividend.taxAmount;
       }
     });
     orders.forEach((order) => {

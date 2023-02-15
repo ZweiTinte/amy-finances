@@ -1,16 +1,16 @@
 import * as React from "react";
 import StocksFetching from "../../components/template/stocksFetching";
-import OrderForms from "../../components/template/orders/orderForms";
 import AccountsFetching from "../../components/template/accountsFetching";
+import DividendForms from "../../components/template/dividends/dividendForms";
 
-const OrdersPage = () => {
+const DividendsPage = () => {
   return (
     <AccountsFetching>
       <StocksFetching>
-        <OrderForms />
+        <DividendForms />
       </StocksFetching>
     </AccountsFetching>
   );
 };
 
-export default OrdersPage;
+export default DividendsPage;

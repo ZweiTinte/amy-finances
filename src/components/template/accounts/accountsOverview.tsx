@@ -9,11 +9,13 @@ const AccountsOverview = ({
   orders,
   stocks,
   accounts,
+  dividends,
 }: {
   transactions?: Transaction[];
   orders?: Order[];
   stocks?: Stock[];
   accounts?: Account[];
+  dividends?: Dividend[];
 }) => {
   const [accountsReady, setAccountsReady] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
@@ -35,9 +37,15 @@ const AccountsOverview = ({
   function loadData(): void {
     setError(false);
     setErrorMessage("");
-    if (transactions && orders && stocks && accounts) {
+    if (transactions && orders && stocks && accounts && dividends) {
       setCalculatedAccounts(
-        calculateAccountBalance(accounts, stocks, orders, transactions)
+        calculateAccountBalance(
+          accounts,
+          stocks,
+          orders,
+          transactions,
+          dividends
+        )
       );
       setFilteredAccounts(calculatedAccounts);
       let total = 0;
@@ -48,9 +56,7 @@ const AccountsOverview = ({
       setAccountsReady(true);
     } else {
       setError(true);
-      setErrorMessage(
-        "Transactions, Orders or Stocks weren't passed to this component!"
-      );
+      setErrorMessage("Some data wasn't passed to this component!");
     }
   }
 
