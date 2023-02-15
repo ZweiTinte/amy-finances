@@ -32,7 +32,7 @@ const DividendSidebarContent = ({
   stocks: DropdownItem[];
 }) => {
   return (
-    <div className="sidebarRight">
+    <div className="sidebarRightData">
       <Headline text={"DIVIDEND FILTERS"} style="sidebarHeadline" />
       <Button
         color={"sidebarButton spaceUp"}

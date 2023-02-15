@@ -31,7 +31,7 @@ const TransactionSidebarContent = ({
   accounts: DropdownItem[];
 }) => {
   return (
-    <div className="sidebarRight">
+    <div className="sidebarRightData">
       <Headline text={"TRANSACTION FILTERS"} style="sidebarHeadline" />
       <Button
         color={"sidebarButton spaceUp"}

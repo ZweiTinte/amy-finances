@@ -7,6 +7,7 @@ const WrapRootElement: GatsbyBrowser["wrapRootElement"] = ({ element }) => {
     <>
       <SidebarLeft />
       {element}
+      <div className="sidebarRight"></div>
     </>
   );
 };

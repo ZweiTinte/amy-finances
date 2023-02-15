@@ -71,8 +71,21 @@ body {
   border-right: 0.25rem solid $cardBorder;
 }
 
-.sidebarRight {
+.sidebarRightData {
   @include sidebar;
+  right: 0;
+  border-left: 0.25rem solid $cardBorder;
+  z-index: 1;
+}
+
+.sidebarRight {
+  position: fixed;
+  height: 100vh;
+  overflow-y: scroll;
+  width: 14rem;
+  top: 0;
+  background-color: $cardBackground;
+  padding: 1rem 1rem 0 1rem;
   right: 0;
   border-left: 0.25rem solid $cardBorder;
 }

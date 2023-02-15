@@ -34,7 +34,7 @@ const StocksSidebarRight = ({
   }, [selectedStocks, hideEmptyStocks]);
 
   return (
-    <div className="sidebarRight">
+    <div className="sidebarRightData">
       <Headline text={"STOCK FILTERS"} style="sidebarHeadline" />
       <Button
         color={"sidebarButton spaceUp"}
