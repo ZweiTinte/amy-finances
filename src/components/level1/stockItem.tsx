@@ -16,6 +16,9 @@ const StockItem = ({ stock }: OrderProps) => {
       <span className="orderPriceHeadline">
         {euroFormat.format(stock.price)}
       </span>
+      <span className="orderSumHeadline">
+        {euroFormat.format(stock.price * stock.amount)}
+      </span>
       <span>
         <Button
           color={"editButton"}

@@ -22,6 +22,7 @@ const Stocks = ({ stocks }: { stocks: Stock[] }) => {
             <span className="stockName">Name</span>
             <span className="orderAmount">Amount</span>
             <span className="orderPriceHeadline">Price</span>
+            <span className="orderSumHeadline">Sum</span>
           </div>
           {stocks.map((item) => {
             return (
