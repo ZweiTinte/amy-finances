@@ -36,10 +36,12 @@ export function calculateAccountBalance(
       return { id: stock.id, amount: 0 };
     });
     transactions.forEach((trans) => {
-      if (trans.from === account.id) {
-        account.balance -= trans.amount;
-      } else if (trans.to === account.id) {
-        account.balance += trans.amount;
+      if (new Date(trans.date) < new Date()) {
+        if (trans.from === account.id) {
+          account.balance -= trans.amount;
+        } else if (trans.to === account.id) {
+          account.balance += trans.amount;
+        }
       }
     });
     dividends.forEach((dividend) => {

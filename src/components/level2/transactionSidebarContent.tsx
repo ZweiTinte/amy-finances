@@ -6,6 +6,7 @@ import { categories } from "../../helpers/categoriesHelper";
 import Multiselect from "../atoms/multiselect";
 import EmptyAllButtonGroup from "../level1/emptyAllButtonGroup";
 import { getMonths, getYears } from "../../helpers/helpers";
+import Checkbox from "../atoms/checkbox";
 
 const TransactionSidebarContent = ({
   transactions,
@@ -18,6 +19,8 @@ const TransactionSidebarContent = ({
   selectedAccounts,
   setSelectedAccounts,
   accounts,
+  hideFutureTransactions,
+  setHideFutureTransactions,
 }: {
   transactions: Transaction[];
   selectedCategories: DropdownItem[];
@@ -29,6 +32,8 @@ const TransactionSidebarContent = ({
   selectedAccounts: DropdownItem[];
   setSelectedAccounts: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
   accounts: DropdownItem[];
+  hideFutureTransactions: boolean;
+  setHideFutureTransactions: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
     <div className="sidebarRightData">
@@ -40,6 +45,7 @@ const TransactionSidebarContent = ({
           setSelectedYears(getYears(transactions));
           setSelectedMonths(getMonths(transactions));
           setSelectedAccounts(accounts);
+          setHideFutureTransactions(false);
         }}
         text={"Reset Filters"}
       />
@@ -82,6 +88,11 @@ const TransactionSidebarContent = ({
       <EmptyAllButtonGroup
         onEmptyClick={() => setSelectedMonths([])}
         onAllClick={() => setSelectedMonths(getMonths(transactions))}
+      />
+      <Checkbox
+        label={"Hide Future Transactions"}
+        onClick={() => setHideFutureTransactions(!hideFutureTransactions)}
+        checked={hideFutureTransactions}
       />
     </div>
   );

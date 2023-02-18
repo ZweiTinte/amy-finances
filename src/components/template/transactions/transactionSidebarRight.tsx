@@ -23,6 +23,8 @@ const TransactionSidebarRight = ({
   const [selectedMonths, setSelectedMonths] = React.useState<DropdownItem[]>(
     getMonths(transactions)
   );
+  const [hideFutureTransactions, setHideFutureTransactions] =
+    React.useState<boolean>(false);
 
   React.useEffect(() => {
     const filteredCategories: string[] = selectedCategories.map((category) => {
@@ -43,11 +45,18 @@ const TransactionSidebarRight = ({
           filteredAccounts.includes(trans.to)) &&
         filteredMonths.includes(new Date(trans.date).getMonth()) &&
         filteredYears.includes(new Date(trans.date).getFullYear().toString()) &&
-        filteredCategories.includes(trans.category)
+        filteredCategories.includes(trans.category) &&
+        (hideFutureTransactions ? new Date(trans.date) < new Date() : true)
       );
     });
     setFilteredTransactions(newTransactions);
-  }, [selectedCategories, selectedYears, selectedMonths, selectedAccounts]);
+  }, [
+    selectedCategories,
+    selectedYears,
+    selectedMonths,
+    selectedAccounts,
+    hideFutureTransactions,
+  ]);
 
   return (
     <TransactionSidebarContent
@@ -61,6 +70,8 @@ const TransactionSidebarRight = ({
       selectedAccounts={selectedAccounts}
       setSelectedAccounts={setSelectedAccounts}
       accounts={accounts}
+      hideFutureTransactions={hideFutureTransactions}
+      setHideFutureTransactions={setHideFutureTransactions}
     />
   );
 };
