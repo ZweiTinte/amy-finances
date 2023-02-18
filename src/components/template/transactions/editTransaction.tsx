@@ -23,6 +23,8 @@ const EditTransaction = ({
   accounts,
   to,
   setTo,
+  transactionType,
+  setTransactionType,
 }: EditTransactionProps) => {
   const deleteSelectedTransaction = () => {
     deleteTransaction(resolveUpdate, id);
@@ -33,16 +35,16 @@ const EditTransaction = ({
   }
 
   function updateTransaction(): void {
-    updateTransactions(
-      resolveUpdate,
-      id,
-      date,
-      name,
-      category,
-      amount,
-      from,
-      to
-    );
+    updateTransactions(resolveUpdate, {
+      id: parseInt(id),
+      transactionType: transactionType.value,
+      date: date,
+      name: name,
+      category: category.value,
+      amount: parseFloat(amount),
+      from: from.id,
+      to: to.id,
+    });
   }
 
   const submitHandler = (e: React.SyntheticEvent) => {
@@ -70,6 +72,8 @@ const EditTransaction = ({
           to={to}
           setTo={setTo}
           deleteSelectedTransaction={deleteSelectedTransaction}
+          transactionType={transactionType}
+          setTransactionType={setTransactionType}
         />
       </div>
     </div>

@@ -2,26 +2,14 @@ import { DropdownItem } from "../components/atoms/dropdown";
 
 export async function postTransaction(
   resolvePost: () => void,
-  date: string,
-  name: string,
-  category: DropdownItem,
-  amount: string,
-  from: DropdownItem,
-  to: DropdownItem
+  transaction: Transaction
 ): Promise<void> {
   await fetch(`${process.env.GATSBY_API_URL}transactions`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      date: date,
-      name: name,
-      category: category.value,
-      amount: parseFloat(amount),
-      from: from.id,
-      to: to.id,
-    }),
+    body: JSON.stringify(transaction),
   })
     .then(async (res) => {
       await res.json().then(resolvePost).catch();
@@ -59,27 +47,14 @@ export async function fetchTransaction(
 
 export async function updateTransactions(
   resolveUpdate: () => void,
-  transactionId: string,
-  date: string,
-  name: string,
-  category: DropdownItem,
-  amount: string,
-  from: DropdownItem,
-  to: DropdownItem
+  transaction: Transaction
 ): Promise<void> {
-  await fetch(`${process.env.GATSBY_API_URL}transactions/${transactionId}`, {
+  await fetch(`${process.env.GATSBY_API_URL}transactions/${transaction.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      date: date,
-      name: name,
-      category: category.value,
-      amount: parseFloat(amount),
-      from: from.id,
-      to: to.id,
-    }),
+    body: JSON.stringify(transaction),
   })
     .then(async (res) => {
       await res.json().then(resolveUpdate).catch();

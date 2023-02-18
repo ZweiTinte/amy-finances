@@ -40,16 +40,6 @@ body {
   align-items: center;
 }
 
-.winMessage {
-  @include gameEndMessage;
-  color: $green1;
-}
-
-.loseMessage {
-  @include gameEndMessage;
-  color: $red1;
-}
-
 .errorMessage {
   @include flexCenter;
   width: 80%;
@@ -93,4 +83,8 @@ body {
   position: absolute;
   right: 0rem;
   z-index: 1;
+}
+
+.dottedBorder {
+  border-bottom: 0.1rem dashed $cardBorder;
 }

@@ -36,9 +36,15 @@ const Dividends = ({
             <span className="orderSumHeadline">Sum</span>
             <span className="transactionTo">To</span>
           </div>
-          {dividends.map((item) => {
+          {dividends.map((item, i) => {
             return (
-              <div className="orderInfos" key={item.id}>
+              <div
+                className={
+                  "orderInfos" +
+                  (i !== dividends.length - 1 ? " dottedBorder" : "")
+                }
+                key={item.id}
+              >
                 <DividendItem
                   dividend={item}
                   accounts={accounts}

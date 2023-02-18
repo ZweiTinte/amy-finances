@@ -14,6 +14,8 @@ interface TransactionTemplateProps {
   accounts: DropdownItem[];
   to: DropdownItem;
   setTo: React.Dispatch<React.SetStateAction<DropdownItem>>;
+  transactionType: DropdownItem;
+  setTransactionType: React.Dispatch<React.SetStateAction<DropdownItem>>;
 }
 
 export interface TransactionFormProps extends TransactionTemplateProps {
@@ -23,4 +25,21 @@ export interface TransactionFormProps extends TransactionTemplateProps {
 
 export interface EditTransactionProps extends TransactionTemplateProps {
   id: string;
+}
+
+export interface TransactionSidebarContentProps {
+  transactions: Transaction[];
+  selectedCategories: DropdownItem[];
+  setSelectedCategories: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
+  selectedTypes: DropdownItem[];
+  setSelectedTypes: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
+  selectedYears: DropdownItem[];
+  setSelectedYears: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
+  selectedMonths: DropdownItem[];
+  setSelectedMonths: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
+  selectedAccounts: DropdownItem[];
+  setSelectedAccounts: React.Dispatch<React.SetStateAction<DropdownItem[]>>;
+  accounts: DropdownItem[];
+  hideFutureTransactions: boolean;
+  setHideFutureTransactions: React.Dispatch<React.SetStateAction<boolean>>;
 }

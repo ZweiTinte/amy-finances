@@ -30,9 +30,15 @@ const Accounts = ({
             <span className="accountType">Type</span>
             <span className="accountBalanceHeadline">Balance</span>
           </div>
-          {accounts.map((item) => {
+          {accounts.map((item, i) => {
             return (
-              <div className="accountInfos" key={item.id}>
+              <div
+                className={
+                  "accountInfos" +
+                  (i !== accounts.length - 1 ? " dottedBorder" : "")
+                }
+                key={item.id}
+              >
                 <AccountItem account={item} />
               </div>
             );

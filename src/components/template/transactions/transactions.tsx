@@ -28,6 +28,7 @@ const Transactions = ({
           </div>
           <div className="transactionProps">
             <span className="transactionId">ID</span>
+            <span className="transactionDate">Type</span>
             <span className="transactionDate">Date</span>
             <span className="transactionName">Name</span>
             <span className="transactionCategory">Category</span>
@@ -35,9 +36,15 @@ const Transactions = ({
             <span className="transactionFrom">From</span>
             <span className="transactionTo">To</span>
           </div>
-          {transactions.map((item) => {
+          {transactions.map((item, i) => {
             return (
-              <div className="transactionInfos" key={item.id}>
+              <div
+                className={
+                  "transactionInfos" +
+                  (i !== transactions.length - 1 ? " dottedBorder" : "")
+                }
+                key={item.id}
+              >
                 <TransactionItem transaction={item} accounts={accounts} />
               </div>
             );

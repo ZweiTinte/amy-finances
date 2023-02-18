@@ -3,9 +3,9 @@ import NumberInput from "../atoms/numberInput";
 import TextInput from "../atoms/textInput";
 import DateInput from "../atoms/dateInput";
 import Dropdown, { DropdownTypes } from "../atoms/dropdown";
-import { categories } from "../../helpers/categoriesHelper";
 import { TransactionFormProps } from "../../transactionTypes";
 import EditFormSubmit from "../level1/editFormSubmit";
+import { categories, transactionTypes } from "../../helpers/transactionsHelper";
 
 const TransactionForm = ({
   submitHandler,
@@ -23,11 +23,21 @@ const TransactionForm = ({
   to,
   setTo,
   deleteSelectedTransaction,
+  transactionType,
+  setTransactionType,
 }: TransactionFormProps) => {
-  const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(false);
-
   return (
     <form onSubmit={submitHandler}>
+      <div className="formRow">
+        <label className="formLabel">Type:</label>
+        <Dropdown
+          dropDownItem={transactionType}
+          setDropdownItem={setTransactionType}
+          dropDownData={transactionTypes}
+          type={DropdownTypes.Value}
+          verticalForm={false}
+        />
+      </div>
       <div className="formRow">
         <label className="formLabel">Date:</label>
         <DateInput value={date} setValue={setDate} />

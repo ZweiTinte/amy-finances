@@ -2,10 +2,9 @@ import * as React from "react";
 import Button from "../../atoms/button";
 import { DropdownItem } from "../../atoms/dropdown";
 import Headline from "../../atoms/headline";
-import Multiselect from "../../atoms/multiselect";
-import EmptyAllButtonGroup from "../../level1/emptyAllButtonGroup";
 import { accountTypes } from "../../../helpers/accountsHelper";
 import { getAccountTypes } from "../../../helpers/filtersHelper";
+import MultiselectFilter from "../../level2/multiselectFilter";
 
 const AccountSidebarRight = ({
   accounts,
@@ -51,25 +50,18 @@ const AccountSidebarRight = ({
         }}
         text={"Reset Filters"}
       />
-      <Headline text={"Filter Accounts"} style="sidebarSubHeadline" />
-      <Multiselect
-        dropDownItems={selectedAccounts}
-        setDropdownItems={setSelectedAccounts}
-        dropDownData={accountsData}
+      <MultiselectFilter
+        selected={selectedAccounts}
+        setSelected={setSelectedAccounts}
+        data={accountsData}
+        label={"Filter Accounts"}
+        style={"sidebarSubHeadline"}
       />
-      <EmptyAllButtonGroup
-        onEmptyClick={() => setSelectedAccounts([])}
-        onAllClick={() => setSelectedAccounts(accountsData)}
-      />
-      <Headline text={"Filter Account Types"} style="sidebarSubHeadline" />
-      <Multiselect
-        dropDownItems={selectedAccountTypes}
-        setDropdownItems={setSelectedAccountTypes}
-        dropDownData={getAccountTypes(accounts)}
-      />
-      <EmptyAllButtonGroup
-        onEmptyClick={() => setSelectedAccountTypes([])}
-        onAllClick={() => setSelectedAccountTypes(getAccountTypes(accounts))}
+      <MultiselectFilter
+        selected={selectedAccountTypes}
+        setSelected={setSelectedAccountTypes}
+        data={getAccountTypes(accounts)}
+        label={"Filter Account Types"}
       />
     </div>
   );

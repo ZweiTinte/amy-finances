@@ -2,9 +2,8 @@ import * as React from "react";
 import { DropdownItem } from "../../atoms/dropdown";
 import Headline from "../../atoms/headline";
 import Button from "../../atoms/button";
-import Multiselect from "../../atoms/multiselect";
-import EmptyAllButtonGroup from "../../level1/emptyAllButtonGroup";
 import Checkbox from "../../atoms/checkbox";
+import MultiselectFilter from "../../level2/multiselectFilter";
 
 const StocksSidebarRight = ({
   stocks,
@@ -44,15 +43,12 @@ const StocksSidebarRight = ({
         }}
         text={"Reset Filters"}
       />
-      <Headline text={"Filter Stocks"} style="sidebarSubHeadline" />
-      <Multiselect
-        dropDownItems={selectedStocks}
-        setDropdownItems={setSelectedStocks}
-        dropDownData={stocksData}
-      />
-      <EmptyAllButtonGroup
-        onEmptyClick={() => setSelectedStocks([])}
-        onAllClick={() => setSelectedStocks(stocksData)}
+      <MultiselectFilter
+        selected={selectedStocks}
+        setSelected={setSelectedStocks}
+        data={stocksData}
+        label={"Filter Stocks"}
+        style={"sidebarSubHeadline"}
       />
       <Checkbox
         label={"Hide Empty Stocks"}

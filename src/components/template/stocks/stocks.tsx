@@ -24,9 +24,15 @@ const Stocks = ({ stocks }: { stocks: Stock[] }) => {
             <span className="orderPriceHeadline">Price</span>
             <span className="orderSumHeadline">Sum</span>
           </div>
-          {stocks.map((item) => {
+          {stocks.map((item, i) => {
             return (
-              <div className="stockInfos" key={item.id}>
+              <div
+                className={
+                  "stockInfos" +
+                  (i !== stocks.length - 1 ? " dottedBorder" : "")
+                }
+                key={item.id}
+              >
                 <StockItem stock={item} />
               </div>
             );

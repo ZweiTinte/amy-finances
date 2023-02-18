@@ -17,3 +17,21 @@ export const categories: DropdownItem[] = [
   { id: 14, value: "Education" },
   { id: 15, value: "Health / Body" },
 ];
+
+export const transactionTypes: DropdownItem[] = [
+  { id: 1, value: "Set" },
+  { id: 2, value: "Expected" },
+  { id: 3, value: "Recurring" },
+];
+
+export function getTransactionType(transactionType: string): DropdownItem {
+  return transactionTypes.filter((c) => {
+    return c.value === transactionType;
+  })[0];
+}
+
+export function getCategory(category: string): DropdownItem {
+  return categories.filter((c) => {
+    return c.value === category;
+  })[0];
+}

@@ -3,8 +3,13 @@ import { fetchTransaction } from "../../../api/transactionApi";
 import ErrorInfo from "../../level1/errorInfo";
 import { DropdownItem } from "../../atoms/dropdown";
 import { emptyAccountDDItem } from "../../../helpers/accountsHelper";
-import { categories } from "../../../helpers/categoriesHelper";
 import EditTransaction from "./editTransaction";
+import {
+  categories,
+  getCategory,
+  getTransactionType,
+  transactionTypes,
+} from "../../../helpers/transactionsHelper";
 
 const EditTransactionFetching = ({
   id,
@@ -17,10 +22,10 @@ const EditTransactionFetching = ({
     React.useState<boolean>(false);
   const [date, setDate] = React.useState<string>("");
   const [name, setName] = React.useState<string>("");
-  const [category, setCategory] = React.useState<DropdownItem>({
-    id: 2,
-    value: "Food",
-  });
+  const [category, setCategory] = React.useState<DropdownItem>(categories[0]);
+  const [transactionType, setTransactionType] = React.useState<DropdownItem>(
+    transactionTypes[0]
+  );
   const [amount, setAmount] = React.useState<string>("");
   const [from, setFrom] = React.useState<DropdownItem>(emptyAccountDDItem);
   const [to, setTo] = React.useState<DropdownItem>(emptyAccountDDItem);
@@ -35,11 +40,8 @@ const EditTransactionFetching = ({
   function resolveFetching(data: Transaction): void {
     setName(data.name);
     setDate(data.date);
-    setCategory(
-      categories.filter((c) => {
-        return c.value === data.category;
-      })[0]
-    );
+    setTransactionType(getTransactionType(data.transactionType));
+    setCategory(getCategory(data.category));
     setAmount(data.amount.toString());
     setFrom(
       accounts.filter((a) => {
@@ -83,6 +85,8 @@ const EditTransactionFetching = ({
           accounts={accounts}
           to={to}
           setTo={setTo}
+          transactionType={transactionType}
+          setTransactionType={setTransactionType}
         />
       )}
       {error && <ErrorInfo message={errorMessage} tryAgain={loadTransaction} />}

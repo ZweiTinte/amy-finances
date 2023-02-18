@@ -1,7 +1,7 @@
 import * as React from "react";
 import { DropdownItem } from "../../atoms/dropdown";
 import { getMonths, getYears } from "../../../helpers/helpers";
-import DividendSidebarContent from "../../level2/dividendSidebarContent";
+import DividendSidebarContent from "../../level3/dividendSidebarContent";
 
 const DividendSidebarRight = ({
   dividends,

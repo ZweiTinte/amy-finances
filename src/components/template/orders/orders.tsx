@@ -38,9 +38,15 @@ const Orders = ({
             <span className="transactionFrom">From</span>
             <span className="transactionTo">To</span>
           </div>
-          {orders.map((item) => {
+          {orders.map((item, i) => {
             return (
-              <div className="orderInfos" key={item.id}>
+              <div
+                className={
+                  "orderInfos" +
+                  (i !== orders.length - 1 ? " dottedBorder" : "")
+                }
+                key={item.id}
+              >
                 <OrderItem order={item} accounts={accounts} stocks={stocks} />
               </div>
             );

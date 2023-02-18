@@ -1,8 +1,11 @@
 import * as React from "react";
 import { DropdownItem } from "../../atoms/dropdown";
-import { categories } from "../../../helpers/categoriesHelper";
-import TransactionSidebarContent from "../../level2/transactionSidebarContent";
+import TransactionSidebarContent from "../../level3/transactionSidebarContent";
 import { getMonths, getYears } from "../../../helpers/helpers";
+import {
+  categories,
+  transactionTypes,
+} from "../../../helpers/transactionsHelper";
 
 const TransactionSidebarRight = ({
   transactions,
@@ -15,6 +18,8 @@ const TransactionSidebarRight = ({
 }) => {
   const [selectedCategories, setSelectedCategories] =
     React.useState<DropdownItem[]>(categories);
+  const [selectedTypes, setSelectedTypes] =
+    React.useState<DropdownItem[]>(transactionTypes);
   const [selectedAccounts, setSelectedAccounts] =
     React.useState<DropdownItem[]>(accounts);
   const [selectedYears, setSelectedYears] = React.useState<DropdownItem[]>(
@@ -29,6 +34,9 @@ const TransactionSidebarRight = ({
   React.useEffect(() => {
     const filteredCategories: string[] = selectedCategories.map((category) => {
       return category.value;
+    });
+    const filteredTypes: string[] = selectedTypes.map((transactionType) => {
+      return transactionType.value;
     });
     const filteredYears: string[] = selectedYears.map((year) => {
       return year.value;
@@ -46,7 +54,8 @@ const TransactionSidebarRight = ({
         filteredMonths.includes(new Date(trans.date).getMonth()) &&
         filteredYears.includes(new Date(trans.date).getFullYear().toString()) &&
         filteredCategories.includes(trans.category) &&
-        (hideFutureTransactions ? new Date(trans.date) < new Date() : true)
+        (hideFutureTransactions ? new Date(trans.date) < new Date() : true) &&
+        filteredTypes.includes(trans.transactionType)
       );
     });
     setFilteredTransactions(newTransactions);
@@ -56,6 +65,7 @@ const TransactionSidebarRight = ({
     selectedMonths,
     selectedAccounts,
     hideFutureTransactions,
+    selectedTypes,
   ]);
 
   return (
@@ -63,6 +73,8 @@ const TransactionSidebarRight = ({
       transactions={transactions}
       selectedCategories={selectedCategories}
       setSelectedCategories={setSelectedCategories}
+      selectedTypes={selectedTypes}
+      setSelectedTypes={setSelectedTypes}
       selectedYears={selectedYears}
       setSelectedYears={setSelectedYears}
       selectedMonths={selectedMonths}

@@ -3,32 +3,38 @@ import * as React from "react";
 import Headline from "../../atoms/headline";
 import { DropdownItem } from "../../atoms/dropdown";
 import { postTransaction } from "../../../api/transactionApi";
-import ErrorInfo from "../../level1/errorInfo";
 import { emptyAccountDDItem } from "../../../helpers/accountsHelper";
 import TransactionForm from "../../level2/transactionForm";
-import { fetchAccounts } from "../../../api/accountsApi";
+import {
+  categories,
+  transactionTypes,
+} from "../../../helpers/transactionsHelper";
 
-const NewTransaction = () => {
+const NewTransaction = ({ accounts }: { accounts?: Account[] }) => {
   const [date, setDate] = React.useState<string>("");
   const [name, setName] = React.useState<string>("");
-  const [category, setCategory] = React.useState<DropdownItem>({
-    id: 2,
-    value: "Food",
-  });
+  const [category, setCategory] = React.useState<DropdownItem>(categories[0]);
+  const [transactionType, setTransactionType] = React.useState<DropdownItem>(
+    transactionTypes[0]
+  );
   const [amount, setAmount] = React.useState<string>("");
   const [from, setFrom] = React.useState<DropdownItem>(emptyAccountDDItem);
   const [to, setTo] = React.useState<DropdownItem>(emptyAccountDDItem);
-  const [error, setError] = React.useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = React.useState<string>("");
-  const [templateReady, setTemplateReady] = React.useState<boolean>(false);
-  const [accounts, setAccounts] = React.useState<DropdownItem[]>([]);
 
   function resolvePost(): void {
     navigate("/transactions");
   }
 
   function addNewTransaction(): void {
-    postTransaction(resolvePost, date, name, category, amount, from, to);
+    postTransaction(resolvePost, {
+      transactionType: transactionType.value,
+      date: date,
+      name: name,
+      category: category.value,
+      amount: parseFloat(amount),
+      from: from.id,
+      to: to.id,
+    });
   }
 
   const submitHandler = (e: React.SyntheticEvent) => {
@@ -36,35 +42,9 @@ const NewTransaction = () => {
     addNewTransaction();
   };
 
-  function handleError(error: Error): void {
-    setError(true);
-    setErrorMessage(error.message);
-  }
-
-  function resolveFetching(data: Account[]): void {
-    const accountsData = [emptyAccountDDItem].concat(
-      data.map((account) => {
-        return { id: account.id, value: account.name };
-      })
-    );
-    setAccounts(accountsData);
-    setTemplateReady(true);
-  }
-
-  function loadAccounts(): void {
-    setTemplateReady(false);
-    setError(false);
-    setErrorMessage("");
-    fetchAccounts(resolveFetching, handleError);
-  }
-
-  React.useEffect(() => {
-    loadAccounts();
-  }, []);
-
   return (
     <>
-      {templateReady && (
+      {accounts && (
         <div className="gameLayout">
           <div className="transactionsCard">
             <Headline
@@ -83,14 +63,19 @@ const NewTransaction = () => {
               setAmount={setAmount}
               from={from}
               setFrom={setFrom}
-              accounts={accounts}
+              accounts={[emptyAccountDDItem].concat(
+                accounts.map((account) => {
+                  return { id: account.id, value: account.name };
+                })
+              )}
               to={to}
               setTo={setTo}
+              transactionType={transactionType}
+              setTransactionType={setTransactionType}
             />
           </div>
         </div>
       )}
-      {error && <ErrorInfo message={errorMessage} tryAgain={loadAccounts} />}
     </>
   );
 };

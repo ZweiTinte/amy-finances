@@ -11,7 +11,8 @@ interface Account {
 }
 
 interface Transaction {
-  id: number;
+  id?: number;
+  transactionType: string;
   name: string;
   amount: number;
   category: string;

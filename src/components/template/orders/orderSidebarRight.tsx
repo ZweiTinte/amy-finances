@@ -1,7 +1,7 @@
 import * as React from "react";
 import { DropdownItem } from "../../atoms/dropdown";
 import { getMonths, getYears } from "../../../helpers/helpers";
-import OrderSidebarContent from "../../level2/orderSidebarContent";
+import OrderSidebarContent from "../../level3/orderSidebarContent";
 
 const OrderSidebarRight = ({
   orders,
