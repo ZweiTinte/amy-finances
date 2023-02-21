@@ -1,0 +1,48 @@
+#frame {
+  margin: 2rem;
+  overflow: auto;
+  position: relative;
+  width: 400px;
+  /* height of canvas */
+  height: 200px;
+}
+
+#spacer {
+  background: #000000;
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  z-index: 1;
+}
+
+#canvas {
+  width: 800px;
+  height: 200px;
+  background: linear-gradient(135deg, #444, #ccc);
+  overflow: hidden;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  bottom: 0;
+  right: 0;
+}
+
+#leftRuler {
+  width: 40px;
+  height: 200px;
+  background: linear-gradient(45deg, #c00, #400);
+  background-size: 100%;
+  background-repeat: no-repeat no-repeat;
+  position: sticky;
+  left: 0px;
+  top: 0;
+}
+
+#topRuler {
+  width: 760px;
+  height: 40px;
+  background: linear-gradient(45deg, #00c, #004);
+  position: sticky;
+  top: 0px;
+  left: 40px;
+}

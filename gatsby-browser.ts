@@ -7,6 +7,7 @@ import "./src/styles/accounts.scss";
 import "./src/styles/transactions.scss";
 import "./src/styles/orders.scss";
 import "./src/styles/stocks.scss";
+import "./src/styles/timetable.scss";
 
 import WrapRootElement from "./src/wrapRootElement";
 
