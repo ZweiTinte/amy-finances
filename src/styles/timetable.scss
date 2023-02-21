@@ -2,47 +2,86 @@
   margin: 2rem;
   overflow: auto;
   position: relative;
-  width: 400px;
-  /* height of canvas */
-  height: 200px;
+  width: 50rem;
+  height: 30rem;
 }
 
 #spacer {
   background: #000000;
-  width: 40px;
-  height: 40px;
+  width: 84px;
+  height: 42px;
   position: fixed;
   z-index: 1;
 }
 
 #canvas {
-  width: 800px;
-  height: 200px;
-  background: linear-gradient(135deg, #444, #ccc);
+  width: 1120px;
+  height: 1087px;
+  background: gray;
   overflow: hidden;
   position: absolute;
-  top: 40px;
-  left: 40px;
+  top: 42px;
+  left: 84px;
   bottom: 0;
   right: 0;
+  display: flex;
 }
 
 #leftRuler {
-  width: 40px;
-  height: 200px;
-  background: linear-gradient(45deg, #c00, #400);
-  background-size: 100%;
-  background-repeat: no-repeat no-repeat;
+  width: 84px;
+  height: 1087px;
+  overflow: hidden;
+  background: red;
   position: sticky;
   left: 0px;
   top: 0;
 }
 
 #topRuler {
-  width: 760px;
-  height: 40px;
-  background: linear-gradient(45deg, #00c, #004);
+  width: 1120px;
+  height: 42px;
+  background: blue;
   position: sticky;
   top: 0px;
-  left: 40px;
+  left: 84px;
+  display: flex;
+}
+
+.dayNames {
+  width: 160px;
+  color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border: 0.15rem solid #000000;
+}
+
+.days {
+  width: 160px;
+  color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  display: flex;
+  flex-direction: column;
+}
+
+.cells {
+  height: 30px;
+  width: 160px;
+  color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border: 2px solid #000000;
+}
+
+.hours {
+  height: 30px;
+  width: 80px;
+  color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border: 2px solid #000000;
 }
