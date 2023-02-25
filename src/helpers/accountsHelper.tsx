@@ -36,7 +36,10 @@ export function calculateAccountBalance(
       return { id: stock.id, amount: 0 };
     });
     transactions.forEach((trans) => {
-      if (new Date(trans.date) < new Date()) {
+      if (
+        new Date(trans.date) < new Date() &&
+        trans.transactionType !== "Expected"
+      ) {
         if (trans.from === account.id) {
           account.balance -= trans.amount;
         } else if (trans.to === account.id) {
