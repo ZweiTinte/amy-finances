@@ -23,10 +23,14 @@ const TransactionSidebarRight = ({
   const [selectedAccounts, setSelectedAccounts] =
     React.useState<DropdownItem[]>(accounts);
   const [selectedYears, setSelectedYears] = React.useState<DropdownItem[]>(
-    getYears(transactions)
+    localStorage.getItem("selectedYears") !== null
+      ? JSON.parse(localStorage.getItem("selectedYears") as string)
+      : getYears(transactions)
   );
   const [selectedMonths, setSelectedMonths] = React.useState<DropdownItem[]>(
-    getMonths(transactions)
+    localStorage.getItem("selectedMonths") !== null
+      ? JSON.parse(localStorage.getItem("selectedMonths") as string)
+      : getMonths(transactions)
   );
   const [hideFutureTransactions, setHideFutureTransactions] =
     React.useState<boolean>(false);
@@ -58,6 +62,8 @@ const TransactionSidebarRight = ({
         filteredTypes.includes(trans.transactionType)
       );
     });
+    localStorage.setItem("selectedYears", JSON.stringify(selectedYears));
+    localStorage.setItem("selectedMonths", JSON.stringify(selectedMonths));
     setFilteredTransactions(newTransactions);
   }, [
     selectedCategories,
