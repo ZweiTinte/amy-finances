@@ -54,6 +54,7 @@ export async function updateStock(
   stockId: string,
   isin: string,
   name: string,
+  amount: number,
   price: number
 ): Promise<void> {
   await fetch(`${process.env.GATSBY_API_URL}stocks/${stockId}`, {
@@ -64,6 +65,7 @@ export async function updateStock(
     body: JSON.stringify({
       isin: isin,
       name: name,
+      amount: amount,
       price: price,
     }),
   })

@@ -14,6 +14,7 @@ const EditStock = ({ id }: { id: string }) => {
   const [name, setName] = React.useState<string>("");
   const [isin, setIsin] = React.useState<string>("");
   const [price, setPrice] = React.useState<string>("");
+  const [amount, setAmount] = React.useState<string>("");
 
   const deleteSelectedStock = () => {
     deleteStock(resolveUpdate, id);
@@ -29,7 +30,14 @@ const EditStock = ({ id }: { id: string }) => {
   }
 
   function updateStockItem(): void {
-    updateStock(resolveUpdate, id, isin, name, parseFloat(price));
+    updateStock(
+      resolveUpdate,
+      id,
+      isin,
+      name,
+      parseInt(amount),
+      parseFloat(price)
+    );
   }
 
   const submitHandler = (e: React.SyntheticEvent) => {
@@ -41,6 +49,7 @@ const EditStock = ({ id }: { id: string }) => {
     setName(data.name);
     setIsin(data.isin);
     setPrice(data.price.toString());
+    setAmount(data.amount.toString());
     setTemplateReady(true);
   }
 
