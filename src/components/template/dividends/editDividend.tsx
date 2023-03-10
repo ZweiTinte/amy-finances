@@ -36,8 +36,8 @@ const EditDividend = ({
       id,
       payDate,
       exDate,
-      parseInt(amountBeforeTax),
-      parseInt(taxAmount),
+      parseFloat(amountBeforeTax),
+      parseFloat(taxAmount),
       stock.id,
       to.id
     );
