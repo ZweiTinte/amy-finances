@@ -32,8 +32,8 @@ const NewDividend = ({
       resolvePost,
       payDate,
       exDate,
-      parseInt(amountBeforeTax),
-      parseInt(taxAmount),
+      parseFloat(amountBeforeTax),
+      parseFloat(taxAmount),
       stock.id,
       to.id
     );
