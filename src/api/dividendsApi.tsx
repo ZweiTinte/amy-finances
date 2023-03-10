@@ -64,7 +64,7 @@ export async function updateDividend(
   stock: number,
   toAccount: number
 ): Promise<void> {
-  await fetch(`${process.env.GATSBY_API_URL}dividend/${dividendId}`, {
+  await fetch(`${process.env.GATSBY_API_URL}dividends/${dividendId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
