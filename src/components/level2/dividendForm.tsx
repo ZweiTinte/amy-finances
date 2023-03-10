@@ -26,11 +26,11 @@ const DividendForm = ({
   return (
     <form onSubmit={submitHandler}>
       <div className="formRow">
-        <label className="formLabel">Date:</label>
+        <label className="formLabel">Pay-Date:</label>
         <DateInput value={payDate} setValue={setPayDate} />
       </div>
       <div className="formRow">
-        <label className="formLabel">Date:</label>
+        <label className="formLabel">Ex-Date:</label>
         <DateInput value={exDate} setValue={setExDate} />
       </div>
       <div className="formRow">
