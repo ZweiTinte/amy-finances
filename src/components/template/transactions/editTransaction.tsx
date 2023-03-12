@@ -25,6 +25,12 @@ const EditTransaction = ({
   setTo,
   transactionType,
   setTransactionType,
+  recurringEnd,
+  setRecurringGap,
+  recurringGap,
+  recurringPeriod,
+  setRecurringEnd,
+  setRecurringPeriod,
 }: EditTransactionProps) => {
   const deleteSelectedTransaction = () => {
     deleteTransaction(resolveUpdate, id);
@@ -44,6 +50,9 @@ const EditTransaction = ({
       amount: parseFloat(amount),
       from: from.id,
       to: to.id,
+      recurringEnd: recurringEnd,
+      recurringGap: recurringGap,
+      recurringPeriod: recurringPeriod.value,
     });
   }
 
@@ -74,6 +83,12 @@ const EditTransaction = ({
           deleteSelectedTransaction={deleteSelectedTransaction}
           transactionType={transactionType}
           setTransactionType={setTransactionType}
+          recurringEnd={recurringEnd}
+          setRecurringGap={setRecurringGap}
+          recurringGap={recurringGap}
+          recurringPeriod={recurringPeriod}
+          setRecurringEnd={setRecurringEnd}
+          setRecurringPeriod={setRecurringPeriod}
         />
       </div>
     </div>

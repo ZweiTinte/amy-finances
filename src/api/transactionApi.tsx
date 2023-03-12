@@ -1,63 +1,84 @@
+import axios from "axios";
 import { DropdownItem } from "../components/atoms/dropdown";
+import { resolveTransactionFetching } from "../helpers/transactionsHelper";
 
-export async function postTransaction(
+export function postTransaction(
   resolvePost: () => void,
   transaction: Transaction
-): Promise<void> {
-  await fetch(`${process.env.GATSBY_API_URL}transactions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(transaction),
-  })
-    .then(async (res) => {
-      await res.json().then(resolvePost).catch();
+): void {
+  axios
+    .post(`${process.env.GATSBY_API_URL}transactions`, transaction)
+    .then(() => {
+      resolvePost();
     })
     .catch();
 }
 
-export async function deleteTransaction(
+export function deleteTransaction(
   resolveUpdate: () => void,
   transactionId: string
-): Promise<void> {
-  await fetch(`${process.env.GATSBY_API_URL}transactions/${transactionId}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then(async (res) => {
-      await res.json().then(resolveUpdate).catch();
+): void {
+  axios
+    .delete(`${process.env.GATSBY_API_URL}transactions/${transactionId}`)
+    .then(() => {
+      resolveUpdate();
     })
     .catch();
 }
 
-export async function fetchTransaction(
-  resolveFetching: (data: Transaction) => void,
-  handleError: (error: Error) => void,
+export function fetchTransaction(
+  accounts: DropdownItem[],
+  setName: (name: string) => void,
+  setDate: (date: string) => void,
+  setTransactionType: (transactionType: DropdownItem) => void,
+  setCategory: (category: DropdownItem) => void,
+  setAmount: (amount: string) => void,
+  setFrom: (account: DropdownItem) => void,
+  setTo: (account: DropdownItem) => void,
+  setRecurringEnd: (end: string) => void,
+  setRecurringGap: (gap: string) => void,
+  setRecurringPeriod: (period: DropdownItem) => void,
+  setTransactionReady: (ready: boolean) => void,
+  setError: (error: boolean) => void,
+  setErrorMessage: (message: string) => void,
   transactionId: string
-): Promise<void> {
-  await fetch(`${process.env.GATSBY_API_URL}transactions/${transactionId}`)
-    .then(async (res) => {
-      await res.json().then(resolveFetching).catch(handleError);
+): void {
+  axios
+    .get(`${process.env.GATSBY_API_URL}transactions/${transactionId}`)
+    .then((res) => {
+      resolveTransactionFetching(
+        res.data,
+        accounts,
+        setName,
+        setDate,
+        setTransactionType,
+        setCategory,
+        setAmount,
+        setFrom,
+        setTo,
+        setRecurringEnd,
+        setRecurringGap,
+        setRecurringPeriod,
+        setTransactionReady
+      );
     })
-    .catch(handleError);
+    .catch((error: Error) => {
+      setError(true);
+      setErrorMessage(error.message);
+    });
 }
 
-export async function updateTransactions(
+export function updateTransactions(
   resolveUpdate: () => void,
   transaction: Transaction
-): Promise<void> {
-  await fetch(`${process.env.GATSBY_API_URL}transactions/${transaction.id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(transaction),
-  })
-    .then(async (res) => {
-      await res.json().then(resolveUpdate).catch();
+): void {
+  axios
+    .put(
+      `${process.env.GATSBY_API_URL}transactions/${transaction.id}`,
+      transaction
+    )
+    .then(() => {
+      resolveUpdate();
     })
     .catch();
 }

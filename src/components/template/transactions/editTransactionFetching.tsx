@@ -6,8 +6,7 @@ import { emptyAccountDDItem } from "../../../helpers/accountsHelper";
 import EditTransaction from "./editTransaction";
 import {
   categories,
-  getCategory,
-  getTransactionType,
+  recurringPeriods,
   transactionTypes,
 } from "../../../helpers/transactionsHelper";
 
@@ -31,36 +30,33 @@ const EditTransactionFetching = ({
   const [to, setTo] = React.useState<DropdownItem>(emptyAccountDDItem);
   const [error, setError] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
-
-  function handleError(error: Error): void {
-    setError(true);
-    setErrorMessage(error.message);
-  }
-
-  function resolveFetching(data: Transaction): void {
-    setName(data.name);
-    setDate(data.date);
-    setTransactionType(getTransactionType(data.transactionType));
-    setCategory(getCategory(data.category));
-    setAmount(data.amount.toString());
-    setFrom(
-      accounts.filter((a) => {
-        return a.id === data.from;
-      })[0]
-    );
-    setTo(
-      accounts.filter((a) => {
-        return a.id === data.to;
-      })[0]
-    );
-    setTransactionReady(true);
-  }
+  const [recurringEnd, setRecurringEnd] = React.useState<string>("");
+  const [recurringPeriod, setRecurringPeriod] = React.useState<DropdownItem>(
+    recurringPeriods[0]
+  );
+  const [recurringGap, setRecurringGap] = React.useState<string>("");
 
   function loadTransaction(): void {
     setTransactionReady(false);
     setError(false);
     setErrorMessage("");
-    fetchTransaction(resolveFetching, handleError, id);
+    fetchTransaction(
+      accounts,
+      setName,
+      setDate,
+      setTransactionType,
+      setCategory,
+      setAmount,
+      setFrom,
+      setTo,
+      setRecurringEnd,
+      setRecurringGap,
+      setRecurringPeriod,
+      setTransactionReady,
+      setError,
+      setErrorMessage,
+      id
+    );
   }
 
   React.useEffect(() => {
@@ -87,6 +83,12 @@ const EditTransactionFetching = ({
           setTo={setTo}
           transactionType={transactionType}
           setTransactionType={setTransactionType}
+          recurringEnd={recurringEnd}
+          setRecurringGap={setRecurringGap}
+          recurringGap={recurringGap}
+          recurringPeriod={recurringPeriod}
+          setRecurringEnd={setRecurringEnd}
+          setRecurringPeriod={setRecurringPeriod}
         />
       )}
       {error && <ErrorInfo message={errorMessage} tryAgain={loadTransaction} />}

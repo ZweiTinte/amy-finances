@@ -16,6 +16,12 @@ interface TransactionTemplateProps {
   setTo: React.Dispatch<React.SetStateAction<DropdownItem>>;
   transactionType: DropdownItem;
   setTransactionType: React.Dispatch<React.SetStateAction<DropdownItem>>;
+  recurringEnd: string;
+  setRecurringEnd: React.Dispatch<React.SetStateAction<string>>;
+  recurringGap: string;
+  setRecurringGap: React.Dispatch<React.SetStateAction<string>>;
+  recurringPeriod: DropdownItem;
+  setRecurringPeriod: React.Dispatch<React.SetStateAction<DropdownItem>>;
 }
 
 export interface TransactionFormProps extends TransactionTemplateProps {

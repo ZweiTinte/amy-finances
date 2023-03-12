@@ -7,11 +7,17 @@ import { emptyAccountDDItem } from "../../../helpers/accountsHelper";
 import TransactionForm from "../../level2/transactionForm";
 import {
   categories,
+  recurringPeriods,
   transactionTypes,
 } from "../../../helpers/transactionsHelper";
 
 const NewTransaction = ({ accounts }: { accounts?: Account[] }) => {
   const [date, setDate] = React.useState<string>("");
+  const [recurringEnd, setRecurringEnd] = React.useState<string>("");
+  const [recurringPeriod, setRecurringPeriod] = React.useState<DropdownItem>(
+    recurringPeriods[0]
+  );
+  const [recurringGap, setRecurringGap] = React.useState<string>("");
   const [name, setName] = React.useState<string>("");
   const [category, setCategory] = React.useState<DropdownItem>(categories[0]);
   const [transactionType, setTransactionType] = React.useState<DropdownItem>(
@@ -34,6 +40,9 @@ const NewTransaction = ({ accounts }: { accounts?: Account[] }) => {
       amount: parseFloat(amount),
       from: from.id,
       to: to.id,
+      recurringEnd: recurringEnd,
+      recurringGap: recurringGap,
+      recurringPeriod: recurringPeriod.value,
     });
   }
 
@@ -72,6 +81,12 @@ const NewTransaction = ({ accounts }: { accounts?: Account[] }) => {
               setTo={setTo}
               transactionType={transactionType}
               setTransactionType={setTransactionType}
+              recurringEnd={recurringEnd}
+              setRecurringGap={setRecurringGap}
+              recurringGap={recurringGap}
+              recurringPeriod={recurringPeriod}
+              setRecurringEnd={setRecurringEnd}
+              setRecurringPeriod={setRecurringPeriod}
             />
           </div>
         </div>

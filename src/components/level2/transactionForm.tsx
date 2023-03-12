@@ -6,6 +6,8 @@ import Dropdown, { DropdownTypes } from "../atoms/dropdown";
 import { TransactionFormProps } from "../../transactionTypes";
 import EditFormSubmit from "../level1/editFormSubmit";
 import { categories, transactionTypes } from "../../helpers/transactionsHelper";
+import RecurringForm from "../level1/recurringForm";
+import FromToForm from "../level1/fromToForm";
 
 const TransactionForm = ({
   submitHandler,
@@ -25,6 +27,12 @@ const TransactionForm = ({
   deleteSelectedTransaction,
   transactionType,
   setTransactionType,
+  recurringEnd,
+  setRecurringGap,
+  recurringGap,
+  recurringPeriod,
+  setRecurringEnd,
+  setRecurringPeriod,
 }: TransactionFormProps) => {
   return (
     <form onSubmit={submitHandler}>
@@ -42,6 +50,16 @@ const TransactionForm = ({
         <label className="formLabel">Date:</label>
         <DateInput value={date} setValue={setDate} />
       </div>
+      {transactionType.value === "Recurring" && (
+        <RecurringForm
+          recurringEnd={recurringEnd}
+          setRecurringGap={setRecurringGap}
+          recurringGap={recurringGap}
+          recurringPeriod={recurringPeriod}
+          setRecurringEnd={setRecurringEnd}
+          setRecurringPeriod={setRecurringPeriod}
+        />
+      )}
       <div className="formRow">
         <label className="formLabel">Name:</label>
         <TextInput value={name} setValue={setName} />
@@ -60,26 +78,13 @@ const TransactionForm = ({
         <label className="formLabel">Amount:</label>
         <NumberInput value={amount} setValue={setAmount} />
       </div>
-      <div className="formRow">
-        <label className="formLabel">From:</label>
-        <Dropdown
-          dropDownItem={from}
-          setDropdownItem={setFrom}
-          dropDownData={accounts}
-          type={DropdownTypes.Value}
-          verticalForm={false}
-        />
-      </div>
-      <div className="formRow">
-        <label className="formLabel">To:</label>
-        <Dropdown
-          dropDownItem={to}
-          setDropdownItem={setTo}
-          dropDownData={accounts}
-          type={DropdownTypes.Value}
-          verticalForm={false}
-        />
-      </div>
+      <FromToForm
+        from={from}
+        setFrom={setFrom}
+        accounts={accounts}
+        to={to}
+        setTo={setTo}
+      />
       <EditFormSubmit
         deleteSelectedItem={deleteSelectedTransaction}
         itemName={"Transaction"}
