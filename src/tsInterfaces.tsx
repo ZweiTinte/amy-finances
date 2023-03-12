@@ -19,6 +19,9 @@ interface Transaction {
   from: number;
   to: number;
   date: string;
+  recurringEnd?: string;
+  recurringPeriod?: string;
+  recurringGap?: string;
 }
 
 interface Order {
