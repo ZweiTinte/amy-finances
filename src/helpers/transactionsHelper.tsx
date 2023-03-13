@@ -75,7 +75,7 @@ export function resolveTransactionFetching(
   );
   if (data.recurringEnd && data.recurringGap && data.recurringPeriod) {
     setRecurringEnd(data.recurringEnd);
-    setRecurringGap(data.recurringGap);
+    setRecurringGap(data.recurringGap.toString());
     setRecurringPeriod(
       recurringPeriods.filter((p) => {
         return p.value === data.recurringPeriod;

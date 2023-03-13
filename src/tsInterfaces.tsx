@@ -21,7 +21,7 @@ interface Transaction {
   date: string;
   recurringEnd?: string;
   recurringPeriod?: string;
-  recurringGap?: string;
+  recurringGap?: number;
 }
 
 interface Order {

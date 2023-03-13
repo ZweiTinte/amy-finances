@@ -51,7 +51,7 @@ const EditTransaction = ({
       from: from.id,
       to: to.id,
       recurringEnd: recurringEnd,
-      recurringGap: recurringGap,
+      recurringGap: parseInt(recurringGap),
       recurringPeriod: recurringPeriod.value,
     });
   }

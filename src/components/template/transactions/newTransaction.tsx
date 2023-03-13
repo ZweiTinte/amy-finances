@@ -17,7 +17,7 @@ const NewTransaction = ({ accounts }: { accounts?: Account[] }) => {
   const [recurringPeriod, setRecurringPeriod] = React.useState<DropdownItem>(
     recurringPeriods[0]
   );
-  const [recurringGap, setRecurringGap] = React.useState<string>("");
+  const [recurringGap, setRecurringGap] = React.useState<string>("0");
   const [name, setName] = React.useState<string>("");
   const [category, setCategory] = React.useState<DropdownItem>(categories[0]);
   const [transactionType, setTransactionType] = React.useState<DropdownItem>(
@@ -41,7 +41,7 @@ const NewTransaction = ({ accounts }: { accounts?: Account[] }) => {
       from: from.id,
       to: to.id,
       recurringEnd: recurringEnd,
-      recurringGap: recurringGap,
+      recurringGap: parseInt(recurringGap),
       recurringPeriod: recurringPeriod.value,
     });
   }

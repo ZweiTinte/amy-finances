@@ -34,7 +34,7 @@ const EditTransactionFetching = ({
   const [recurringPeriod, setRecurringPeriod] = React.useState<DropdownItem>(
     recurringPeriods[0]
   );
-  const [recurringGap, setRecurringGap] = React.useState<string>("");
+  const [recurringGap, setRecurringGap] = React.useState<string>("0");
 
   function loadTransaction(): void {
     setTransactionReady(false);
