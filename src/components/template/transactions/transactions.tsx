@@ -3,6 +3,7 @@ import Headline from "../../atoms/headline";
 import TransactionItem from "../../level1/transactionItem";
 import Button from "../../atoms/button";
 import { navigate } from "gatsby";
+import { addMonths } from "../../../helpers/dateHelpers";
 
 const Transactions = ({
   transactions,
@@ -35,7 +36,7 @@ const Transactions = ({
         {transactions.map((item, i) => {
           if (item.transactionType === "Recurring") {
             if (
-              item.recurringPeriod === "Day" &&
+              item.recurringPeriod &&
               item.recurringEnd &&
               item.recurringGap
             ) {
@@ -45,9 +46,29 @@ const Transactions = ({
                 const itemCopy = structuredClone(item);
                 itemCopy.date = recurringDate.toISOString().split("T")[0];
                 recurringTransactions.push(itemCopy);
-                recurringDate.setDate(
-                  recurringDate.getDate() + item.recurringGap
-                );
+                if (item.recurringPeriod === "Day") {
+                  recurringDate.setDate(
+                    recurringDate.getDate() + item.recurringGap
+                  );
+                } else if (item.recurringPeriod === "Week") {
+                  recurringDate.setDate(
+                    recurringDate.getDate() + item.recurringGap * 7
+                  );
+                } else if (item.recurringPeriod === "Month") {
+                  recurringDate = new Date(
+                    addMonths(
+                      recurringDate.toISOString().split("T")[0],
+                      item.recurringGap
+                    )
+                  );
+                } else if (item.recurringPeriod === "Year") {
+                  recurringDate = new Date(
+                    addMonths(
+                      recurringDate.toISOString().split("T")[0],
+                      item.recurringGap * 12
+                    )
+                  );
+                }
               }
               return recurringTransactions.map((trans, j) => {
                 return (
