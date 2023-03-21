@@ -9,7 +9,7 @@ import {
   categories,
   recurringPeriods,
   transactionTypes,
-} from "../../../helpers/transactionsHelper";
+} from "../../../helpers/transactionConsts";
 
 const NewTransaction = ({ accounts }: { accounts?: Account[] }) => {
   const [date, setDate] = React.useState<string>("");

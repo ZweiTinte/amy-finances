@@ -2,7 +2,7 @@ import * as React from "react";
 import DateInput from "../atoms/dateInput";
 import NumberInput from "../atoms/numberInput";
 import Dropdown, { DropdownItem, DropdownTypes } from "../atoms/dropdown";
-import { recurringPeriods } from "../../helpers/transactionsHelper";
+import { recurringPeriods } from "../../helpers/transactionConsts";
 
 const RecurringForm = ({
   recurringEnd,

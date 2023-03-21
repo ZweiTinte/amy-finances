@@ -1,35 +1,10 @@
 import { DropdownItem } from "../components/atoms/dropdown";
-
-export const categories: DropdownItem[] = [
-  { id: 1, value: "Clothing" },
-  { id: 2, value: "Food" },
-  { id: 3, value: "Money Transfer" },
-  { id: 4, value: "Equipment" },
-  { id: 5, value: "Entertainment" },
-  { id: 6, value: "Income" },
-  { id: 7, value: "Mobility" },
-  { id: 8, value: "Subscriptions" },
-  { id: 9, value: "Insurance" },
-  { id: 10, value: "Bureaucracy" },
-  { id: 11, value: "Presents" },
-  { id: 12, value: "Home" },
-  { id: 13, value: "Plushies" },
-  { id: 14, value: "Education" },
-  { id: 15, value: "Health / Body" },
-];
-
-export const transactionTypes: DropdownItem[] = [
-  { id: 1, value: "Set" },
-  { id: 2, value: "Expected" },
-  { id: 3, value: "Recurring" },
-];
-
-export const recurringPeriods: DropdownItem[] = [
-  { id: 1, value: "Day" },
-  { id: 2, value: "Week" },
-  { id: 3, value: "Month" },
-  { id: 4, value: "Year" },
-];
+import { addMonths } from "./dateHelpers";
+import {
+  categories,
+  recurringPeriods,
+  transactionTypes,
+} from "./transactionConsts";
 
 export function getTransactionType(transactionType: string): DropdownItem {
   return transactionTypes.filter((c) => {
@@ -83,4 +58,36 @@ export function resolveTransactionFetching(
     );
   }
   setTransactionReady(true);
+}
+
+export function getRecurringTransactions(item: Transaction): Transaction[] {
+  let recurringTransactions = [];
+  let recurringDate = new Date(item.date);
+  if (item.recurringPeriod && item.recurringEnd && item.recurringGap) {
+    while (recurringDate < new Date(item.recurringEnd)) {
+      const itemCopy = structuredClone(item);
+      itemCopy.date = recurringDate.toISOString().split("T")[0];
+      recurringTransactions.push(itemCopy);
+      if (item.recurringPeriod === "Day") {
+        recurringDate.setDate(recurringDate.getDate() + item.recurringGap);
+      } else if (item.recurringPeriod === "Week") {
+        recurringDate.setDate(recurringDate.getDate() + item.recurringGap * 7);
+      } else if (item.recurringPeriod === "Month") {
+        recurringDate = new Date(
+          addMonths(
+            recurringDate.toISOString().split("T")[0],
+            item.recurringGap
+          )
+        );
+      } else if (item.recurringPeriod === "Year") {
+        recurringDate = new Date(
+          addMonths(
+            recurringDate.toISOString().split("T")[0],
+            item.recurringGap * 12
+          )
+        );
+      }
+    }
+  }
+  return recurringTransactions;
 }

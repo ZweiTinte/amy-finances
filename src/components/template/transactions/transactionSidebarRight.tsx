@@ -5,7 +5,7 @@ import { getMonths, getYears } from "../../../helpers/helpers";
 import {
   categories,
   transactionTypes,
-} from "../../../helpers/transactionsHelper";
+} from "../../../helpers/transactionConsts";
 
 const TransactionSidebarRight = ({
   transactions,

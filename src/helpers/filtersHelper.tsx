@@ -4,7 +4,7 @@ export function getTransactionsData(
   filteredTransactionsData: Transaction[]
 ): DropdownItem[] {
   return filteredTransactionsData.map((transaction) => {
-    return { id: transaction.id, value: transaction.name };
+    return { id: transaction.id || 0, value: transaction.name };
   });
 }
 

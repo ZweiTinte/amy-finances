@@ -8,7 +8,7 @@ import {
   categories,
   recurringPeriods,
   transactionTypes,
-} from "../../../helpers/transactionsHelper";
+} from "../../../helpers/transactionConsts";
 
 const EditTransactionFetching = ({
   id,

@@ -5,7 +5,7 @@ import DateInput from "../atoms/dateInput";
 import Dropdown, { DropdownTypes } from "../atoms/dropdown";
 import { TransactionFormProps } from "../../transactionTypes";
 import EditFormSubmit from "../level1/editFormSubmit";
-import { categories, transactionTypes } from "../../helpers/transactionsHelper";
+import { categories, transactionTypes } from "../../helpers/transactionConsts";
 import RecurringForm from "../level1/recurringForm";
 import FromToForm from "../level1/fromToForm";
 

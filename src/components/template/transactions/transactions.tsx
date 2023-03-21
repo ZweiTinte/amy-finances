@@ -3,7 +3,7 @@ import Headline from "../../atoms/headline";
 import TransactionItem from "../../level1/transactionItem";
 import Button from "../../atoms/button";
 import { navigate } from "gatsby";
-import { addMonths } from "../../../helpers/dateHelpers";
+import { getRecurringTransactions } from "../../../helpers/transactionsHelper";
 
 const Transactions = ({
   transactions,
@@ -40,36 +40,7 @@ const Transactions = ({
               item.recurringEnd &&
               item.recurringGap
             ) {
-              let recurringTransactions = [];
-              let recurringDate = new Date(item.date);
-              while (recurringDate < new Date(item.recurringEnd)) {
-                const itemCopy = structuredClone(item);
-                itemCopy.date = recurringDate.toISOString().split("T")[0];
-                recurringTransactions.push(itemCopy);
-                if (item.recurringPeriod === "Day") {
-                  recurringDate.setDate(
-                    recurringDate.getDate() + item.recurringGap
-                  );
-                } else if (item.recurringPeriod === "Week") {
-                  recurringDate.setDate(
-                    recurringDate.getDate() + item.recurringGap * 7
-                  );
-                } else if (item.recurringPeriod === "Month") {
-                  recurringDate = new Date(
-                    addMonths(
-                      recurringDate.toISOString().split("T")[0],
-                      item.recurringGap
-                    )
-                  );
-                } else if (item.recurringPeriod === "Year") {
-                  recurringDate = new Date(
-                    addMonths(
-                      recurringDate.toISOString().split("T")[0],
-                      item.recurringGap * 12
-                    )
-                  );
-                }
-              }
+              const recurringTransactions = getRecurringTransactions(item);
               return recurringTransactions.map((trans, j) => {
                 return (
                   <div

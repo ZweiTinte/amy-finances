@@ -3,7 +3,7 @@ import Button from "../atoms/button";
 import Headline from "../atoms/headline";
 import { getMonths, getYears } from "../../helpers/helpers";
 import Checkbox from "../atoms/checkbox";
-import { categories, transactionTypes } from "../../helpers/transactionsHelper";
+import { categories, transactionTypes } from "../../helpers/transactionConsts";
 import { TransactionSidebarContentProps } from "../../transactionTypes";
 import MultiselectFilter from "../level2/multiselectFilter";
 
