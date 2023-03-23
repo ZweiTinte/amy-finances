@@ -4,13 +4,16 @@ import TransactionItem from "../../level1/transactionItem";
 import Button from "../../atoms/button";
 import { navigate } from "gatsby";
 import { getRecurringTransactions } from "../../../helpers/transactionsHelper";
+import { euroFormat } from "../../../helpers/helpers";
 
 const Transactions = ({
   transactions,
   accounts,
+  totalBalance,
 }: {
   transactions: Transaction[];
   accounts: Account[];
+  totalBalance: number;
 }) => {
   return (
     <div className="gameLayout">
@@ -72,6 +75,12 @@ const Transactions = ({
             );
           }
         })}
+        <div className="accountsSummary">
+          <span className="transactionsSum">Total Balance:</span>
+          <span className="transactionAmount">
+            {euroFormat.format(totalBalance)}
+          </span>
+        </div>
       </div>
     </div>
   );

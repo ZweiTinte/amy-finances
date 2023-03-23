@@ -12,6 +12,15 @@ const TransactionsOverview = ({
   const [filteredTransactions, setFilteredTransactions] = React.useState<
     Transaction[]
   >(transactions || []);
+  const [totalBalance, setTotalBalance] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    let total = 0;
+    filteredTransactions.forEach((trans) => {
+      total += trans.amount;
+    });
+    setTotalBalance(total);
+  }, [filteredTransactions]);
 
   return (
     <>
@@ -26,6 +35,7 @@ const TransactionsOverview = ({
                 : transactions
             }
             accounts={accounts}
+            totalBalance={totalBalance}
           />
           <TransactionSidebarRight
             transactions={transactions}
