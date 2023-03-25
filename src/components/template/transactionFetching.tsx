@@ -1,6 +1,7 @@
 import * as React from "react";
 import { fetchTransactions } from "../../api/transactionApi";
 import ErrorInfo from "../level1/errorInfo";
+import { getRecurringTransactions } from "../../helpers/transactionsHelper";
 
 const TransactionFetching = ({
   children,
@@ -21,7 +22,15 @@ const TransactionFetching = ({
   }
 
   function resolveFetching(data: Transaction[]): void {
-    setTransactions(data);
+    let recurringTransactions: Transaction[] = [];
+    data.forEach((d) => {
+      if (d.recurringEnd && d.recurringGap && d.recurringPeriod) {
+        recurringTransactions = recurringTransactions.concat(
+          getRecurringTransactions(d)
+        );
+      }
+    });
+    setTransactions(data.concat(recurringTransactions));
     setTransactionsReady(true);
   }
 

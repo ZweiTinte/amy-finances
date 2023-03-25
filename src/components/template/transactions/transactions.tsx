@@ -3,7 +3,6 @@ import Headline from "../../atoms/headline";
 import TransactionItem from "../../level1/transactionItem";
 import Button from "../../atoms/button";
 import { navigate } from "gatsby";
-import { getRecurringTransactions } from "../../../helpers/transactionsHelper";
 import { euroFormat } from "../../../helpers/helpers";
 
 const Transactions = ({
@@ -37,43 +36,17 @@ const Transactions = ({
           <span className="transactionTo">To</span>
         </div>
         {transactions.map((item, i) => {
-          if (item.transactionType === "Recurring") {
-            if (
-              item.recurringPeriod &&
-              item.recurringEnd &&
-              item.recurringGap
-            ) {
-              const recurringTransactions = getRecurringTransactions(item);
-              return recurringTransactions.map((trans, j) => {
-                return (
-                  <div
-                    className={
-                      "transactionInfos" +
-                      (i === transactions.length - 1 &&
-                      j === recurringTransactions.length - 1
-                        ? ""
-                        : " dottedBorder")
-                    }
-                    key={j}
-                  >
-                    <TransactionItem transaction={trans} accounts={accounts} />
-                  </div>
-                );
-              });
-            }
-          } else {
-            return (
-              <div
-                className={
-                  "transactionInfos" +
-                  (i !== transactions.length - 1 ? " dottedBorder" : "")
-                }
-                key={item.id}
-              >
-                <TransactionItem transaction={item} accounts={accounts} />
-              </div>
-            );
-          }
+          return (
+            <div
+              className={
+                "transactionInfos" +
+                (i !== transactions.length - 1 ? " dottedBorder" : "")
+              }
+              key={i}
+            >
+              <TransactionItem transaction={item} accounts={accounts} />
+            </div>
+          );
         })}
         <div className="accountsSummary">
           <span className="transactionsSum">Total Balance:</span>

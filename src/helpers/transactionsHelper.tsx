@@ -88,6 +88,7 @@ export function getRecurringTransactions(item: Transaction): Transaction[] {
         );
       }
     }
+    recurringTransactions.shift();
   }
   return recurringTransactions;
 }
