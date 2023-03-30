@@ -64,7 +64,8 @@ export function getRecurringTransactions(item: Transaction): Transaction[] {
   let recurringTransactions = [];
   let recurringDate = new Date(item.date);
   if (item.recurringPeriod && item.recurringEnd && item.recurringGap) {
-    while (recurringDate < new Date(item.recurringEnd)) {
+    let loop = 1;
+    while (recurringDate <= new Date(item.recurringEnd)) {
       const itemCopy = structuredClone(item);
       itemCopy.date = recurringDate.toISOString().split("T")[0];
       recurringTransactions.push(itemCopy);
@@ -75,18 +76,19 @@ export function getRecurringTransactions(item: Transaction): Transaction[] {
       } else if (item.recurringPeriod === "Month") {
         recurringDate = new Date(
           addMonths(
-            recurringDate.toISOString().split("T")[0],
-            item.recurringGap
+            new Date(item.date).toISOString().split("T")[0],
+            item.recurringGap * loop
           )
         );
       } else if (item.recurringPeriod === "Year") {
         recurringDate = new Date(
           addMonths(
-            recurringDate.toISOString().split("T")[0],
-            item.recurringGap * 12
+            new Date(item.date).toISOString().split("T")[0],
+            item.recurringGap * 12 * loop
           )
         );
       }
+      loop++;
     }
     recurringTransactions.shift();
   }
