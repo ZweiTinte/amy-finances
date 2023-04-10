@@ -2,15 +2,13 @@ import * as React from "react";
 import NumberInput from "../atoms/numberInput";
 import TextInput from "../atoms/textInput";
 import DateInput from "../atoms/dateInput";
-import Dropdown, { DropdownTypes } from "../atoms/dropdown";
-import { TransactionFormProps } from "../../transactionTypes";
-import EditFormSubmit from "../level1/editFormSubmit";
+import { TransactionTemplateProps } from "../../transactionTypes";
 import { categories, transactionTypes } from "../../helpers/transactionConsts";
 import RecurringForm from "../level1/recurringForm";
 import FromToForm from "../level1/fromToForm";
+import FormDropdown from "../level1/formDropdown";
 
-const TransactionForm = ({
-  submitHandler,
+const TransactionFormInputs = ({
   date,
   setDate,
   name,
@@ -24,7 +22,6 @@ const TransactionForm = ({
   accounts,
   to,
   setTo,
-  deleteSelectedTransaction,
   transactionType,
   setTransactionType,
   recurringEnd,
@@ -33,19 +30,15 @@ const TransactionForm = ({
   recurringPeriod,
   setRecurringEnd,
   setRecurringPeriod,
-}: TransactionFormProps) => {
+}: TransactionTemplateProps) => {
   return (
-    <form>
-      <div className="formRow">
-        <label className="formLabel">Type:</label>
-        <Dropdown
-          dropDownItem={transactionType}
-          setDropdownItem={setTransactionType}
-          dropDownData={transactionTypes}
-          type={DropdownTypes.Value}
-          verticalForm={false}
-        />
-      </div>
+    <>
+      <FormDropdown
+        dropDownItem={transactionType}
+        setDropdownItem={setTransactionType}
+        dropDownData={transactionTypes}
+        dropdownName="Type:"
+      />
       <div className="formRow">
         <label className="formLabel">Date:</label>
         <DateInput value={date} setValue={setDate} />
@@ -64,16 +57,12 @@ const TransactionForm = ({
         <label className="formLabel">Name:</label>
         <TextInput value={name} setValue={setName} />
       </div>
-      <div className="formRow">
-        <label className="formLabel">Category:</label>
-        <Dropdown
-          dropDownItem={category}
-          setDropdownItem={setCategory}
-          dropDownData={categories}
-          type={DropdownTypes.Value}
-          verticalForm={false}
-        />
-      </div>
+      <FormDropdown
+        dropDownItem={category}
+        setDropdownItem={setCategory}
+        dropDownData={categories}
+        dropdownName="Category:"
+      />
       <div className="formRow">
         <label className="formLabel">Amount:</label>
         <NumberInput value={amount} setValue={setAmount} />
@@ -85,13 +74,8 @@ const TransactionForm = ({
         to={to}
         setTo={setTo}
       />
-      <EditFormSubmit
-        deleteSelectedItem={deleteSelectedTransaction}
-        submitHandler={submitHandler}
-        itemName={"Transaction"}
-      />
-    </form>
+    </>
   );
 };
 
-export default TransactionForm;
+export default TransactionFormInputs;

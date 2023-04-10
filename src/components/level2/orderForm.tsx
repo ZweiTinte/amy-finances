@@ -1,10 +1,12 @@
 import * as React from "react";
 import NumberInput from "../atoms/numberInput";
 import DateInput from "../atoms/dateInput";
-import Dropdown, { DropdownTypes } from "../atoms/dropdown";
 import { OrderFormProps } from "../../orderTypes";
 import { orderTypes } from "../../helpers/ordersHelper";
 import EditFormSubmit from "../level1/editFormSubmit";
+import { fieldsValid, formValidationMessage } from "../../helpers/helpers";
+import FromToForm from "../level1/fromToForm";
+import FormDropdown from "../level1/formDropdown";
 
 const OrderForm = ({
   submitHandler,
@@ -28,32 +30,26 @@ const OrderForm = ({
   setOrderType,
   deleteSelectedOrder,
 }: OrderFormProps) => {
+  const [error, setError] = React.useState<string>("");
+
   return (
     <form>
       <div className="formRow">
         <label className="formLabel">Date:</label>
         <DateInput value={date} setValue={setDate} />
       </div>
-      <div className="formRow">
-        <label className="formLabel">Order Type:</label>
-        <Dropdown
-          dropDownItem={orderType}
-          setDropdownItem={setOrderType}
-          dropDownData={orderTypes}
-          type={DropdownTypes.Value}
-          verticalForm={false}
-        />
-      </div>
-      <div className="formRow">
-        <label className="formLabel">Stock:</label>
-        <Dropdown
-          dropDownItem={stock}
-          setDropdownItem={setStock}
-          dropDownData={stocks}
-          type={DropdownTypes.Value}
-          verticalForm={false}
-        />
-      </div>
+      <FormDropdown
+        dropDownItem={orderType}
+        setDropdownItem={setOrderType}
+        dropDownData={orderTypes}
+        dropdownName="Order Type:"
+      />
+      <FormDropdown
+        dropDownItem={stock}
+        setDropdownItem={setStock}
+        dropDownData={stocks}
+        dropdownName="Stock:"
+      />
       <div className="formRow">
         <label className="formLabel">Amount:</label>
         <NumberInput value={amount} setValue={setAmount} />
@@ -66,31 +62,29 @@ const OrderForm = ({
         <label className="formLabel">Cost:</label>
         <NumberInput value={cost} setValue={setCost} />
       </div>
-      <div className="formRow">
-        <label className="formLabel">From:</label>
-        <Dropdown
-          dropDownItem={from}
-          setDropdownItem={setFrom}
-          dropDownData={accounts}
-          type={DropdownTypes.Value}
-          verticalForm={false}
-        />
-      </div>
-      <div className="formRow">
-        <label className="formLabel">To:</label>
-        <Dropdown
-          dropDownItem={to}
-          setDropdownItem={setTo}
-          dropDownData={accounts}
-          type={DropdownTypes.Value}
-          verticalForm={false}
-        />
-      </div>
+      <FromToForm
+        from={from}
+        setFrom={setFrom}
+        accounts={accounts}
+        to={to}
+        setTo={setTo}
+      />
       <EditFormSubmit
         deleteSelectedItem={deleteSelectedOrder}
-        submitHandler={submitHandler}
+        submitHandler={(e) => {
+          if (fieldsValid([date, amount, price, cost])) {
+            submitHandler(e);
+          } else {
+            setError(formValidationMessage);
+          }
+        }}
         itemName={"Order"}
       />
+      {error.length > 0 && (
+        <div className="formRow">
+          <label className="formErrorLabel">{error}</label>
+        </div>
+      )}
     </form>
   );
 };

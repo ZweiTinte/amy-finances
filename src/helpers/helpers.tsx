@@ -15,6 +15,19 @@ const monthNames = [
   "December",
 ];
 
+export const formValidationMessage: string =
+  "Please fill out all fields and use '.' as separator for numbers!";
+
+export function fieldsValid(fields: string[]): boolean {
+  let valid = true;
+  fields.forEach((field) => {
+    if (field.replaceAll(" ", "").length === 0) {
+      valid = false;
+    }
+  });
+  return valid;
+}
+
 export const euroFormat = Intl.NumberFormat("de-DE", {
   useGrouping: true,
   currency: "EUR",

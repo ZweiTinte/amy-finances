@@ -1,9 +1,10 @@
 import * as React from "react";
 import NumberInput from "../atoms/numberInput";
 import DateInput from "../atoms/dateInput";
-import Dropdown, { DropdownTypes } from "../atoms/dropdown";
 import EditFormSubmit from "../level1/editFormSubmit";
 import { DividendFormProps } from "../../dividendTypes";
+import { fieldsValid, formValidationMessage } from "../../helpers/helpers";
+import FormDropdown from "../level1/formDropdown";
 
 const DividendForm = ({
   submitHandler,
@@ -23,6 +24,8 @@ const DividendForm = ({
   setTaxAmount,
   deleteSelectedDividend,
 }: DividendFormProps) => {
+  const [error, setError] = React.useState<string>("");
+
   return (
     <form>
       <div className="formRow">
@@ -33,16 +36,12 @@ const DividendForm = ({
         <label className="formLabel">Ex-Date:</label>
         <DateInput value={exDate} setValue={setExDate} />
       </div>
-      <div className="formRow">
-        <label className="formLabel">Stock:</label>
-        <Dropdown
-          dropDownItem={stock}
-          setDropdownItem={setStock}
-          dropDownData={stocks}
-          type={DropdownTypes.Value}
-          verticalForm={false}
-        />
-      </div>
+      <FormDropdown
+        dropDownItem={stock}
+        setDropdownItem={setStock}
+        dropDownData={stocks}
+        dropdownName="Stock:"
+      />
       <div className="formRow">
         <label className="formLabel">Amount:</label>
         <NumberInput value={amountBeforeTax} setValue={setAmountBeforeTax} />
@@ -51,21 +50,28 @@ const DividendForm = ({
         <label className="formLabel">Tax:</label>
         <NumberInput value={taxAmount} setValue={setTaxAmount} />
       </div>
-      <div className="formRow">
-        <label className="formLabel">To:</label>
-        <Dropdown
-          dropDownItem={to}
-          setDropdownItem={setTo}
-          dropDownData={accounts}
-          type={DropdownTypes.Value}
-          verticalForm={false}
-        />
-      </div>
+      <FormDropdown
+        dropDownItem={to}
+        setDropdownItem={setTo}
+        dropDownData={accounts}
+        dropdownName="To:"
+      />
       <EditFormSubmit
         deleteSelectedItem={deleteSelectedDividend}
-        submitHandler={submitHandler}
+        submitHandler={(e) => {
+          if (fieldsValid([payDate, exDate, amountBeforeTax, taxAmount])) {
+            submitHandler(e);
+          } else {
+            setError(formValidationMessage);
+          }
+        }}
         itemName={"Dividend"}
       />
+      {error.length > 0 && (
+        <div className="formRow">
+          <label className="formErrorLabel">{error}</label>
+        </div>
+      )}
     </form>
   );
 };

@@ -1,6 +1,6 @@
 import { DropdownItem } from "./components/atoms/dropdown";
 
-interface TransactionTemplateProps {
+export interface TransactionTemplateProps {
   date: string;
   setDate: React.Dispatch<React.SetStateAction<string>>;
   name: string;

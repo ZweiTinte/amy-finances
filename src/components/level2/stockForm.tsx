@@ -3,6 +3,7 @@ import NumberInput from "../atoms/numberInput";
 import EditFormSubmit from "../level1/editFormSubmit";
 import TextInput from "../atoms/textInput";
 import { StockFormProps } from "../../stockTypes";
+import { fieldsValid, formValidationMessage } from "../../helpers/helpers";
 
 const StockForm = ({
   submitHandler,
@@ -14,6 +15,8 @@ const StockForm = ({
   setName,
   deleteSelectedStock,
 }: StockFormProps) => {
+  const [error, setError] = React.useState<string>("");
+
   return (
     <form>
       <div className="formRow">
@@ -30,9 +33,20 @@ const StockForm = ({
       </div>
       <EditFormSubmit
         deleteSelectedItem={deleteSelectedStock}
-        submitHandler={submitHandler}
+        submitHandler={(e) => {
+          if (fieldsValid([isin, name, price])) {
+            submitHandler(e);
+          } else {
+            setError(formValidationMessage);
+          }
+        }}
         itemName={"Stock"}
       />
+      {error.length > 0 && (
+        <div className="formRow">
+          <label className="formErrorLabel">{error}</label>
+        </div>
+      )}
     </form>
   );
 };

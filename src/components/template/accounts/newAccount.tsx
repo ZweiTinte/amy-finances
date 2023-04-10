@@ -7,6 +7,7 @@ import Dropdown, { DropdownItem, DropdownTypes } from "../../atoms/dropdown";
 import { accountTypes } from "../../../helpers/accountsHelper";
 import { postAccount } from "../../../api/accountsApi";
 import EditFormSubmit from "../../level1/editFormSubmit";
+import { fieldsValid, formValidationMessage } from "../../../helpers/helpers";
 
 const NewAccount = () => {
   const [iban, setIban] = React.useState<string>("");
@@ -15,6 +16,7 @@ const NewAccount = () => {
   const [accountType, setAccountType] = React.useState<DropdownItem>(
     accountTypes[0]
   );
+  const [error, setError] = React.useState<string>("");
 
   function resolveFetching(): void {
     navigate("/accounts");
@@ -59,8 +61,19 @@ const NewAccount = () => {
             </div>
             <EditFormSubmit
               itemName={"Account"}
-              submitHandler={submitHandler}
+              submitHandler={(e) => {
+                if (fieldsValid([name, iban, balance])) {
+                  submitHandler(e);
+                } else {
+                  setError(formValidationMessage);
+                }
+              }}
             />
+            {error.length > 0 && (
+              <div className="formRow">
+                <label className="formErrorLabel">{error}</label>
+              </div>
+            )}
           </form>
         </div>
       </div>

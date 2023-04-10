@@ -4,7 +4,7 @@ import Headline from "../../atoms/headline";
 import { DropdownItem } from "../../atoms/dropdown";
 import { postTransaction } from "../../../api/transactionApi";
 import { emptyAccountDDItem } from "../../../helpers/accountsHelper";
-import TransactionForm from "../../level2/transactionForm";
+import TransactionForm from "../../level3/transactionForm";
 import {
   categories,
   recurringPeriods,

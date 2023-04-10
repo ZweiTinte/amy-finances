@@ -5,7 +5,7 @@ import {
   updateTransactions,
 } from "../../../api/transactionApi";
 import Headline from "../../atoms/headline";
-import TransactionForm from "../../level2/transactionForm";
+import TransactionForm from "../../level3/transactionForm";
 import { EditTransactionProps } from "../../../transactionTypes";
 
 const EditTransaction = ({
