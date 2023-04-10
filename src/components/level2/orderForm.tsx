@@ -29,7 +29,7 @@ const OrderForm = ({
   deleteSelectedOrder,
 }: OrderFormProps) => {
   return (
-    <form onSubmit={submitHandler}>
+    <form>
       <div className="formRow">
         <label className="formLabel">Date:</label>
         <DateInput value={date} setValue={setDate} />
@@ -88,6 +88,7 @@ const OrderForm = ({
       </div>
       <EditFormSubmit
         deleteSelectedItem={deleteSelectedOrder}
+        submitHandler={submitHandler}
         itemName={"Order"}
       />
     </form>

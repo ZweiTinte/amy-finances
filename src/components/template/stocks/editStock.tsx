@@ -1,11 +1,9 @@
 import { navigate } from "gatsby";
 import * as React from "react";
 import Headline from "../../atoms/headline";
-import TextInput from "../../atoms/textInput";
 import ErrorInfo from "../../level1/errorInfo";
 import { deleteStock, fetchStock, updateStock } from "../../../api/stocksApi";
-import NumberInput from "../../atoms/numberInput";
-import EditFormSubmit from "../../level1/editFormSubmit";
+import StockForm from "../../level2/stockForm";
 
 const EditStock = ({ id }: { id: string }) => {
   const [templateReady, setTemplateReady] = React.useState<boolean>(false);
@@ -70,24 +68,16 @@ const EditStock = ({ id }: { id: string }) => {
         <div className="gameLayout">
           <div className="stocksCard">
             <Headline text="Edit stock" style="accountsHeadline" />
-            <form onSubmit={submitHandler}>
-              <div className="formRow">
-                <label className="formLabel">ISIN:</label>
-                <TextInput value={isin} setValue={setIsin} />
-              </div>
-              <div className="formRow">
-                <label className="formLabel">Name:</label>
-                <TextInput value={name} setValue={setName} />
-              </div>
-              <div className="formRow">
-                <label className="formLabel">Price:</label>
-                <NumberInput value={price} setValue={setPrice} />
-              </div>
-              <EditFormSubmit
-                deleteSelectedItem={deleteSelectedStock}
-                itemName={"Stock"}
-              />
-            </form>
+            <StockForm
+              submitHandler={submitHandler}
+              price={price}
+              setPrice={setPrice}
+              isin={isin}
+              setIsin={setIsin}
+              name={name}
+              setName={setName}
+              deleteSelectedStock={deleteSelectedStock}
+            />
           </div>
         </div>
       )}

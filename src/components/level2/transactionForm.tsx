@@ -35,7 +35,7 @@ const TransactionForm = ({
   setRecurringPeriod,
 }: TransactionFormProps) => {
   return (
-    <form onSubmit={submitHandler}>
+    <form>
       <div className="formRow">
         <label className="formLabel">Type:</label>
         <Dropdown
@@ -87,6 +87,7 @@ const TransactionForm = ({
       />
       <EditFormSubmit
         deleteSelectedItem={deleteSelectedTransaction}
+        submitHandler={submitHandler}
         itemName={"Transaction"}
       />
     </form>

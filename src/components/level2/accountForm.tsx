@@ -14,7 +14,7 @@ const AccountForm = ({
   deleteSelectedAccount,
 }: AccountFormProps) => {
   return (
-    <form onSubmit={submitHandler}>
+    <form>
       <div className="formRow">
         <label className="formLabel">Name:</label>
         <TextInput value={name} setValue={setName} />
@@ -31,6 +31,7 @@ const AccountForm = ({
       </div>
       <EditFormSubmit
         deleteSelectedItem={deleteSelectedAccount}
+        submitHandler={submitHandler}
         itemName={"Account"}
       />
     </form>

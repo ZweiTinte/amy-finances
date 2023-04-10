@@ -3,9 +3,11 @@ import Button from "../atoms/button";
 
 const EditFormSubmit = ({
   deleteSelectedItem,
+  submitHandler,
   itemName,
 }: {
   deleteSelectedItem?: () => void;
+  submitHandler?: (e: React.SyntheticEvent) => void;
   itemName: string;
 }) => {
   const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(false);
@@ -14,12 +16,20 @@ const EditFormSubmit = ({
     <>
       {deleteSelectedItem === undefined ? (
         <div className="formRow">
-          <input type="submit" value={`Add ${itemName}`} />
+          <input
+            onClick={submitHandler}
+            value={`Add ${itemName}`}
+            type="button"
+          />
         </div>
       ) : (
         <>
           <div className="formRow">
-            <input type="submit" value={`Update ${itemName}`} />
+            <input
+              type="button"
+              value={`Update ${itemName}`}
+              onClick={submitHandler}
+            />
             <Button
               onClick={(e: React.SyntheticEvent) => {
                 e.preventDefault();

@@ -34,7 +34,7 @@ const NewAccount = () => {
       <div className="gameLayout">
         <div className="accountsCard">
           <Headline text="Add a new account" style="accountsHeadline" />
-          <form onSubmit={submitHandler}>
+          <form>
             <div className="formRow">
               <label className="formLabel">IBAN:</label>
               <TextInput value={iban} setValue={setIban} />
@@ -57,7 +57,10 @@ const NewAccount = () => {
                 verticalForm={false}
               />
             </div>
-            <EditFormSubmit itemName={"Account"} />
+            <EditFormSubmit
+              itemName={"Account"}
+              submitHandler={submitHandler}
+            />
           </form>
         </div>
       </div>

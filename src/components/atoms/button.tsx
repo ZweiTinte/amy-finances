@@ -7,11 +7,9 @@ interface ButtonProps extends TextProps {
 
 const Button = ({ text, color, onClick }: ButtonProps) => {
   return (
-    <>
-      <button onClick={onClick} className={color || ""}>
-        {text}
-      </button>
-    </>
+    <button onClick={onClick} type="button" className={color || ""}>
+      {text}
+    </button>
   );
 };
 

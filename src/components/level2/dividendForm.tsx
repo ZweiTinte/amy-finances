@@ -24,7 +24,7 @@ const DividendForm = ({
   deleteSelectedDividend,
 }: DividendFormProps) => {
   return (
-    <form onSubmit={submitHandler}>
+    <form>
       <div className="formRow">
         <label className="formLabel">Pay-Date:</label>
         <DateInput value={payDate} setValue={setPayDate} />
@@ -63,6 +63,7 @@ const DividendForm = ({
       </div>
       <EditFormSubmit
         deleteSelectedItem={deleteSelectedDividend}
+        submitHandler={submitHandler}
         itemName={"Dividend"}
       />
     </form>
