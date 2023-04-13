@@ -15,6 +15,12 @@ const DividendsOverview = ({
     dividends || []
   );
 
+  React.useEffect(() => {
+    if (dividends) {
+      setFilteredDividends(dividends);
+    }
+  }, [dividends]);
+
   return (
     <>
       {dividends && accounts && stocks && (

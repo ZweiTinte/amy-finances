@@ -15,6 +15,12 @@ const OrdersOverview = ({
     orders || []
   );
 
+  React.useEffect(() => {
+    if (orders) {
+      setFilteredOrders(orders);
+    }
+  }, [orders]);
+
   return (
     <>
       {orders && accounts && stocks && (
