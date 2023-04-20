@@ -16,7 +16,7 @@ const Transactions = ({
 }) => {
   return (
     <>
-      {transactions && accounts && totalBalance && (
+      {transactions && accounts && (
         <div className="gameLayout">
           <div className="transactionsCard">
             <div className="formRowDefault">
