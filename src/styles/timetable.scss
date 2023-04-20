@@ -1,13 +1,17 @@
+@import "_variables";
+
 #frame {
   margin: 2rem;
   overflow: auto;
   position: relative;
   width: 50rem;
   height: 30rem;
+  border-radius: 0.25rem;
+  border: 0.15rem solid $cardBorder;
 }
 
 #spacer {
-  background: #000000;
+  background: $cardBorder;
   width: 84px;
   height: 42px;
   position: fixed;
@@ -17,7 +21,7 @@
 #canvas {
   width: 1120px;
   height: 1087px;
-  background: gray;
+  background: $blue2;
   overflow: hidden;
   position: absolute;
   top: 42px;
@@ -31,7 +35,7 @@
   width: 84px;
   height: 1087px;
   overflow: hidden;
-  background: red;
+  background: $buttonBackground;
   position: sticky;
   left: 0px;
   top: 0;
@@ -40,7 +44,7 @@
 #topRuler {
   width: 1120px;
   height: 42px;
-  background: blue;
+  background: $buttonBackground;
   position: sticky;
   top: 0px;
   left: 84px;
@@ -53,7 +57,9 @@
   align-items: center;
   justify-content: center;
   display: flex;
-  border: 0.15rem solid #000000;
+  border-bottom: 0.15rem solid $cardBorder;
+  border-right: 0.15rem solid $cardBorder;
+  border-left: 0.15rem solid $cardBorder;
 }
 
 .days {
@@ -69,19 +75,23 @@
 .cells {
   height: 30px;
   width: 160px;
-  color: #ffffff;
+  color: $black;
   align-items: center;
   justify-content: center;
   display: flex;
-  border: 2px solid #000000;
+  border-right: 0.3rem solid $cardBorder;
+  border-top: 0.15rem solid $cardBorder;
+  border-bottom: 0.15rem solid $cardBorder;
 }
 
 .hours {
   height: 30px;
-  width: 80px;
+  width: 82px;
   color: #ffffff;
   align-items: center;
   justify-content: center;
   display: flex;
-  border: 2px solid #000000;
+  border-right: 2px solid $cardBorder;
+  border-top: 2px solid $cardBorder;
+  border-bottom: 2px solid $cardBorder;
 }
