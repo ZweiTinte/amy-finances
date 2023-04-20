@@ -37,7 +37,7 @@ button {
   @include defaultInputElement;
   justify-content: center;
   width: 4rem;
-  height: 2rem;
+  max-height: 2rem;
   display: inline-flex;
   cursor: pointer;
   padding: 0.25rem;
@@ -66,22 +66,6 @@ button {
   }
 }
 
-.newGameButton {
-  @include bigButton;
-  @include defaultHover;
-  width: 20rem;
-}
-
-.winState {
-  @include winStateColors;
-  @include winStateHover;
-}
-
-.loseState {
-  @include loseStateColors;
-  @include loseStateHover;
-}
-
 .redButton {
   @include loseStateColors;
   @include loseStateHover;
@@ -90,4 +74,22 @@ button {
   cursor: pointer;
   padding: 0.5rem;
   margin-top: 1rem;
+}
+
+.fileUploadInput {
+  position: absolute;
+  z-index: -1;
+  display: none;
+}
+
+.uploadButton {
+  @include defaultHover;
+  @include defaultInputElement;
+  justify-content: center;
+  width: 4rem;
+  max-height: 1.25rem;
+  display: inline-flex;
+  cursor: pointer;
+  padding: 0.25rem;
+  margin-left: 1rem;
 }
