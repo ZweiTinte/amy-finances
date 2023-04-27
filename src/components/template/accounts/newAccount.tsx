@@ -3,11 +3,12 @@ import * as React from "react";
 import Headline from "../../atoms/headline";
 import NumberInput from "../../atoms/numberInput";
 import TextInput from "../../atoms/textInput";
-import Dropdown, { DropdownItem, DropdownTypes } from "../../atoms/dropdown";
+import Dropdown from "../../atoms/dropdown";
 import { accountTypes } from "../../../helpers/accountsHelper";
 import { postAccount } from "../../../api/accountsApi";
 import EditFormSubmit from "../../level1/editFormSubmit";
 import { fieldsValid, formValidationMessage } from "../../../helpers/helpers";
+import { DropdownItem, DropdownTypes } from "../../../dropdownTypes";
 
 const NewAccount = () => {
   const [iban, setIban] = React.useState<string>("");

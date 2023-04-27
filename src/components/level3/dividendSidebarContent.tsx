@@ -1,9 +1,9 @@
 import * as React from "react";
 import Button from "../atoms/button";
-import { DropdownItem } from "../atoms/dropdown";
 import Headline from "../atoms/headline";
 import { getMonths, getYears } from "../../helpers/helpers";
 import MultiselectFilter from "../level2/multiselectFilter";
+import { DropdownItem } from "../../dropdownTypes";
 
 const DividendSidebarContent = ({
   dividends,

@@ -1,11 +1,11 @@
 import * as React from "react";
-import { DropdownItem } from "../../atoms/dropdown";
 import { getOrderType, orderTypes } from "../../../helpers/ordersHelper";
 import EditOrder from "./editOrder";
 import ErrorInfo from "../../level1/errorInfo";
 import { fetchOrder } from "../../../api/ordersApi";
 import { getStockDDItems } from "../../../helpers/stocksHelper";
 import { getAccountDDItem } from "../../../helpers/accountsHelper";
+import { DropdownItem } from "../../../dropdownTypes";
 
 const EditOrderFetching = ({
   stocks,

@@ -1,5 +1,6 @@
 import * as React from "react";
-import Dropdown, { DropdownItem, DropdownTypes } from "../atoms/dropdown";
+import Dropdown from "../atoms/dropdown";
+import { DropdownItem, DropdownTypes } from "../../dropdownTypes";
 
 const FromToForm = ({
   from,

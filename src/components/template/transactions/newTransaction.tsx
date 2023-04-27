@@ -1,7 +1,6 @@
 import { navigate } from "gatsby";
 import * as React from "react";
 import Headline from "../../atoms/headline";
-import { DropdownItem } from "../../atoms/dropdown";
 import { postTransaction } from "../../../api/transactionApi";
 import { emptyAccountDDItem } from "../../../helpers/accountsHelper";
 import TransactionForm from "../../level3/transactionForm";
@@ -10,6 +9,7 @@ import {
   recurringPeriods,
   transactionTypes,
 } from "../../../helpers/transactionConsts";
+import { DropdownItem } from "../../../dropdownTypes";
 
 const NewTransaction = ({ accounts }: { accounts?: Account[] }) => {
   const [date, setDate] = React.useState<string>("");
@@ -72,7 +72,7 @@ const NewTransaction = ({ accounts }: { accounts?: Account[] }) => {
               setAmount={setAmount}
               from={from}
               setFrom={setFrom}
-              accounts={[emptyAccountDDItem].concat(
+              accountsData={[emptyAccountDDItem].concat(
                 accounts.map((account) => {
                   return { id: account.id, value: account.name };
                 })

@@ -20,7 +20,7 @@ const EditTransaction = ({
   setAmount,
   from,
   setFrom,
-  accounts,
+  accountsData,
   to,
   setTo,
   transactionType,
@@ -77,7 +77,7 @@ const EditTransaction = ({
           setAmount={setAmount}
           from={from}
           setFrom={setFrom}
-          accounts={accounts}
+          accountsData={accountsData}
           to={to}
           setTo={setTo}
           deleteSelectedTransaction={deleteSelectedTransaction}

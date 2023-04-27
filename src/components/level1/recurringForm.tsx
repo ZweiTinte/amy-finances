@@ -1,8 +1,9 @@
 import * as React from "react";
 import DateInput from "../atoms/dateInput";
 import NumberInput from "../atoms/numberInput";
-import Dropdown, { DropdownItem, DropdownTypes } from "../atoms/dropdown";
+import Dropdown from "../atoms/dropdown";
 import { recurringPeriods } from "../../helpers/transactionConsts";
+import { DropdownItem, DropdownTypes } from "../../dropdownTypes";
 
 const RecurringForm = ({
   recurringEnd,

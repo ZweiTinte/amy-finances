@@ -1,5 +1,3 @@
-import { DropdownItem } from "./components/atoms/dropdown";
-
 interface StockTemplateProps {
   price: string;
   setPrice: React.Dispatch<React.SetStateAction<string>>;

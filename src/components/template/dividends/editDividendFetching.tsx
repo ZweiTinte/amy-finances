@@ -1,10 +1,10 @@
 import * as React from "react";
-import { DropdownItem } from "../../atoms/dropdown";
 import ErrorInfo from "../../level1/errorInfo";
 import { fetchDividend } from "../../../api/dividendsApi";
 import { getStockDDItems } from "../../../helpers/stocksHelper";
 import { getAccountDDItem } from "../../../helpers/accountsHelper";
 import EditDividend from "./editDividend";
+import { DropdownItem } from "../../../dropdownTypes";
 
 const EditDividendFetching = ({
   stocks,

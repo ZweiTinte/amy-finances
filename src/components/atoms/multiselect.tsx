@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DropdownItem } from "./dropdown";
+import { DropdownItem } from "../../dropdownTypes";
 
 interface MultiselectProps {
   dropDownItems: DropdownItem[];

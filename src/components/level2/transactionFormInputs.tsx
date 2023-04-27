@@ -1,12 +1,14 @@
 import * as React from "react";
 import NumberInput from "../atoms/numberInput";
-import TextInput from "../atoms/textInput";
 import DateInput from "../atoms/dateInput";
 import { TransactionTemplateProps } from "../../transactionTypes";
 import { categories, transactionTypes } from "../../helpers/transactionConsts";
 import RecurringForm from "../level1/recurringForm";
 import FromToForm from "../level1/fromToForm";
 import FormDropdown from "../level1/formDropdown";
+import DropdownSearch from "../atoms/dropdownSearch";
+import { getTransactionSuggestions } from "../../helpers/dropdownHelpers";
+import { DropdownTypes } from "../../dropdownTypes";
 
 const TransactionFormInputs = ({
   date,
@@ -19,7 +21,7 @@ const TransactionFormInputs = ({
   setAmount,
   from,
   setFrom,
-  accounts,
+  accountsData,
   to,
   setTo,
   transactionType,
@@ -30,6 +32,7 @@ const TransactionFormInputs = ({
   recurringPeriod,
   setRecurringEnd,
   setRecurringPeriod,
+  transactions,
 }: TransactionTemplateProps) => {
   return (
     <>
@@ -55,7 +58,13 @@ const TransactionFormInputs = ({
       )}
       <div className="formRow">
         <label className="formLabel">Name:</label>
-        <TextInput value={name} setValue={setName} />
+        <DropdownSearch
+          dropDownItem={name}
+          setDropdownItem={setName}
+          dropDownData={getTransactionSuggestions(transactions)}
+          type={DropdownTypes.Value}
+          verticalForm={false}
+        />
       </div>
       <FormDropdown
         dropDownItem={category}
@@ -70,7 +79,7 @@ const TransactionFormInputs = ({
       <FromToForm
         from={from}
         setFrom={setFrom}
-        accounts={accounts}
+        accounts={accountsData}
         to={to}
         setTo={setTo}
       />

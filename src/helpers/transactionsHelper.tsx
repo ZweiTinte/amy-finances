@@ -1,4 +1,4 @@
-import { DropdownItem } from "../components/atoms/dropdown";
+import { DropdownItem } from "../dropdownTypes";
 import { addMonths } from "./dateHelpers";
 import {
   categories,

@@ -7,9 +7,9 @@ import {
 } from "../../../api/accountsApi";
 import Headline from "../../atoms/headline";
 import ErrorInfo from "../../level1/errorInfo";
-import { DropdownItem } from "../../atoms/dropdown";
 import { accountTypes } from "../../../helpers/accountsHelper";
 import AccountForm from "../../level2/accountForm";
+import { DropdownItem } from "../../../dropdownTypes";
 
 const EditAccount = ({ id }: { id: string }) => {
   const accountId = id;

@@ -1,5 +1,3 @@
-import { DropdownItem } from "../components/atoms/dropdown";
-
 export async function fetchOrders(
   resolveFetching: (data: Order[]) => void,
   handleError: (error: Error) => void

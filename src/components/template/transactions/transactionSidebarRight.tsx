@@ -1,11 +1,11 @@
 import * as React from "react";
-import { DropdownItem } from "../../atoms/dropdown";
 import TransactionSidebarContent from "../../level3/transactionSidebarContent";
 import { getMonths, getYears } from "../../../helpers/helpers";
 import {
   categories,
   transactionTypes,
 } from "../../../helpers/transactionConsts";
+import { DropdownItem } from "../../../dropdownTypes";
 
 const TransactionSidebarRight = ({
   transactions,

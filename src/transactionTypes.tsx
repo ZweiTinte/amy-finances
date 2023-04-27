@@ -1,4 +1,4 @@
-import { DropdownItem } from "./components/atoms/dropdown";
+import { DropdownItem } from "./dropdownTypes";
 
 export interface TransactionTemplateProps {
   date: string;
@@ -11,7 +11,7 @@ export interface TransactionTemplateProps {
   setAmount: React.Dispatch<React.SetStateAction<string>>;
   from: DropdownItem;
   setFrom: React.Dispatch<React.SetStateAction<DropdownItem>>;
-  accounts: DropdownItem[];
+  accountsData: DropdownItem[];
   to: DropdownItem;
   setTo: React.Dispatch<React.SetStateAction<DropdownItem>>;
   transactionType: DropdownItem;
@@ -22,6 +22,7 @@ export interface TransactionTemplateProps {
   setRecurringGap: React.Dispatch<React.SetStateAction<string>>;
   recurringPeriod: DropdownItem;
   setRecurringPeriod: React.Dispatch<React.SetStateAction<DropdownItem>>;
+  transactions?: Transaction[];
 }
 
 export interface TransactionFormProps extends TransactionTemplateProps {

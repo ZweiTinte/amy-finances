@@ -1,9 +1,9 @@
 import * as React from "react";
 import { emptyAccountDDItem } from "../../helpers/accountsHelper";
-import { DropdownItem } from "../../components/atoms/dropdown";
 import ErrorInfo from "../../components/level1/errorInfo";
 import EditTransactionFetching from "../../components/template/transactions/editTransactionFetching";
 import { fetchAccounts } from "../../api/accountsApi";
+import { DropdownItem } from "../../dropdownTypes";
 
 const TransactionEditPage = ({ params }: { params: { id: string } }) => {
   const [accounts, setAccounts] = React.useState<DropdownItem[]>([]);

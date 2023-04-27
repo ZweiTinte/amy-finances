@@ -1,7 +1,6 @@
 import * as React from "react";
 import { fetchTransaction } from "../../../api/transactionApi";
 import ErrorInfo from "../../level1/errorInfo";
-import { DropdownItem } from "../../atoms/dropdown";
 import { emptyAccountDDItem } from "../../../helpers/accountsHelper";
 import EditTransaction from "./editTransaction";
 import {
@@ -9,6 +8,7 @@ import {
   recurringPeriods,
   transactionTypes,
 } from "../../../helpers/transactionConsts";
+import { DropdownItem } from "../../../dropdownTypes";
 
 const EditTransactionFetching = ({
   id,
@@ -78,7 +78,7 @@ const EditTransactionFetching = ({
           setAmount={setAmount}
           from={from}
           setFrom={setFrom}
-          accounts={accounts}
+          accountsData={accounts}
           to={to}
           setTo={setTo}
           transactionType={transactionType}

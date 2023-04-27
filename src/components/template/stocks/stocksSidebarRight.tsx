@@ -1,9 +1,9 @@
 import * as React from "react";
-import { DropdownItem } from "../../atoms/dropdown";
 import Headline from "../../atoms/headline";
 import Button from "../../atoms/button";
 import Checkbox from "../../atoms/checkbox";
 import MultiselectFilter from "../../level2/multiselectFilter";
+import { DropdownItem } from "../../../dropdownTypes";
 
 const StocksSidebarRight = ({
   stocks,

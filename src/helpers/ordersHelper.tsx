@@ -1,4 +1,4 @@
-import { DropdownItem } from "../components/atoms/dropdown";
+import { DropdownItem } from "../dropdownTypes";
 
 export const orderTypes: DropdownItem[] = [
   { id: 1, value: "Buy" },

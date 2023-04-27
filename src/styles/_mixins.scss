@@ -53,12 +53,6 @@
   height: min-content;
 }
 
-@mixin gameEndMessage {
-  @include cardObject;
-  height: 30rem;
-  font-size: 4rem;
-}
-
 @mixin inputElement {
   outline: none;
   font-size: 1rem;
@@ -76,6 +70,10 @@
   @include inputElement;
   width: 10rem;
   padding: 0.5rem;
+  height: auto !important;
+  font-size: auto !important;
+  border-radius: 0 !important;
+  line-height: 1rem !important;
 }
 
 @mixin sidebar {

@@ -1,18 +1,5 @@
 import * as React from "react";
-
-export type DropdownItem = { id: number; value: string };
-
-export enum DropdownTypes {
-  Id,
-  Value,
-}
-export interface DropdownProps {
-  dropDownItem: DropdownItem;
-  setDropdownItem: React.Dispatch<React.SetStateAction<DropdownItem>>;
-  dropDownData: DropdownItem[];
-  type: DropdownTypes;
-  verticalForm?: boolean;
-}
+import { DropdownProps, DropdownTypes } from "../../dropdownTypes";
 
 const Dropdown = ({
   dropDownItem,

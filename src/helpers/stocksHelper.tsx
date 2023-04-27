@@ -1,4 +1,4 @@
-import { DropdownItem } from "../components/atoms/dropdown";
+import { DropdownItem } from "../dropdownTypes";
 
 export function getStocks(stockId: number, stocks: Stock[]): Stock[] {
   if (stockId === 0) {

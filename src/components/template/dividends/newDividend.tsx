@@ -1,9 +1,9 @@
 import { navigate } from "gatsby";
 import * as React from "react";
 import Headline from "../../atoms/headline";
-import { DropdownItem } from "../../atoms/dropdown";
 import DividendForm from "../../level2/dividendForm";
 import { postDividend } from "../../../api/dividendsApi";
+import { DropdownItem } from "../../../dropdownTypes";
 
 const NewDividend = ({
   stocks,

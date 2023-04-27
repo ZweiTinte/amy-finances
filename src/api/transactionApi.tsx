@@ -1,6 +1,6 @@
 import axios from "axios";
-import { DropdownItem } from "../components/atoms/dropdown";
 import { resolveTransactionFetching } from "../helpers/transactionsHelper";
+import { DropdownItem } from "../dropdownTypes";
 
 export function postTransaction(
   resolvePost: () => void,

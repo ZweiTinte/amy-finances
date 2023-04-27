@@ -2,7 +2,7 @@ import * as React from "react";
 import Headline from "../atoms/headline";
 import Multiselect from "../atoms/multiselect";
 import EmptyAllButtonGroup from "../level1/emptyAllButtonGroup";
-import { DropdownItem } from "../atoms/dropdown";
+import { DropdownItem } from "../../dropdownTypes";
 
 const MultiselectFilter = ({
   selected,

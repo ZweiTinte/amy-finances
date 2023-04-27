@@ -27,15 +27,15 @@
 
 .dropdownInput {
   @include defaultDropdownInput;
-  border-bottom: 0.15rem solid $blue3;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  border-bottom: 0.15rem solid $blue3 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
 }
 
 .dropdownEmpty {
   @include defaultDropdownInput;
-  border: none;
+  border: none !important;
 }
 
 .dropdownBorder {
