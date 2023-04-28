@@ -68,7 +68,7 @@ const DropdownSearch = ({
           {dropDownItem}
         </div>
       )}
-      <div className="dropdownContent">
+      <div className="dropdownContentFix">
         {open &&
           filteredData.map((item) => {
             return (

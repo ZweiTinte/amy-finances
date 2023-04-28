@@ -15,6 +15,15 @@ export function itemAction(e: React.KeyboardEvent<HTMLDivElement>) {
           prevEl.setSelectionRange(end, end);
         }
       }, 1);
+    } else if (e.key === "ArrowUp" && target.previousSibling === null) {
+      const prevEl = target.parentElement?.previousSibling;
+      (prevEl as HTMLElement).focus();
+      setTimeout(() => {
+        if (prevEl instanceof HTMLInputElement) {
+          const end = prevEl.value.length;
+          prevEl.setSelectionRange(end, end);
+        }
+      }, 1);
     } else if (e.key === "Enter") {
       target.click();
     }
@@ -25,6 +34,13 @@ export function inputKeyDownAction(e: React.KeyboardEvent<HTMLInputElement>) {
   const target = e.currentTarget as HTMLElement;
   if (e.key === "ArrowDown" && target && target.nextSibling !== null) {
     (e.currentTarget.nextSibling as HTMLDivElement)?.focus();
+  }
+  if (
+    e.key === "ArrowDown" &&
+    target &&
+    target.nextSibling?.firstChild !== null
+  ) {
+    (e.currentTarget.nextSibling?.firstChild as HTMLDivElement)?.focus();
   }
 }
 

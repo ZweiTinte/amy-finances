@@ -18,6 +18,7 @@
   @include inputElement;
   width: 14rem;
   padding: 0.5rem;
+  min-height: 1.15rem;
   cursor: pointer;
   &:focus {
     background-color: $blue4;
@@ -60,4 +61,9 @@
 .dropdownContent {
   max-height: 15rem;
   overflow-y: scroll;
+}
+
+.dropdownContentFix {
+  max-height: 15rem;
+  overflow-y: hidden;
 }
