@@ -47,15 +47,23 @@ export function inputKeyDownAction(e: React.KeyboardEvent<HTMLInputElement>) {
 export function getTransactionSuggestions(
   transactions: Transaction[] | undefined
 ): DropdownItem[] {
-  let suggestionNames: string[] = [];
+  let suggestionNames: { name: string; amount: number }[] = [];
   if (transactions) {
     transactions.forEach((trans) => {
-      if (!suggestionNames.includes(trans.name)) {
-        suggestionNames.push(trans.name);
+      let suggestion = suggestionNames.filter((sug) => {
+        return sug.name === trans.name;
+      })[0];
+      if (suggestion) {
+        suggestion.amount++;
+      } else {
+        suggestionNames.push({ name: trans.name, amount: 1 });
       }
     });
   }
+  suggestionNames.sort((a, b) => {
+    return b.amount - a.amount;
+  });
   return suggestionNames.map((sug, i) => {
-    return { id: i, value: sug };
+    return { id: i, value: sug.name };
   });
 }

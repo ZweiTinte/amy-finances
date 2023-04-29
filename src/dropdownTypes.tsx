@@ -3,7 +3,6 @@ export interface DropdownSearchProps {
   dropDownItem: string;
   setDropdownItem: React.Dispatch<React.SetStateAction<string>>;
   dropDownData: DropdownItem[];
-  type: DropdownTypes;
   verticalForm?: boolean;
 }
 

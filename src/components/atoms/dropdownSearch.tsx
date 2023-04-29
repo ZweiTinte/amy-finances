@@ -76,12 +76,8 @@ const DropdownSearch = ({
                 tabIndex={0}
                 className={dropdownClass}
                 key={item.id}
-                onClick={() => {
-                  setDropdownItem(
-                    filteredData.filter(function (i) {
-                      return i.value === item.value;
-                    })[0].value
-                  );
+                onClick={(e) => {
+                  setDropdownItem(item.value);
                   setOpen(false);
                 }}
                 onKeyDown={(e) => itemAction(e)}

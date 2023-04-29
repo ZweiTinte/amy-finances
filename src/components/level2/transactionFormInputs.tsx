@@ -62,7 +62,6 @@ const TransactionFormInputs = ({
           dropDownItem={name}
           setDropdownItem={setName}
           dropDownData={getTransactionSuggestions(transactions)}
-          type={DropdownTypes.Value}
           verticalForm={false}
         />
       </div>
