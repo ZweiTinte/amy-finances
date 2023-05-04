@@ -13,6 +13,7 @@ const EditStock = ({ id }: { id: string }) => {
   const [isin, setIsin] = React.useState<string>("");
   const [price, setPrice] = React.useState<string>("");
   const [amount, setAmount] = React.useState<string>("");
+  const [link, setLink] = React.useState<string>("");
 
   const deleteSelectedStock = () => {
     deleteStock(resolveUpdate, id);
@@ -34,7 +35,8 @@ const EditStock = ({ id }: { id: string }) => {
       isin,
       name,
       parseInt(amount),
-      parseFloat(price)
+      parseFloat(price),
+      link
     );
   }
 
@@ -77,6 +79,8 @@ const EditStock = ({ id }: { id: string }) => {
               name={name}
               setName={setName}
               deleteSelectedStock={deleteSelectedStock}
+              link={link}
+              setLink={setLink}
             />
           </div>
         </div>

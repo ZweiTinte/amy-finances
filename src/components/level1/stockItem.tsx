@@ -1,7 +1,8 @@
 import * as React from "react";
 import Button from "../atoms/button";
-import { navigate } from "gatsby";
+import { Link, navigate } from "gatsby";
 import { euroFormat } from "../../helpers/helpers";
+import { LinkIcon, PencilIcon } from "@heroicons/react/24/solid";
 
 interface OrderProps {
   stock: Stock;
@@ -23,8 +24,18 @@ const StockItem = ({ stock }: OrderProps) => {
         <Button
           color={"editButton"}
           onClick={() => navigate(`/stocks/${stock.id}`)}
-          text={"Edit"}
-        />
+        >
+          <PencilIcon className="heroIcon" />
+        </Button>
+      </span>
+      <span>
+        <Link
+          className={!stock.link ? "disabledLink" : "link"}
+          to={stock.link ? stock.link : ""}
+          target="_blank"
+        >
+          <LinkIcon className="heroIcon" />
+        </Link>
       </span>
     </>
   );

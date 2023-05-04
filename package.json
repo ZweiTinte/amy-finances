@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.17",
     "axios": "^1.3.4",
     "gatsby": "^5.3.3",
     "gatsby-plugin-sass": "^6.3.1",

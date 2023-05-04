@@ -1,0 +1,15 @@
+@import "_variables";
+@import "_mixins";
+@import "_linkMixins";
+
+.link {
+  @include defaultHover;
+  @include defaultLink;
+  cursor: pointer;
+}
+
+.disabledLink {
+  @include defaultLink;
+  cursor: not-allowed;
+  border-color: $blue5 !important;
+}

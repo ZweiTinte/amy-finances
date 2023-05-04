@@ -5,6 +5,8 @@ interface StockTemplateProps {
   setIsin: React.Dispatch<React.SetStateAction<string>>;
   name: string;
   setName: React.Dispatch<React.SetStateAction<string>>;
+  link: string;
+  setLink: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface StockFormProps extends StockTemplateProps {

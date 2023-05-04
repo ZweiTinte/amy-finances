@@ -8,13 +8,14 @@ const NewStock = () => {
   const [isin, setIsin] = React.useState<string>("");
   const [name, setName] = React.useState<string>("");
   const [price, setPrice] = React.useState<string>("");
+  const [link, setLink] = React.useState<string>("");
 
   function resolvePost(): void {
     navigate("/stocks");
   }
 
   function addNewStock(): void {
-    postStock(resolvePost, isin, name, parseFloat(price));
+    postStock(resolvePost, isin, name, parseFloat(price), link);
   }
 
   const submitHandler = (e: React.SyntheticEvent) => {
@@ -34,6 +35,8 @@ const NewStock = () => {
           setIsin={setIsin}
           name={name}
           setName={setName}
+          link={link}
+          setLink={setLink}
         />
       </div>
     </div>

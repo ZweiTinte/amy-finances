@@ -14,6 +14,8 @@ const StockForm = ({
   name,
   setName,
   deleteSelectedStock,
+  link,
+  setLink,
 }: StockFormProps) => {
   const [error, setError] = React.useState<string>("");
 
@@ -31,11 +33,19 @@ const StockForm = ({
         <label className="formLabel">Price:</label>
         <NumberInput value={price} setValue={setPrice} />
       </div>
+      <div className="formRow">
+        <label className="formLabel">Link (optional):</label>
+        <TextInput value={link} setValue={setLink} />
+      </div>
       <EditFormSubmit
         deleteSelectedItem={deleteSelectedStock}
         submitHandler={(e) => {
           if (fieldsValid([isin, name, price])) {
-            submitHandler(e);
+            if (isin.length === 12) {
+              submitHandler(e);
+            } else {
+              setError("ISIN must be exactly 12 characters long!");
+            }
           } else {
             setError(formValidationMessage);
           }

@@ -3,7 +3,6 @@
 @import "_mixins";
 
 button {
-  @include defaultHover;
   @include defaultInputElement;
   justify-content: center;
   width: 20rem;
@@ -36,12 +35,13 @@ button {
   @include defaultHover;
   @include defaultInputElement;
   justify-content: center;
-  width: 4rem;
+  width: 3rem;
   max-height: 2rem;
   display: inline-flex;
   cursor: pointer;
-  padding: 0.25rem;
+  padding: 0.3rem;
   margin-left: 1rem;
+  text-decoration: none;
 }
 
 .addButton {

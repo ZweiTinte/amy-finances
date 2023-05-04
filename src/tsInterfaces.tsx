@@ -1,5 +1,5 @@
 interface TextProps {
-  text: string;
+  text?: string;
 }
 
 interface Account {
@@ -43,6 +43,7 @@ interface Stock {
   name: string;
   amount: number;
   price: number;
+  link?: string;
 }
 
 interface Dividend {
