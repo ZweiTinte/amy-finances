@@ -4,22 +4,35 @@ const Checkbox = ({
   label,
   onClick,
   checked,
+  form = false,
 }: {
-  label: string;
+  label?: string;
   onClick: () => void;
   checked: boolean;
+  form?: boolean;
 }) => {
   return (
-    <div className="checkbox">
-      <input type="checkbox" onClick={onClick} />
+    <div
+      className={form ? "formCheckboxContainer" : "defaultCheckboxContainer"}
+    >
+      <input
+        type="checkbox"
+        className={form ? "formCheckbox" : "defaultCheckbox"}
+        onClick={onClick}
+      />
       {checked && (
-        <div onClick={onClick} className="checkmark">
+        <div
+          onClick={onClick}
+          className={form ? "formCheckmark" : "defaultCheckmark"}
+        >
           X
         </div>
       )}
-      <label className="checkboxLabel" onClick={onClick}>
-        {label}
-      </label>
+      {label && (
+        <label className="checkboxLabel" onClick={onClick}>
+          {label}
+        </label>
+      )}
     </div>
   );
 };

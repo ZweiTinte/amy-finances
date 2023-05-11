@@ -6,6 +6,7 @@ interface LinkProps extends TextProps {
   disabled?: boolean;
   children?: JSX.Element;
   target?: string;
+  classes?: string;
 }
 
 const LinkButton = ({
@@ -14,11 +15,12 @@ const LinkButton = ({
   disabled = false,
   children,
   target,
+  classes,
 }: LinkProps) => {
   return (
     <Link
       to={disabled ? "" : to}
-      className={disabled ? "disabledLink" : "link"}
+      className={disabled ? "disabledLink" : classes || "link"}
       target={target}
     >
       {children}

@@ -44,6 +44,7 @@ interface Stock {
   amount: number;
   price: number;
   link?: string;
+  watchlisted?: boolean;
 }
 
 interface Dividend {

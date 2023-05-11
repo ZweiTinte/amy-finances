@@ -32,14 +32,6 @@
   width: 14rem;
 }
 
-.checkbox {
-  padding-bottom: 1rem;
-  position: relative;
-  display: flex;
-  justify-items: center;
-  width: 14rem;
-}
-
 input[type="button"] {
   @include winStateColors;
   @include winStateHover;
@@ -64,35 +56,10 @@ input[type="date"] {
   @include inputField;
 }
 
-input[type="checkbox"] {
-  @include defaultInputElement;
-  height: 1.25rem;
-  width: 1.25rem;
-  margin-right: 0.5rem;
-  appearance: none;
-  cursor: pointer;
-}
-
 .formCard {
   @include cardObject;
   width: 26rem;
   border-radius: 0.4rem;
   @include defaultCardBorder;
   flex-direction: column;
-}
-
-.checkboxLabel {
-  @include defaultFont;
-  padding-top: 0.25rem;
-  cursor: pointer;
-}
-
-.checkmark {
-  color: $white;
-  font-size: 0.9rem;
-  position: absolute;
-  left: 0.6rem;
-  top: 0.25rem;
-  font-weight: bold;
-  cursor: pointer;
 }

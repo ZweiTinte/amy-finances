@@ -7,6 +7,8 @@ interface StockTemplateProps {
   setName: React.Dispatch<React.SetStateAction<string>>;
   link: string;
   setLink: React.Dispatch<React.SetStateAction<string>>;
+  watchlisted: boolean;
+  setWatchlisted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface StockFormProps extends StockTemplateProps {

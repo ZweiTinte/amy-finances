@@ -1,9 +1,9 @@
 import * as React from "react";
 import { euroFormat } from "../../helpers/helpers";
-import Button from "../atoms/button";
-import { navigate } from "gatsby";
 import { getAccountName } from "../../helpers/accountsHelper";
 import { getStocks } from "../../helpers/stocksHelper";
+import LinkButton from "../atoms/link";
+import { PencilIcon } from "@heroicons/react/24/solid";
 
 interface DividendProps {
   dividend: Dividend;
@@ -33,11 +33,9 @@ const DividendItem = ({ dividend, accounts, stocks }: DividendProps) => {
         {getAccountName(dividend.toAccount, accounts)}
       </span>
       <span>
-        <Button
-          color={"editButton"}
-          onClick={() => navigate(`/dividends/${dividend.id}`)}
-          text={"Edit"}
-        />
+        <LinkButton to={`/dividends/${dividend.id}`}>
+          <PencilIcon className="heroIcon" />
+        </LinkButton>
       </span>
     </>
   );

@@ -4,11 +4,8 @@
 @mixin defaultLink {
   @include defaultInputElement;
   justify-content: center;
-  max-width: 4rem;
-  width: 2rem;
-  max-height: 2rem;
+  max-height: 1.25rem;
   display: inline-flex;
   padding: 0.25rem;
-  margin-left: 1rem;
   text-decoration: none;
 }

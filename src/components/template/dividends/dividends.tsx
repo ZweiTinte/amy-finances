@@ -1,8 +1,8 @@
 import * as React from "react";
 import Headline from "../../atoms/headline";
-import Button from "../../atoms/button";
-import { navigate } from "gatsby";
 import DividendItem from "../../level1/dividendItem";
+import { PlusIcon } from "@heroicons/react/24/solid";
+import LinkButton from "../../atoms/link";
 
 const Dividends = ({
   dividends,
@@ -23,11 +23,9 @@ const Dividends = ({
                 text="Dividends Overview"
                 style="transactionsHeadline"
               />
-              <Button
-                color={"addButton"}
-                onClick={() => navigate("/dividends/new")}
-                text={"Add New Dividend"}
-              />
+              <LinkButton to="/dividends/new">
+                <PlusIcon className="heroIcon" />
+              </LinkButton>
             </div>
             <div className="orderProps">
               <span className="transactionId">ID</span>

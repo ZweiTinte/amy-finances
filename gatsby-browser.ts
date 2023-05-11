@@ -9,6 +9,7 @@ import "./src/styles/orders.scss";
 import "./src/styles/stocks.scss";
 import "./src/styles/timetable.scss";
 import "./src/styles/links.scss";
+import "./src/styles/checkbox.scss";
 
 import WrapRootElement from "./src/wrapRootElement";
 

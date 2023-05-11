@@ -2,8 +2,8 @@ import * as React from "react";
 import { euroFormat } from "../../../helpers/helpers";
 import AccountItem from "../../level1/accountItem";
 import Headline from "../../atoms/headline";
-import Button from "../../atoms/button";
-import { navigate } from "gatsby";
+import LinkButton from "../../atoms/link";
+import { PlusIcon } from "@heroicons/react/24/solid";
 
 const Accounts = ({
   accounts,
@@ -19,11 +19,9 @@ const Accounts = ({
           <div className="accountsCard">
             <div className="formRowDefault">
               <Headline text="Accounts Overview" style="accountsHeadline" />
-              <Button
-                color={"addButton"}
-                onClick={() => navigate("/accounts/new")}
-                text={"Add New Account"}
-              />
+              <LinkButton to="/accounts/new">
+                <PlusIcon className="heroIcon" />
+              </LinkButton>
             </div>
             <div className="accountProps">
               <span className="accountIban">IBAN</span>

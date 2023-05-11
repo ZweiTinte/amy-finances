@@ -4,6 +4,7 @@ import EditFormSubmit from "../level1/editFormSubmit";
 import TextInput from "../atoms/textInput";
 import { StockFormProps } from "../../stockTypes";
 import { fieldsValid, formValidationMessage } from "../../helpers/helpers";
+import Checkbox from "../atoms/checkbox";
 
 const StockForm = ({
   submitHandler,
@@ -16,6 +17,8 @@ const StockForm = ({
   deleteSelectedStock,
   link,
   setLink,
+  watchlisted,
+  setWatchlisted,
 }: StockFormProps) => {
   const [error, setError] = React.useState<string>("");
 
@@ -36,6 +39,15 @@ const StockForm = ({
       <div className="formRow">
         <label className="formLabel">Link (optional):</label>
         <TextInput value={link} setValue={setLink} />
+      </div>
+      <div className="formRow">
+        <label className="formLabel">Watchlisted:</label>
+        <Checkbox
+          form
+          checked={watchlisted}
+          label=""
+          onClick={() => setWatchlisted(!watchlisted)}
+        />
       </div>
       <EditFormSubmit
         deleteSelectedItem={deleteSelectedStock}

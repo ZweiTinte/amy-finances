@@ -1,9 +1,9 @@
 import * as React from "react";
 import Headline from "../../atoms/headline";
 import TransactionItem from "../../level1/transactionItem";
-import Button from "../../atoms/button";
-import { navigate } from "gatsby";
 import { euroFormat } from "../../../helpers/helpers";
+import { PlusIcon } from "@heroicons/react/24/solid";
+import LinkButton from "../../atoms/link";
 
 const Transactions = ({
   transactions,
@@ -24,11 +24,9 @@ const Transactions = ({
                 text="Transactions Overview"
                 style="transactionsHeadline"
               />
-              <Button
-                color={"addButton"}
-                onClick={() => navigate("/transactions/new")}
-                text={"Add New Transaction"}
-              />
+              <LinkButton to="/transactions/new">
+                <PlusIcon className="heroIcon" />
+              </LinkButton>
             </div>
             <div className="transactionProps">
               <span className="transactionId">ID</span>

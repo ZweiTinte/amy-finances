@@ -14,7 +14,8 @@ export async function postStock(
   isin: string,
   name: string,
   price: number,
-  link: string
+  link: string,
+  watchlisted: boolean
 ): Promise<void> {
   await fetch(`${process.env.GATSBY_API_URL}stocks`, {
     method: "POST",
@@ -27,6 +28,7 @@ export async function postStock(
       amount: 0,
       price: price,
       link: link,
+      watchlisted: watchlisted,
     }),
   })
     .then(async (res) => {
@@ -58,7 +60,8 @@ export async function updateStock(
   name: string,
   amount: number,
   price: number,
-  link: string
+  link: string,
+  watchlisted: boolean
 ): Promise<void> {
   await fetch(`${process.env.GATSBY_API_URL}stocks/${stockId}`, {
     method: "PUT",
@@ -71,6 +74,7 @@ export async function updateStock(
       amount: amount,
       price: price,
       link: link,
+      watchlisted: watchlisted,
     }),
   })
     .then(async (res) => {

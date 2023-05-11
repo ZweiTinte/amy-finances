@@ -1,8 +1,8 @@
 import * as React from "react";
 import Headline from "../../atoms/headline";
-import Button from "../../atoms/button";
-import { navigate } from "gatsby";
 import OrderItem from "../../level1/orderItem";
+import { PlusIcon } from "@heroicons/react/24/solid";
+import LinkButton from "../../atoms/link";
 
 const Orders = ({
   orders,
@@ -20,11 +20,9 @@ const Orders = ({
           <div className="ordersCard">
             <div className="formRowDefault">
               <Headline text="Orders Overview" style="transactionsHeadline" />
-              <Button
-                color={"addButton"}
-                onClick={() => navigate("/orders/new")}
-                text={"Add New Order"}
-              />
+              <LinkButton to="/orders/new">
+                <PlusIcon className="heroIcon" />
+              </LinkButton>
             </div>
             <div className="orderProps">
               <span className="transactionId">ID</span>

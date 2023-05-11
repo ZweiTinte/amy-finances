@@ -9,13 +9,14 @@ const NewStock = () => {
   const [name, setName] = React.useState<string>("");
   const [price, setPrice] = React.useState<string>("");
   const [link, setLink] = React.useState<string>("");
+  const [watchlisted, setWatchlisted] = React.useState<boolean>(false);
 
   function resolvePost(): void {
     navigate("/stocks");
   }
 
   function addNewStock(): void {
-    postStock(resolvePost, isin, name, parseFloat(price), link);
+    postStock(resolvePost, isin, name, parseFloat(price), link, watchlisted);
   }
 
   const submitHandler = (e: React.SyntheticEvent) => {
@@ -37,6 +38,8 @@ const NewStock = () => {
           setName={setName}
           link={link}
           setLink={setLink}
+          watchlisted={watchlisted}
+          setWatchlisted={setWatchlisted}
         />
       </div>
     </div>

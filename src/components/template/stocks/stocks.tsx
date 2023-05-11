@@ -1,8 +1,8 @@
 import * as React from "react";
 import Headline from "../../atoms/headline";
-import Button from "../../atoms/button";
-import { navigate } from "gatsby";
 import StockItem from "../../level1/stockItem";
+import { PlusIcon } from "@heroicons/react/24/solid";
+import LinkButton from "../../atoms/link";
 
 const Stocks = ({ stocks }: { stocks: Stock[] }) => {
   return (
@@ -12,11 +12,9 @@ const Stocks = ({ stocks }: { stocks: Stock[] }) => {
           <div className="stocksCard">
             <div className="formRowDefault">
               <Headline text="Stocks Overview" style="transactionsHeadline" />
-              <Button
-                color={"addButton"}
-                onClick={() => navigate("/stocks/new")}
-                text={"Add New Stock"}
-              />
+              <LinkButton to="/stocks/new">
+                <PlusIcon className="heroIcon" />
+              </LinkButton>
             </div>
             <div className="stockProps">
               <span className="stockIsin">ISIN</span>

@@ -1,0 +1,62 @@
+@import "_variables";
+@import "_mixins";
+
+.formCheckboxContainer {
+  position: relative;
+  display: flex;
+  justify-items: center;
+  width: 15.25rem;
+  padding-top: 0.25rem;
+}
+
+.defaultCheckboxContainer {
+  position: relative;
+  display: flex;
+  justify-items: center;
+  width: 15.25rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+input[type="checkbox"] {
+  @include defaultInputElement;
+  margin: 0rem;
+  appearance: none;
+  cursor: pointer;
+}
+
+.defaultCheckbox {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.formCheckbox {
+  height: 1.75rem;
+  width: 1.75rem;
+}
+
+.checkboxLabel {
+  @include defaultFont;
+  padding-top: 0.15rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+.defaultCheckmark {
+  color: $white;
+  font-size: 0.9rem;
+  position: absolute;
+  left: 0.35rem;
+  top: 0.3rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.formCheckmark {
+  color: $white;
+  font-size: 1.2rem;
+  position: absolute;
+  left: 0.5rem;
+  top: 0.45rem;
+  cursor: pointer;
+}

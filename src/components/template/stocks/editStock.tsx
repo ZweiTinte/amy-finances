@@ -14,6 +14,7 @@ const EditStock = ({ id }: { id: string }) => {
   const [price, setPrice] = React.useState<string>("");
   const [amount, setAmount] = React.useState<string>("");
   const [link, setLink] = React.useState<string>("");
+  const [watchlisted, setWatchlisted] = React.useState<boolean>(false);
 
   const deleteSelectedStock = () => {
     deleteStock(resolveUpdate, id);
@@ -36,7 +37,8 @@ const EditStock = ({ id }: { id: string }) => {
       name,
       parseInt(amount),
       parseFloat(price),
-      link
+      link,
+      watchlisted
     );
   }
 
@@ -51,6 +53,8 @@ const EditStock = ({ id }: { id: string }) => {
     setPrice(data.price.toString());
     setAmount(data.amount.toString());
     setTemplateReady(true);
+    setLink(data.link || "");
+    setWatchlisted(data.watchlisted || false);
   }
 
   function loadStock(): void {
@@ -81,6 +85,8 @@ const EditStock = ({ id }: { id: string }) => {
               deleteSelectedStock={deleteSelectedStock}
               link={link}
               setLink={setLink}
+              watchlisted={watchlisted}
+              setWatchlisted={setWatchlisted}
             />
           </div>
         </div>

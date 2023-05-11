@@ -2,34 +2,31 @@ import { navigate } from "gatsby";
 import * as React from "react";
 import Button from "../atoms/button";
 import Headline from "../atoms/headline";
+import LinkButton from "../atoms/link";
 
 const SidebarLeft = () => {
   return (
     <div className="sidebarLeft">
       <Headline text={"Menu"} style="sidebarHeadline" />
-      <Button
-        color={"sidebarButton"}
-        onClick={() => navigate("/accounts")}
-        text={"Accounts"}
-      />
-      <Button
-        color={"sidebarButton spaceUp"}
-        onClick={() => navigate("/transactions")}
+      <LinkButton to="/accounts" text={"Accounts"} classes="sidebarLink" />
+      <LinkButton
+        classes={"sidebarLink spaceUp"}
+        to={"/transactions"}
         text={"Transactions"}
       />
-      <Button
-        color={"sidebarButton spaceUp"}
-        onClick={() => navigate("/stocks")}
+      <LinkButton
+        classes={"sidebarLink spaceUp"}
+        to={"/stocks"}
         text={"Stocks"}
       />
-      <Button
-        color={"sidebarButton spaceUp"}
-        onClick={() => navigate("/orders")}
+      <LinkButton
+        classes={"sidebarLink spaceUp"}
+        to={"/orders"}
         text={"Orders"}
       />
-      <Button
-        color={"sidebarButton spaceUp"}
-        onClick={() => navigate("/dividends")}
+      <LinkButton
+        classes={"sidebarLink spaceUp"}
+        to={"/dividends"}
         text={"Dividends"}
       />
     </div>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { euroFormat } from "../../helpers/helpers";
-import Button from "../atoms/button";
-import { navigate } from "gatsby";
+import LinkButton from "../atoms/link";
+import { PencilIcon } from "@heroicons/react/24/solid";
 
 interface AccountProps {
   account: Account;
@@ -17,11 +17,9 @@ const AccountItem = ({ account }: AccountProps) => {
         {euroFormat.format(account.balance)}
       </span>
       <span>
-        <Button
-          color={"editButton"}
-          onClick={() => navigate(`/accounts/${account.id}`)}
-          text={"Edit"}
-        />
+        <LinkButton to={`/accounts/${account.id}`}>
+          <PencilIcon className="heroIcon" />
+        </LinkButton>
       </span>
     </>
   );

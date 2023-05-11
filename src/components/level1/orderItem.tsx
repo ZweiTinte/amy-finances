@@ -1,9 +1,9 @@
 import * as React from "react";
 import { euroFormat } from "../../helpers/helpers";
-import Button from "../atoms/button";
-import { navigate } from "gatsby";
 import { getAccountName } from "../../helpers/accountsHelper";
 import { getStocks } from "../../helpers/stocksHelper";
+import LinkButton from "../atoms/link";
+import { PencilIcon } from "@heroicons/react/24/solid";
 
 interface OrderProps {
   order: Order;
@@ -31,11 +31,9 @@ const OrderItem = ({ order, accounts, stocks }: OrderProps) => {
         {getAccountName(order.to, accounts)}
       </span>
       <span>
-        <Button
-          color={"editButton"}
-          onClick={() => navigate(`/orders/${order.id}`)}
-          text={"Edit"}
-        />
+        <LinkButton to={`/orders/${order.id}`}>
+          <PencilIcon className="heroIcon" />
+        </LinkButton>
       </span>
     </>
   );

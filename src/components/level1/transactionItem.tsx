@@ -1,8 +1,8 @@
 import * as React from "react";
 import { euroFormat } from "../../helpers/helpers";
-import Button from "../atoms/button";
-import { navigate } from "gatsby";
 import { getAccountName } from "../../helpers/accountsHelper";
+import LinkButton from "../atoms/link";
+import { PencilIcon } from "@heroicons/react/24/solid";
 
 interface TransactionProps {
   transaction: Transaction;
@@ -27,11 +27,9 @@ const TransactionItem = ({ transaction, accounts }: TransactionProps) => {
         {getAccountName(transaction.to, accounts)}
       </span>
       <span>
-        <Button
-          color={"editButton"}
-          onClick={() => navigate(`/transactions/${transaction.id}`)}
-          text={"Edit"}
-        />
+        <LinkButton to={`/transactions/${transaction.id}`}>
+          <PencilIcon className="heroIcon" />
+        </LinkButton>
       </span>
     </>
   );

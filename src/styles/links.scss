@@ -6,10 +6,26 @@
   @include defaultHover;
   @include defaultLink;
   cursor: pointer;
+  max-width: 4rem;
+  width: 2rem;
+  margin-left: 1rem;
 }
 
 .disabledLink {
   @include defaultLink;
   cursor: not-allowed;
   border-color: $blue5 !important;
+  max-width: 4rem;
+  width: 2rem;
+  margin-left: 1rem;
+}
+
+.sidebarLink {
+  @include defaultHover;
+  @include defaultLink;
+  justify-content: left;
+  width: 12.75rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: relative;
 }
