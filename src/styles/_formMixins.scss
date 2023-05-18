@@ -5,6 +5,7 @@
   @include flexSpace;
   padding-bottom: 0.5rem;
   position: relative;
+  min-height: 2.5rem !important;
 }
 
 @mixin inputField {

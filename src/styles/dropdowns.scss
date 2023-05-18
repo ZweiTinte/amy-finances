@@ -18,7 +18,7 @@
   @include inputElement;
   width: 14rem;
   padding: 0.5rem;
-  min-height: 1.15rem;
+  height: 1.25rem;
   cursor: pointer;
   &:focus {
     background-color: $blue4;
