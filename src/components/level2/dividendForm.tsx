@@ -59,7 +59,7 @@ const DividendForm = ({
       <EditFormSubmit
         deleteSelectedItem={deleteSelectedDividend}
         submitHandler={(e) => {
-          if (fieldsValid([payDate, exDate, amountBeforeTax, taxAmount])) {
+          if (fieldsValid([payDate, exDate, amountBeforeTax])) {
             submitHandler(e);
           } else {
             setError(formValidationMessage);

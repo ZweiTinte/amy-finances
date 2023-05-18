@@ -33,7 +33,7 @@ const NewDividend = ({
       payDate,
       exDate,
       parseFloat(amountBeforeTax),
-      parseFloat(taxAmount),
+      parseFloat(taxAmount || "0"),
       stock.id,
       to.id
     );
