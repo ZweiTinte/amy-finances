@@ -1,5 +1,6 @@
 import { DropdownItem } from "../dropdownTypes";
 
+// deprecated
 export const categories: DropdownItem[] = [
   { id: 1, value: "Clothing" },
   { id: 2, value: "Food" },

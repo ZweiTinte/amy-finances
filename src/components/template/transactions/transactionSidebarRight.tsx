@@ -6,6 +6,7 @@ import {
   transactionTypes,
 } from "../../../helpers/transactionConsts";
 import { DropdownItem } from "../../../dropdownTypes";
+import { getCategory } from "../../../helpers/transactionsHelper";
 
 const TransactionSidebarRight = ({
   transactions,
@@ -57,7 +58,7 @@ const TransactionSidebarRight = ({
           filteredAccounts.includes(trans.to)) &&
         filteredMonths.includes(new Date(trans.date).getMonth()) &&
         filteredYears.includes(new Date(trans.date).getFullYear().toString()) &&
-        filteredCategories.includes(trans.category) &&
+        filteredCategories.includes(getCategory(trans.category).value) &&
         (hideFutureTransactions ? new Date(trans.date) < new Date() : true) &&
         filteredTypes.includes(trans.transactionType)
       );

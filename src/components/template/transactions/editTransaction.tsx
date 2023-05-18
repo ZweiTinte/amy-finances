@@ -46,7 +46,7 @@ const EditTransaction = ({
       transactionType: transactionType.value,
       date: date,
       name: name,
-      category: category.value,
+      category: category.id,
       amount: parseFloat(amount),
       from: from.id,
       to: to.id,

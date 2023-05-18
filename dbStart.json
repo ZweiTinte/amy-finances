@@ -3,5 +3,22 @@
   "transactions": [],
   "orders": [],
   "dividends": [],
-  "stocks": []
+  "stocks": [],
+  "categories": [
+    { "id": 1, "name": "Clothing", "type": -1 },
+    { "id": 2, "name": "Food", "type": -1 },
+    { "id": 3, "name": "Money Transfer", "type": 0 },
+    { "id": 4, "name": "Equipment", "type": -1 },
+    { "id": 5, "name": "Entertainment", "type": -1 },
+    { "id": 6, "name": "Income", "type": 1 },
+    { "id": 7, "name": "Mobility", "type": -1 },
+    { "id": 8, "name": "Subscriptions", "type": -1 },
+    { "id": 9, "name": "Insurance", "type": -1 },
+    { "id": 10, "name": "Bureaucracy", "type": -1 },
+    { "id": 11, "name": "Presents", "type": -1 },
+    { "id": 12, "name": "Home", "type": -1 },
+    { "id": 13, "name": "Plushies", "type": -1 },
+    { "id": 14, "name": "Education", "type": -1 },
+    { "id": 15, "name": "Health / Body", "type": -1 }
+  ]
 }

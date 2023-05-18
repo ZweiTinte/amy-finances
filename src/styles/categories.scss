@@ -1,0 +1,83 @@
+@import "_variables";
+@import "_headlineMixins";
+
+@mixin categoryInfo {
+  color: $white;
+  display: inline-block;
+}
+
+.categoryId {
+  @include categoryInfo;
+  width: 3rem;
+}
+
+.categoryIban {
+  @include categoryInfo;
+  width: 14rem;
+}
+
+.categoryName {
+  @include categoryInfo;
+  width: 14rem;
+}
+
+.categoryType {
+  @include categoryInfo;
+  width: 9rem;
+}
+
+.categoriesSum {
+  @include categoryInfo;
+  width: 30rem;
+}
+
+.categoryBalance {
+  @include categoryInfo;
+  width: 8rem;
+  text-align: end;
+}
+
+.categoryBalanceHeadline {
+  @include categoryInfo;
+  width: 8rem;
+}
+
+.categoriesCard {
+  margin: 0.5rem 0.5rem 0.5rem;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  display: flex;
+  align-items: left;
+  border-radius: 0.4rem;
+  @include defaultCardBorder;
+  flex-direction: column;
+}
+
+.categoryProps {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  @include bottomBorderHeadline;
+}
+
+.categoryInfos {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.categoriesHeadline {
+  @include flexSpace;
+  color: $white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 1.5rem;
+  border-bottom: 0.15rem solid $cardBorder;
+  margin-bottom: 2rem;
+  width: max-content;
+}
+
+.categoriesSummary {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  border-top: 0.15rem solid $cardBorder;
+  margin-top: 0.15rem;
+}

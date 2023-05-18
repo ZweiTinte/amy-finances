@@ -12,9 +12,16 @@ export function getTransactionType(transactionType: string): DropdownItem {
   })[0];
 }
 
-export function getCategory(category: string): DropdownItem {
+export function getCategory(category: string | number): DropdownItem {
+  // deprecated
+  if (typeof category === "string") {
+    return categories.filter((c) => {
+      return c.value === category;
+    })[0];
+  }
+  // new
   return categories.filter((c) => {
-    return c.value === category;
+    return c.id === category;
   })[0];
 }
 

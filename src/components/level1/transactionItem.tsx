@@ -1,5 +1,6 @@
 import * as React from "react";
 import { euroFormat } from "../../helpers/helpers";
+import { getCategory } from "../../helpers/transactionsHelper";
 import { getAccountName } from "../../helpers/accountsHelper";
 import LinkButton from "../atoms/link";
 import { PencilIcon } from "@heroicons/react/24/solid";
@@ -16,7 +17,9 @@ const TransactionItem = ({ transaction, accounts }: TransactionProps) => {
       <span className="transactionDate">{transaction.transactionType}</span>
       <span className="transactionDate">{transaction.date}</span>
       <span className="transactionName">{transaction.name}</span>
-      <span className="transactionCategory">{transaction.category}</span>
+      <span className="transactionCategory">
+        {getCategory(transaction.category).value}
+      </span>
       <span className="transactionAmount">
         {euroFormat.format(transaction.amount)}
       </span>

@@ -15,7 +15,7 @@ interface Transaction {
   transactionType: string;
   name: string;
   amount: number;
-  category: string;
+  category: string | number;
   from: number;
   to: number;
   date: string;
@@ -55,4 +55,10 @@ interface Dividend {
   taxAmount: number;
   stock: number;
   toAccount: number;
+}
+
+interface Category {
+  id: number;
+  name: string;
+  type: number; // -1=Expense, 0=MoneyTransfer, 1=Income
 }

@@ -29,6 +29,11 @@ const SidebarLeft = () => {
         to={"/dividends"}
         text={"Dividends"}
       />
+      <LinkButton
+        classes={"sidebarLink spaceUp"}
+        to={"/categories"}
+        text={"Categories"}
+      />
     </div>
   );
 };

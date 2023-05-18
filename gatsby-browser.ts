@@ -4,6 +4,7 @@ import "./src/styles/forms.scss";
 import "./src/styles/dropdowns.scss";
 import "./src/styles/headlines.scss";
 import "./src/styles/accounts.scss";
+import "./src/styles/categories.scss";
 import "./src/styles/transactions.scss";
 import "./src/styles/orders.scss";
 import "./src/styles/stocks.scss";
