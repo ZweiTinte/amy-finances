@@ -17,10 +17,21 @@ const StocksSidebarRight = ({
   });
   const [selectedStocks, setSelectedStocks] =
     React.useState<DropdownItem[]>(stocksData);
-  const [hideEmptyStocks, setHideEmptyStocks] = React.useState<boolean>(false);
-  const [hideNonEmptyStocks, setHideNonEmptyStocks] =
-    React.useState<boolean>(false);
-  const [showWatchlist, setShowWatchlist] = React.useState<boolean>(false);
+  const [hideEmptyStocks, setHideEmptyStocks] = React.useState<boolean>(
+    localStorage.getItem("hideEmptyStocks") !== null
+      ? JSON.parse(localStorage.getItem("hideEmptyStocks") as string)
+      : false
+  );
+  const [hideNonEmptyStocks, setHideNonEmptyStocks] = React.useState<boolean>(
+    localStorage.getItem("hideNonEmptyStocks") !== null
+      ? JSON.parse(localStorage.getItem("hideNonEmptyStocks") as string)
+      : false
+  );
+  const [showWatchlist, setShowWatchlist] = React.useState<boolean>(
+    localStorage.getItem("showWatchlist") !== null
+      ? JSON.parse(localStorage.getItem("showWatchlist") as string)
+      : false
+  );
 
   React.useEffect(() => {
     const filteredStocks: number[] = selectedStocks.map((stock) => {
@@ -34,6 +45,12 @@ const StocksSidebarRight = ({
         (showWatchlist ? stock.watchlisted : true)
       );
     });
+    localStorage.setItem("hideEmptyStocks", JSON.stringify(hideEmptyStocks));
+    localStorage.setItem(
+      "hideNonEmptyStocks",
+      JSON.stringify(hideNonEmptyStocks)
+    );
+    localStorage.setItem("showWatchlist", JSON.stringify(showWatchlist));
     setFilteredStocks(newStocks);
   }, [selectedStocks, hideEmptyStocks, showWatchlist, hideNonEmptyStocks]);
 
