@@ -4,15 +4,18 @@ import TransactionItem from "../../level1/transactionItem";
 import { euroFormat } from "../../../helpers/helpers";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import LinkButton from "../../atoms/link";
+import { DropdownItem } from "../../../dropdownTypes";
 
 const Transactions = ({
   transactions,
   accounts,
   totalBalance,
+  categories,
 }: {
   transactions: Transaction[];
   accounts: Account[];
   totalBalance: number;
+  categories: DropdownItem[];
 }) => {
   return (
     <>
@@ -47,7 +50,11 @@ const Transactions = ({
                   }
                   key={i}
                 >
-                  <TransactionItem transaction={item} accounts={accounts} />
+                  <TransactionItem
+                    transaction={item}
+                    accounts={accounts}
+                    categories={categories}
+                  />
                 </div>
               );
             })}

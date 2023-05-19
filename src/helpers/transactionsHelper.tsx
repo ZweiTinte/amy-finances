@@ -1,28 +1,18 @@
 import { DropdownItem } from "../dropdownTypes";
 import { addMonths } from "./dateHelpers";
-import {
-  categories,
-  recurringPeriods,
-  transactionTypes,
-} from "./transactionConsts";
+import { getDDItem } from "./helpers";
+import { recPeriods, transTypes } from "./transactionConsts";
 
 export function getTransactionType(transactionType: string): DropdownItem {
-  return transactionTypes.filter((c) => {
+  return transTypes.filter((c) => {
     return c.value === transactionType;
   })[0];
 }
 
-export function getCategory(category: string | number): DropdownItem {
-  // deprecated
-  if (typeof category === "string") {
-    return categories.filter((c) => {
-      return c.value === category;
-    })[0];
-  }
-  // new
-  return categories.filter((c) => {
-    return c.id === category;
-  })[0];
+export function getCategory(
+  categories: DropdownItem[] | undefined
+): DropdownItem {
+  return categories === undefined ? { id: 0, value: "" } : categories[0];
 }
 
 export function resolveTransactionFetching(
@@ -38,12 +28,13 @@ export function resolveTransactionFetching(
   setRecurringEnd: (end: string) => void,
   setRecurringGap: (gap: string) => void,
   setRecurringPeriod: (period: DropdownItem) => void,
-  setTransactionReady: (ready: boolean) => void
+  setTransactionReady: (ready: boolean) => void,
+  categories: DropdownItem[]
 ): void {
   setName(data.name);
   setDate(data.date);
   setTransactionType(getTransactionType(data.transactionType));
-  setCategory(getCategory(data.category));
+  setCategory(getDDItem(data.category, categories));
   setAmount(data.amount.toString());
   setFrom(
     accounts.filter((a) => {
@@ -59,7 +50,7 @@ export function resolveTransactionFetching(
     setRecurringEnd(data.recurringEnd);
     setRecurringGap(data.recurringGap.toString());
     setRecurringPeriod(
-      recurringPeriods.filter((p) => {
+      recPeriods.filter((p) => {
         return p.value === data.recurringPeriod;
       })[0]
     );

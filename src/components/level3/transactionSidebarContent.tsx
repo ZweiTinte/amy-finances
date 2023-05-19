@@ -3,7 +3,7 @@ import Button from "../atoms/button";
 import Headline from "../atoms/headline";
 import { getMonths, getYears } from "../../helpers/helpers";
 import Checkbox from "../atoms/checkbox";
-import { categories, transactionTypes } from "../../helpers/transactionConsts";
+import { transTypes } from "../../helpers/transactionConsts";
 import { TransactionSidebarContentProps } from "../../transactionTypes";
 import MultiselectFilter from "../level2/multiselectFilter";
 
@@ -22,6 +22,7 @@ const TransactionSidebarContent = ({
   accounts,
   hideFutureTransactions,
   setHideFutureTransactions,
+  categories,
 }: TransactionSidebarContentProps) => {
   return (
     <div className="sidebarRightData">
@@ -30,7 +31,7 @@ const TransactionSidebarContent = ({
         color={"sidebarButton spaceUp"}
         onClick={() => {
           setSelectedCategories(categories);
-          setSelectedTypes(transactionTypes);
+          setSelectedTypes(transTypes);
           setSelectedYears(getYears(transactions));
           setSelectedMonths(getMonths(transactions));
           setSelectedAccounts(accounts);
@@ -66,7 +67,7 @@ const TransactionSidebarContent = ({
       <MultiselectFilter
         selected={selectedTypes}
         setSelected={setSelectedTypes}
-        data={transactionTypes}
+        data={transTypes}
         label={"Selected Types"}
       />
       <Checkbox

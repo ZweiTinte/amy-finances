@@ -15,7 +15,7 @@ interface Transaction {
   transactionType: string;
   name: string;
   amount: number;
-  category: string | number;
+  category: number;
   from: number;
   to: number;
   date: string;

@@ -41,7 +41,8 @@ export function fetchTransaction(
   setTransactionReady: (ready: boolean) => void,
   setError: (error: boolean) => void,
   setErrorMessage: (message: string) => void,
-  transactionId: string
+  transactionId: string,
+  categories: DropdownItem[]
 ): void {
   axios
     .get(`${process.env.GATSBY_API_URL}transactions/${transactionId}`)
@@ -59,7 +60,8 @@ export function fetchTransaction(
         setRecurringEnd,
         setRecurringGap,
         setRecurringPeriod,
-        setTransactionReady
+        setTransactionReady,
+        categories
       );
     })
     .catch((error: Error) => {

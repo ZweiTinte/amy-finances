@@ -1,6 +1,7 @@
 import * as React from "react";
 import ErrorInfo from "../level1/errorInfo";
 import { fetchAccounts } from "../../api/accountsApi";
+import { emptyAccountDDItem } from "../../helpers/accountsHelper";
 
 const AccountsFetching = ({
   children,
@@ -52,6 +53,11 @@ const AccountsFetching = ({
             orders: orders,
             stocks: stocks,
             accounts: accounts,
+            accountsDropdown: [emptyAccountDDItem].concat(
+              accounts.map((account) => {
+                return { id: account.id, value: account.name };
+              })
+            ),
           })}
         </>
       )}

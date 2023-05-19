@@ -64,3 +64,9 @@ export function getMonths(transactions: any[]): DropdownItem[] {
     return { id: month, value: monthNames[month] };
   });
 }
+
+export function getDDItem(id: number, data: DropdownItem[]): DropdownItem {
+  return data.filter((c) => {
+    return c.id === id;
+  })[0];
+}

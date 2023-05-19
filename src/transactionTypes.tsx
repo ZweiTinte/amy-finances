@@ -11,7 +11,6 @@ export interface TransactionTemplateProps {
   setAmount: React.Dispatch<React.SetStateAction<string>>;
   from: DropdownItem;
   setFrom: React.Dispatch<React.SetStateAction<DropdownItem>>;
-  accountsData: DropdownItem[];
   to: DropdownItem;
   setTo: React.Dispatch<React.SetStateAction<DropdownItem>>;
   transactionType: DropdownItem;
@@ -23,6 +22,8 @@ export interface TransactionTemplateProps {
   recurringPeriod: DropdownItem;
   setRecurringPeriod: React.Dispatch<React.SetStateAction<DropdownItem>>;
   transactions?: Transaction[];
+  categoriesDropdown?: DropdownItem[];
+  accountsDropdown?: DropdownItem[];
 }
 
 export interface TransactionFormProps extends TransactionTemplateProps {
@@ -49,4 +50,11 @@ export interface TransactionSidebarContentProps {
   accounts: DropdownItem[];
   hideFutureTransactions: boolean;
   setHideFutureTransactions: React.Dispatch<React.SetStateAction<boolean>>;
+  categories: DropdownItem[];
+}
+
+export interface EditTransactionFetchingProps {
+  id: string;
+  accountsDropdown?: DropdownItem[];
+  categoriesDropdown?: DropdownItem[];
 }

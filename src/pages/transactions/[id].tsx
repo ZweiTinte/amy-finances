@@ -4,6 +4,7 @@ import ErrorInfo from "../../components/level1/errorInfo";
 import EditTransactionFetching from "../../components/template/transactions/editTransactionFetching";
 import { fetchAccounts } from "../../api/accountsApi";
 import { DropdownItem } from "../../dropdownTypes";
+import CategoriesFetching from "../../components/template/categoriesFetching";
 
 const TransactionEditPage = ({ params }: { params: { id: string } }) => {
   const [accounts, setAccounts] = React.useState<DropdownItem[]>([]);
@@ -39,7 +40,9 @@ const TransactionEditPage = ({ params }: { params: { id: string } }) => {
   return (
     <>
       {accountsReady && (
-        <EditTransactionFetching id={params.id} accounts={accounts} />
+        <CategoriesFetching accountsDropdown={accounts}>
+          <EditTransactionFetching id={params.id} />
+        </CategoriesFetching>
       )}
       {error && <ErrorInfo message={errorMessage} tryAgain={loadAccounts} />}
     </>

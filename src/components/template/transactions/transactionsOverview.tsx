@@ -5,9 +5,11 @@ import Transactions from "./transactions";
 const TransactionsOverview = ({
   accounts,
   transactions,
+  categories,
 }: {
   accounts?: Account[];
   transactions?: Transaction[];
+  categories?: Category[];
 }) => {
   const [filteredTransactions, setFilteredTransactions] = React.useState<
     Transaction[]
@@ -36,6 +38,11 @@ const TransactionsOverview = ({
             }
             accounts={accounts}
             totalBalance={totalBalance}
+            categories={
+              categories?.map((c) => {
+                return { id: c.id, value: c.name };
+              }) || []
+            }
           />
           <TransactionSidebarRight
             transactions={transactions}
@@ -43,6 +50,11 @@ const TransactionsOverview = ({
               return { id: account.id, value: account.name };
             })}
             setFilteredTransactions={setFilteredTransactions}
+            categories={
+              categories?.map((c) => {
+                return { id: c.id, value: c.name };
+              }) || []
+            }
           />
         </>
       )}

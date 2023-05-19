@@ -1,37 +1,32 @@
 import * as React from "react";
 import TransactionSidebarContent from "../../level3/transactionSidebarContent";
-import { getMonths, getYears } from "../../../helpers/helpers";
-import {
-  categories,
-  transactionTypes,
-} from "../../../helpers/transactionConsts";
+import { getDDItem, getMonths, getYears } from "../../../helpers/helpers";
+import { transTypes } from "../../../helpers/transactionConsts";
 import { DropdownItem } from "../../../dropdownTypes";
-import { getCategory } from "../../../helpers/transactionsHelper";
+import { getFromLocalStorage } from "../../../helpers/storageHelper";
 
 const TransactionSidebarRight = ({
   transactions,
   accounts,
   setFilteredTransactions,
+  categories,
 }: {
   transactions: Transaction[];
   accounts: DropdownItem[];
+  categories: DropdownItem[];
   setFilteredTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>;
 }) => {
   const [selectedCategories, setSelectedCategories] =
     React.useState<DropdownItem[]>(categories);
   const [selectedTypes, setSelectedTypes] =
-    React.useState<DropdownItem[]>(transactionTypes);
+    React.useState<DropdownItem[]>(transTypes);
   const [selectedAccounts, setSelectedAccounts] =
     React.useState<DropdownItem[]>(accounts);
   const [selectedYears, setSelectedYears] = React.useState<DropdownItem[]>(
-    localStorage.getItem("selectedYears") !== null
-      ? JSON.parse(localStorage.getItem("selectedYears") as string)
-      : getYears(transactions)
+    getFromLocalStorage("selectedYears", getYears(transactions))
   );
   const [selectedMonths, setSelectedMonths] = React.useState<DropdownItem[]>(
-    localStorage.getItem("selectedMonths") !== null
-      ? JSON.parse(localStorage.getItem("selectedMonths") as string)
-      : getMonths(transactions)
+    getFromLocalStorage("selectedMonths", getMonths(transactions))
   );
   const [hideFutureTransactions, setHideFutureTransactions] =
     React.useState<boolean>(false);
@@ -58,7 +53,9 @@ const TransactionSidebarRight = ({
           filteredAccounts.includes(trans.to)) &&
         filteredMonths.includes(new Date(trans.date).getMonth()) &&
         filteredYears.includes(new Date(trans.date).getFullYear().toString()) &&
-        filteredCategories.includes(getCategory(trans.category).value) &&
+        filteredCategories.includes(
+          getDDItem(trans.category, categories).value
+        ) &&
         (hideFutureTransactions ? new Date(trans.date) < new Date() : true) &&
         filteredTypes.includes(trans.transactionType)
       );
@@ -91,6 +88,7 @@ const TransactionSidebarRight = ({
       accounts={accounts}
       hideFutureTransactions={hideFutureTransactions}
       setHideFutureTransactions={setHideFutureTransactions}
+      categories={categories}
     />
   );
 };

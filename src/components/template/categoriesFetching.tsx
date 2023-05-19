@@ -1,17 +1,22 @@
 import * as React from "react";
 import ErrorInfo from "../level1/errorInfo";
 import { fetchCategories } from "../../api/categoriesApi";
+import { DropdownItem } from "../../dropdownTypes";
 
 const CategoriesFetching = ({
   children,
   transactions,
   orders,
   stocks,
+  accounts,
+  accountsDropdown,
 }: {
   children: JSX.Element;
   transactions?: Transaction[];
   orders?: Order[];
   stocks?: Stock[];
+  accounts?: Account[];
+  accountsDropdown?: DropdownItem[];
 }) => {
   const [categoriesReady, setCategoriesReady] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
@@ -45,13 +50,18 @@ const CategoriesFetching = ({
 
   return (
     <>
-      {categoriesReady && (
+      {categoriesReady && categories && (
         <>
           {React.cloneElement(children, {
             transactions: transactions,
             orders: orders,
             stocks: stocks,
             categories: categories,
+            categoriesDropdown: categories.map((c) => {
+              return { id: c.id, value: c.name };
+            }),
+            accounts: accounts,
+            accountsDropdown: accountsDropdown,
           })}
         </>
       )}
