@@ -2,15 +2,18 @@ import * as React from "react";
 import { fetchTransactions } from "../../api/transactionApi";
 import ErrorInfo from "../level1/errorInfo";
 import { getRecurringTransactions } from "../../helpers/transactionsHelper";
+import { DropdownItem } from "../../dropdownTypes";
 
 const TransactionFetching = ({
   children,
   accounts,
   categories,
+  accountsDropdown,
 }: {
   children: JSX.Element;
   accounts?: Account[];
   categories?: Category[];
+  accountsDropdown?: DropdownItem[];
 }) => {
   const [transactionsReady, setTransactionsReady] =
     React.useState<boolean>(false);
@@ -59,6 +62,7 @@ const TransactionFetching = ({
             transactions: transactions,
             accounts: accounts,
             categories: categories,
+            accountsDropdown: accountsDropdown,
           })}
         </>
       )}
