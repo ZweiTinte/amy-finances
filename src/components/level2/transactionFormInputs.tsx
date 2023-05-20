@@ -7,7 +7,10 @@ import RecurringForm from "../level1/recurringForm";
 import FromToForm from "../level1/fromToForm";
 import FormDropdown from "../level1/formDropdown";
 import DropdownSearch from "../atoms/dropdownSearch";
-import { getTransactionSuggestions } from "../../helpers/dropdownHelpers";
+import {
+  getCategorySuggestions,
+  getTransactionSuggestions,
+} from "../../helpers/dropdownHelpers";
 
 const TransactionFormInputs = ({
   date,
@@ -68,7 +71,7 @@ const TransactionFormInputs = ({
       <FormDropdown
         dropDownItem={category}
         setDropdownItem={setCategory}
-        dropDownData={categoriesDropdown || []}
+        dropDownData={getCategorySuggestions(transactions, categoriesDropdown)}
         dropdownName="Category:"
       />
       <div className="formRow">

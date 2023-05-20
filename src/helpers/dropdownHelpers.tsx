@@ -1,5 +1,6 @@
 import React from "react";
 import { DropdownItem } from "../dropdownTypes";
+import { getDDItem } from "./helpers";
 
 export function itemAction(e: React.KeyboardEvent<HTMLDivElement>) {
   const target = e.currentTarget as HTMLElement;
@@ -65,5 +66,30 @@ export function getTransactionSuggestions(
   });
   return suggestionNames.map((sug, i) => {
     return { id: i, value: sug.name };
+  });
+}
+
+export function getCategorySuggestions(
+  transactions: Transaction[] | undefined,
+  categories: DropdownItem[] | undefined
+): DropdownItem[] {
+  let suggestionIds: { id: number; amount: number }[] = [];
+  if (transactions) {
+    transactions.forEach((trans) => {
+      let suggestion = suggestionIds.filter((sug) => {
+        return sug.id === trans.category;
+      })[0];
+      if (suggestion) {
+        suggestion.amount++;
+      } else {
+        suggestionIds.push({ id: trans.category, amount: 1 });
+      }
+    });
+  }
+  suggestionIds.sort((a, b) => {
+    return b.amount - a.amount;
+  });
+  return suggestionIds.map((sug) => {
+    return getDDItem(sug.id, categories || []);
   });
 }
