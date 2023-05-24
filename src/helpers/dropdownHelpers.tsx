@@ -7,14 +7,14 @@ export function itemAction(e: React.KeyboardEvent<HTMLDivElement>) {
   if (target !== null) {
     if (e.key === "ArrowDown" && target.nextSibling !== null) {
       (target.nextSibling as HTMLDivElement)?.focus();
+      setTimeout(() => {
+        (target.nextSibling?.parentElement as HTMLDivElement).scrollTop += 8;
+      }, 1);
     } else if (e.key === "ArrowUp" && target.previousSibling !== null) {
       const prevEl = target.previousSibling;
       (prevEl as HTMLElement).focus();
       setTimeout(() => {
-        if (prevEl instanceof HTMLInputElement) {
-          const end = prevEl.value.length;
-          prevEl.setSelectionRange(end, end);
-        }
+        (prevEl?.parentElement as HTMLDivElement).scrollTop -= 8;
       }, 1);
     } else if (e.key === "ArrowUp" && target.previousSibling === null) {
       const prevEl = target.parentElement?.previousSibling;
@@ -34,14 +34,17 @@ export function itemAction(e: React.KeyboardEvent<HTMLDivElement>) {
 export function inputKeyDownAction(e: React.KeyboardEvent<HTMLInputElement>) {
   const target = e.currentTarget as HTMLElement;
   if (e.key === "ArrowDown" && target && target.nextSibling !== null) {
-    (e.currentTarget.nextSibling as HTMLDivElement)?.focus();
+    (target.nextSibling as HTMLDivElement)?.focus();
   }
   if (
     e.key === "ArrowDown" &&
     target &&
     target.nextSibling?.firstChild !== null
   ) {
-    (e.currentTarget.nextSibling?.firstChild as HTMLDivElement)?.focus();
+    (target.nextSibling?.firstChild as HTMLDivElement)?.focus();
+    setTimeout(() => {
+      (target.nextSibling as HTMLDivElement).scrollTop -= 20;
+    }, 1);
   }
 }
 
