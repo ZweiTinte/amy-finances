@@ -27,7 +27,7 @@ const Transactions = ({
                 text="Transactions Overview"
                 style="transactionsHeadline"
               />
-              <LinkButton to="/transactions/new">
+              <LinkButton to="/transactions/new" title="add new transaction">
                 <PlusIcon className="heroIcon" />
               </LinkButton>
             </div>

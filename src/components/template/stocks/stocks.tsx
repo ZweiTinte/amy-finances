@@ -12,7 +12,7 @@ const Stocks = ({ stocks }: { stocks: Stock[] }) => {
           <div className="stocksCard">
             <div className="formRowDefault">
               <Headline text="Stocks Overview" style="transactionsHeadline" />
-              <LinkButton to="/stocks/new">
+              <LinkButton to="/stocks/new" title="add new stock">
                 <PlusIcon className="heroIcon" />
               </LinkButton>
             </div>

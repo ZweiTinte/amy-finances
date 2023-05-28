@@ -23,7 +23,7 @@ const Dividends = ({
                 text="Dividends Overview"
                 style="transactionsHeadline"
               />
-              <LinkButton to="/dividends/new">
+              <LinkButton to="/dividends/new" title="add new dividend">
                 <PlusIcon className="heroIcon" />
               </LinkButton>
             </div>

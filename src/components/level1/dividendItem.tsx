@@ -33,7 +33,7 @@ const DividendItem = ({ dividend, accounts, stocks }: DividendProps) => {
         {getAccountName(dividend.toAccount, accounts)}
       </span>
       <span>
-        <LinkButton to={`/dividends/${dividend.id}`}>
+        <LinkButton to={`/dividends/${dividend.id}`} title="edit">
           <PencilIcon className="heroIcon" />
         </LinkButton>
       </span>

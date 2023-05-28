@@ -19,7 +19,7 @@ const Accounts = ({
           <div className="accountsCard">
             <div className="formRowDefault">
               <Headline text="Accounts Overview" style="accountsHeadline" />
-              <LinkButton to="/accounts/new">
+              <LinkButton to="/accounts/new" title="add new account">
                 <PlusIcon className="heroIcon" />
               </LinkButton>
             </div>

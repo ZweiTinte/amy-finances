@@ -70,3 +70,26 @@ export function getDDItem(id: number, data: DropdownItem[]): DropdownItem {
     return c.id === id;
   })[0];
 }
+
+export function getCategoryType(categoryType: number): string {
+  if (categoryType === -1) {
+    return "Expense";
+  } else if (categoryType === 0) {
+    return "Money Transfer";
+  } else if (categoryType === 1) {
+    return "Income";
+  }
+  return "";
+}
+
+export const categoryTypes: DropdownItem[] = [
+  { id: -1, value: "Expense" },
+  { id: 0, value: "Money Transfer" },
+  { id: 1, value: "Income" },
+];
+
+export function getCategoryDDItem(categoryType: number): DropdownItem {
+  return categoryTypes.filter((ct) => {
+    return ct.id === categoryType;
+  })[0];
+}

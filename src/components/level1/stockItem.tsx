@@ -23,7 +23,7 @@ const StockItem = ({ stock }: OrderProps) => {
         {euroFormat.format(stock.price * stock.amount)}
       </span>
       <span>
-        <LinkButton to={`/stocks/${stock.id}`}>
+        <LinkButton to={`/stocks/${stock.id}`} title="edit">
           <PencilIcon className="heroIcon" />
         </LinkButton>
       </span>
@@ -32,6 +32,7 @@ const StockItem = ({ stock }: OrderProps) => {
           disabled={!stock.link}
           to={stock.link ? stock.link : ""}
           target="_blank"
+          title="navigate to linked info"
         >
           <ArrowTopRightOnSquareIcon className="heroIcon" />
         </LinkButton>

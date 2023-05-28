@@ -12,7 +12,7 @@ const Categories = ({ categories }: { categories: Category[] }) => {
           <div className="categoriesCard">
             <div className="formRowDefault">
               <Headline text="Categories Overview" style="categoriesHeadline" />
-              <LinkButton to="/categories/new">
+              <LinkButton to="/categories/new" title="add new category">
                 <PlusIcon className="heroIcon" />
               </LinkButton>
             </div>

@@ -17,7 +17,7 @@ const AccountItem = ({ account }: AccountProps) => {
         {euroFormat.format(account.balance)}
       </span>
       <span>
-        <LinkButton to={`/accounts/${account.id}`}>
+        <LinkButton to={`/accounts/${account.id}`} title="edit">
           <PencilIcon className="heroIcon" />
         </LinkButton>
       </span>

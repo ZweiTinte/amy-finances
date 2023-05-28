@@ -35,7 +35,7 @@ const TransactionItem = ({
         {getAccountName(transaction.to, accounts)}
       </span>
       <span>
-        <LinkButton to={`/transactions/${transaction.id}`}>
+        <LinkButton to={`/transactions/${transaction.id}`} title="edit">
           <PencilIcon className="heroIcon" />
         </LinkButton>
       </span>

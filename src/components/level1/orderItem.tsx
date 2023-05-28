@@ -31,7 +31,7 @@ const OrderItem = ({ order, accounts, stocks }: OrderProps) => {
         {getAccountName(order.to, accounts)}
       </span>
       <span>
-        <LinkButton to={`/orders/${order.id}`}>
+        <LinkButton to={`/orders/${order.id}`} title="edit">
           <PencilIcon className="heroIcon" />
         </LinkButton>
       </span>

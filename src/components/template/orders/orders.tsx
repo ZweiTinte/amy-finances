@@ -20,7 +20,7 @@ const Orders = ({
           <div className="ordersCard">
             <div className="formRowDefault">
               <Headline text="Orders Overview" style="transactionsHeadline" />
-              <LinkButton to="/orders/new">
+              <LinkButton to="/orders/new" title="add new order">
                 <PlusIcon className="heroIcon" />
               </LinkButton>
             </div>
