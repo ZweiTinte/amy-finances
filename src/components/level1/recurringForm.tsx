@@ -2,8 +2,8 @@ import * as React from "react";
 import DateInput from "../atoms/dateInput";
 import NumberInput from "../atoms/numberInput";
 import Dropdown from "../atoms/dropdown";
-import { recurringPeriods } from "../../helpers/transactionConsts";
 import { DropdownItem, DropdownTypes } from "../../dropdownTypes";
+import { recPeriods } from "../../helpers/transactionConsts";
 
 const RecurringForm = ({
   recurringEnd,
@@ -35,7 +35,7 @@ const RecurringForm = ({
         <Dropdown
           dropDownItem={recurringPeriod}
           setDropdownItem={setRecurringPeriod}
-          dropDownData={recurringPeriods}
+          dropDownData={recPeriods}
           type={DropdownTypes.Value}
           verticalForm={false}
         />

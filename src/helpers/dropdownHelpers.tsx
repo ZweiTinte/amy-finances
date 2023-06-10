@@ -51,17 +51,16 @@ export function inputKeyDownAction(e: React.KeyboardEvent<HTMLInputElement>) {
 export function getTransactionSuggestions(
   transactions: Transaction[] | undefined
 ): DropdownItem[] {
-  let suggestionNames: { name: string; amount: number }[] = [];
+  let suggestionNames: { name: string; amount: number }[] =
+    transactions?.map((trans) => {
+      return { name: trans.name, amount: 0 };
+    }) || [];
   if (transactions) {
     transactions.forEach((trans) => {
       let suggestion = suggestionNames.filter((sug) => {
         return sug.name === trans.name;
       })[0];
-      if (suggestion) {
-        suggestion.amount++;
-      } else {
-        suggestionNames.push({ name: trans.name, amount: 1 });
-      }
+      suggestion.amount++;
     });
   }
   suggestionNames.sort((a, b) => {
@@ -76,17 +75,16 @@ export function getCategorySuggestions(
   transactions: Transaction[] | undefined,
   categories: DropdownItem[] | undefined
 ): DropdownItem[] {
-  let suggestionIds: { id: number; amount: number }[] = [];
+  let suggestionIds: { id: number; amount: number }[] =
+    categories?.map((cat) => {
+      return { id: cat.id, amount: 0 };
+    }) || [];
   if (transactions) {
     transactions.forEach((trans) => {
       let suggestion = suggestionIds.filter((sug) => {
         return sug.id === trans.category;
       })[0];
-      if (suggestion) {
-        suggestion.amount++;
-      } else {
-        suggestionIds.push({ id: trans.category, amount: 1 });
-      }
+      suggestion.amount++;
     });
   }
   suggestionIds.sort((a, b) => {

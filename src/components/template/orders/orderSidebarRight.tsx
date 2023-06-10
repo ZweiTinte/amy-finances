@@ -2,27 +2,35 @@ import * as React from "react";
 import { getMonths, getYears } from "../../../helpers/helpers";
 import OrderSidebarContent from "../../level3/orderSidebarContent";
 import { DropdownItem } from "../../../dropdownTypes";
+import {
+  getFromLocalStorage,
+  setLocalStorage,
+} from "../../../helpers/storageHelper";
 
 const OrderSidebarRight = ({
   orders,
   accounts,
   stocks,
   setFilteredOrders,
+  setFiltered,
 }: {
   orders: Order[];
   accounts: DropdownItem[];
   stocks: DropdownItem[];
+  setFiltered: React.Dispatch<React.SetStateAction<boolean>>;
   setFilteredOrders: React.Dispatch<React.SetStateAction<Order[]>>;
 }) => {
-  const [selectedAccounts, setSelectedAccounts] =
-    React.useState<DropdownItem[]>(accounts);
-  const [selectedStocks, setSelectedStocks] =
-    React.useState<DropdownItem[]>(stocks);
+  const [selectedAccounts, setSelectedAccounts] = React.useState<
+    DropdownItem[]
+  >(getFromLocalStorage("selectedOrdersAccounts", accounts));
+  const [selectedStocks, setSelectedStocks] = React.useState<DropdownItem[]>(
+    getFromLocalStorage("selectedOrdersStocks", stocks)
+  );
   const [selectedYears, setSelectedYears] = React.useState<DropdownItem[]>(
-    getYears(orders)
+    getFromLocalStorage("selectedOrdersYears", getYears(orders))
   );
   const [selectedMonths, setSelectedMonths] = React.useState<DropdownItem[]>(
-    getMonths(orders)
+    getFromLocalStorage("selectedOrdersMonths", getMonths(orders))
   );
 
   React.useEffect(() => {
@@ -47,7 +55,12 @@ const OrderSidebarRight = ({
         filteredYears.includes(new Date(order.date).getFullYear().toString())
       );
     });
+    setLocalStorage("selectedOrdersAccounts", selectedAccounts);
+    setLocalStorage("selectedOrdersStocks", selectedStocks);
+    setLocalStorage("selectedOrdersYears", selectedYears);
+    setLocalStorage("selectedOrdersMonths", selectedMonths);
     setFilteredOrders(newOrders);
+    setFiltered(true);
   }, [selectedYears, selectedMonths, selectedAccounts, selectedStocks]);
 
   return (

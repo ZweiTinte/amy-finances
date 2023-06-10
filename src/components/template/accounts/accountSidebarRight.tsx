@@ -5,6 +5,10 @@ import { accountTypes } from "../../../helpers/accountsHelper";
 import { getAccountTypes } from "../../../helpers/filtersHelper";
 import MultiselectFilter from "../../level2/multiselectFilter";
 import { DropdownItem } from "../../../dropdownTypes";
+import {
+  getFromLocalStorage,
+  setLocalStorage,
+} from "../../../helpers/storageHelper";
 
 const AccountSidebarRight = ({
   accounts,
@@ -16,10 +20,12 @@ const AccountSidebarRight = ({
   const accountsData: DropdownItem[] = accounts.map((account) => {
     return { id: account.id, value: account.name };
   });
-  const [selectedAccountTypes, setSelectedAccountTypes] =
-    React.useState<DropdownItem[]>(accountTypes);
-  const [selectedAccounts, setSelectedAccounts] =
-    React.useState<DropdownItem[]>(accountsData);
+  const [selectedAccountTypes, setSelectedAccountTypes] = React.useState<
+    DropdownItem[]
+  >(getFromLocalStorage("selectedOverviewAccountTypes", accountTypes));
+  const [selectedAccounts, setSelectedAccounts] = React.useState<
+    DropdownItem[]
+  >(getFromLocalStorage("selectedOverviewAccounts", accountsData));
 
   React.useEffect(() => {
     const filteredAccountTypes: string[] = selectedAccountTypes.map(
@@ -36,6 +42,8 @@ const AccountSidebarRight = ({
         filteredAccounts.includes(account.id)
       );
     });
+    setLocalStorage("selectedOverviewAccounts", selectedAccounts);
+    setLocalStorage("selectedOverviewAccountTypes", selectedAccountTypes);
     setFilteredAccounts(newAccounts);
   }, [selectedAccountTypes, selectedAccounts]);
 

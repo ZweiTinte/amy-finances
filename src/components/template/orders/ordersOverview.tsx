@@ -14,6 +14,7 @@ const OrdersOverview = ({
   const [filteredOrders, setFilteredOrders] = React.useState<Order[]>(
     orders || []
   );
+  const [filtered, setFiltered] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     if (orders) {
@@ -25,17 +26,19 @@ const OrdersOverview = ({
     <>
       {orders && accounts && stocks && (
         <>
-          <Orders
-            orders={
-              orders.length > 1
-                ? filteredOrders.sort((a, b) => {
-                    return Date.parse(a.date) - Date.parse(b.date);
-                  })
-                : orders
-            }
-            accounts={accounts}
-            stocks={stocks}
-          />
+          {filtered && (
+            <Orders
+              orders={
+                orders.length > 1
+                  ? filteredOrders.sort((a, b) => {
+                      return Date.parse(a.date) - Date.parse(b.date);
+                    })
+                  : orders
+              }
+              accounts={accounts}
+              stocks={stocks}
+            />
+          )}
           <OrderSidebarRight
             orders={orders}
             stocks={stocks.map((stock) => {
@@ -45,6 +48,7 @@ const OrdersOverview = ({
               return { id: account.id, value: account.name };
             })}
             setFilteredOrders={setFilteredOrders}
+            setFiltered={setFiltered}
           />
         </>
       )}

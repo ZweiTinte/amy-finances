@@ -82,6 +82,7 @@ const TransactionFormInputs = ({
         from={from}
         setFrom={setFrom}
         accounts={accountsDropdown || []}
+        transactions={transactions}
         to={to}
         setTo={setTo}
       />

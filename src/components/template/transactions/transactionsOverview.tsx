@@ -14,6 +14,7 @@ const TransactionsOverview = ({
   const [filteredTransactions, setFilteredTransactions] = React.useState<
     Transaction[]
   >(transactions || []);
+  const [filtered, setFiltered] = React.useState<boolean>(false);
   const [totalBalance, setTotalBalance] = React.useState<number>(0);
 
   React.useEffect(() => {
@@ -28,22 +29,24 @@ const TransactionsOverview = ({
     <>
       {transactions && accounts && (
         <>
-          <Transactions
-            transactions={
-              transactions.length > 1
-                ? filteredTransactions.sort((a, b) => {
-                    return Date.parse(a.date) - Date.parse(b.date);
-                  })
-                : transactions
-            }
-            accounts={accounts}
-            totalBalance={totalBalance}
-            categories={
-              categories?.map((c) => {
-                return { id: c.id, value: c.name };
-              }) || []
-            }
-          />
+          {filtered && (
+            <Transactions
+              transactions={
+                transactions.length > 1
+                  ? filteredTransactions.sort((a, b) => {
+                      return Date.parse(a.date) - Date.parse(b.date);
+                    })
+                  : transactions
+              }
+              accounts={accounts}
+              totalBalance={totalBalance}
+              categories={
+                categories?.map((c) => {
+                  return { id: c.id, value: c.name };
+                }) || []
+              }
+            />
+          )}
           <TransactionSidebarRight
             transactions={transactions}
             accounts={accounts.map((account) => {
@@ -55,6 +58,7 @@ const TransactionsOverview = ({
                 return { id: c.id, value: c.name };
               }) || []
             }
+            setFiltered={setFiltered}
           />
         </>
       )}
