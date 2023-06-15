@@ -34,6 +34,11 @@ const SidebarLeft = () => {
         to={"/categories"}
         text={"Categories"}
       />
+      <LinkButton
+        classes={"sidebarLink spaceUp"}
+        to={"/statistics"}
+        text={"Statistics"}
+      />
     </div>
   );
 };

@@ -1,0 +1,18 @@
+@import "_variables";
+
+.dateSelection {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.dateText {
+  color: $white;
+  font-size: 1.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.dateSelectionInput {
+  max-width: fit-content;
+}
