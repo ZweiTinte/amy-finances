@@ -26,24 +26,28 @@ const DateSelection = ({
         classes="dateSelectionInput"
         value={selectedDate1}
         setValue={setSelectedDate1}
+        max={selectedDate2}
       />
       <span className="dateText">to</span>
       <DateInput
         classes="dateSelectionInput"
         value={selectedDate2}
         setValue={setSelectedDate2}
+        min={selectedDate1}
       />
       <span className="dateText">compared with</span>
       <DateInput
         classes="dateSelectionInput"
         value={compareDate1}
         setValue={setCompareDate1}
+        max={compareDate2}
       />
       <span className="dateText">to</span>
       <DateInput
         classes="dateSelectionInput"
         value={compareDate2}
         setValue={setCompareDate2}
+        min={compareDate1}
       />
     </div>
   );

@@ -1,5 +1,5 @@
 import * as React from "react";
-import DateSelection from "../../level1/dateSelection";
+import DateSelections from "../../level2/dateSelections";
 
 const StatisticsOverview = ({
   categories,
@@ -52,7 +52,7 @@ const StatisticsOverview = ({
         return (
           categories.filter((cat) => {
             return cat.id === trans.category;
-          })[0].type === 1
+          })[0].type === -1
         );
       });
       let newIncome = 0;
@@ -66,7 +66,7 @@ const StatisticsOverview = ({
   return (
     <div className="gameLayout">
       <div className="ordersCard">
-        <DateSelection
+        <DateSelections
           selectedDate1={selectedDate1}
           selectedDate2={selectedDate2}
           setSelectedDate1={setSelectedDate1}

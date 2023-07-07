@@ -6,6 +6,13 @@
   padding: 1rem;
 }
 
+.datePreSelection {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
 .dateText {
   color: $white;
   font-size: 1.25rem;

@@ -9,7 +9,7 @@
 
 .stockName {
   @include accountInfo;
-  width: 9rem;
+  width: 10rem;
 }
 
 .stockProps {
@@ -21,6 +21,8 @@
 .stockInfos {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
 }
 
 .stocksCard {

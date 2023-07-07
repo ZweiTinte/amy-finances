@@ -4,10 +4,14 @@ const DateInput = ({
   value,
   setValue,
   classes,
+  min,
+  max,
 }: {
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
   classes?: string;
+  min?: string;
+  max?: string;
 }) => {
   return (
     <input
@@ -17,6 +21,8 @@ const DateInput = ({
         setValue(e.target.value);
       }}
       type="date"
+      min={min}
+      max={max}
     />
   );
 };
