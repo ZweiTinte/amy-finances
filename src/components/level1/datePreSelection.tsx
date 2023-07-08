@@ -22,39 +22,50 @@ const DatePreSelection = ({
           const m = date.getMonth();
           const firstDay = new Date(y, m, 2);
           const lastDay = new Date(y, m + 1, 1);
-          const now = new Date();
           const prevMonthLastDate = new Date(
-            now.getFullYear(),
-            now.getMonth(),
+            date.getFullYear(),
+            date.getMonth(),
             1
           );
           const prevMonthFirstDate = new Date(
-            now.getFullYear() - (now.getMonth() > 0 ? 0 : 1),
-            (now.getMonth() - 1 + 12) % 12,
+            date.getFullYear() - (date.getMonth() > 0 ? 0 : 1),
+            (date.getMonth() - 1 + 12) % 12,
             2
           );
-          setSelectedDate1(firstDay.toISOString().split("T")[0]);
-          setSelectedDate2(lastDay.toISOString().split("T")[0]);
-          setCompareDate1(prevMonthFirstDate.toISOString().split("T")[0]);
-          setCompareDate2(prevMonthLastDate.toISOString().split("T")[0]);
+          setSelectedDate1(firstDay.toDateString());
+          setSelectedDate2(lastDay.toDateString());
+          setCompareDate1(prevMonthFirstDate.toDateString());
+          setCompareDate2(prevMonthLastDate.toDateString());
         }}
       />
       <Button
         text="Current Year / Previous Year"
         onClick={() => {
           const date = new Date();
-          setSelectedDate1(
-            new Date(date.getFullYear(), 0, 2).toISOString().split("T")[0]
-          );
-          setSelectedDate2(
-            new Date(date.getFullYear(), 11, 32).toISOString().split("T")[0]
-          );
+          setSelectedDate1(new Date(date.getFullYear(), 0, 2).toDateString());
+          setSelectedDate2(new Date(date.getFullYear(), 11, 32).toDateString());
           setCompareDate1(
-            new Date(date.getFullYear() - 1, 0, 2).toISOString().split("T")[0]
+            new Date(date.getFullYear() - 1, 0, 2).toDateString()
           );
           setCompareDate2(
-            new Date(date.getFullYear() - 1, 11, 32).toISOString().split("T")[0]
+            new Date(date.getFullYear() - 1, 11, 32).toDateString()
           );
+        }}
+      />
+      <Button
+        text="Current Month / Month of Previous Year"
+        onClick={() => {
+          const date = new Date();
+          const y = date.getFullYear();
+          const m = date.getMonth();
+          const firstDay = new Date(y, m, 2);
+          const lastDay = new Date(y, m + 1, 1);
+          const firstDay2 = new Date(y - 1, m, 2);
+          const lastDay2 = new Date(y - 1, m + 1, 1);
+          setSelectedDate1(firstDay.toDateString());
+          setSelectedDate2(lastDay.toDateString());
+          setCompareDate1(firstDay2.toDateString());
+          setCompareDate2(lastDay2.toDateString());
         }}
       />
     </div>
