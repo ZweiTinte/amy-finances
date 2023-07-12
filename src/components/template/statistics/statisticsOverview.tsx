@@ -1,5 +1,6 @@
 import * as React from "react";
 import DateSelections from "../../level2/dateSelections";
+import { euroFormat } from "../../../helpers/helpers";
 
 const StatisticsOverview = ({
   categories,
@@ -77,9 +78,9 @@ const StatisticsOverview = ({
           setCompareDate2={setCompareDate2}
         />
         <div>
-          <span className="dateText">{income}</span>
+          <span className="dateText">{euroFormat.format(income)}</span>
           <span className="dateText">compared to</span>
-          <span className="dateText">{compareIncome}</span>
+          <span className="dateText">{euroFormat.format(compareIncome)}</span>
         </div>
       </div>
     </div>
