@@ -3,15 +3,18 @@ import Headline from "../../atoms/headline";
 import DividendItem from "../../level1/dividendItem";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import LinkButton from "../../atoms/link";
+import { euroFormat } from "../../../helpers/helpers";
 
 const Dividends = ({
   dividends,
   accounts,
   stocks,
+  totalBalance,
 }: {
   dividends: Dividend[];
   accounts: Account[];
   stocks: Stock[];
+  totalBalance: number;
 }) => {
   return (
     <>
@@ -55,6 +58,12 @@ const Dividends = ({
                 </div>
               );
             })}
+            <div className="accountsSummary">
+              <span className="dividendsSum">Total Dividends:</span>
+              <span className="orderSumHeadline">
+                {euroFormat.format(totalBalance)}
+              </span>
+            </div>
           </div>
         </div>
       )}

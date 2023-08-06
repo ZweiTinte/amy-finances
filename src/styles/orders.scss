@@ -86,3 +86,8 @@
   text-align: end;
   padding-right: 1rem;
 }
+
+.dividendsSum {
+  @include accountInfo;
+  width: 48rem;
+}

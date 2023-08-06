@@ -14,12 +14,21 @@ const DividendsOverview = ({
   const [filteredDividends, setFilteredDividends] = React.useState<Dividend[]>(
     dividends || []
   );
+  const [totalBalance, setTotalBalance] = React.useState<number>(0);
 
   React.useEffect(() => {
     if (dividends) {
       setFilteredDividends(dividends);
     }
   }, [dividends]);
+
+  React.useEffect(() => {
+    let total = 0;
+    filteredDividends.forEach((dividend) => {
+      total += dividend.amountBeforeTax - dividend.taxAmount;
+    });
+    setTotalBalance(total);
+  }, [filteredDividends]);
 
   return (
     <>
@@ -33,6 +42,7 @@ const DividendsOverview = ({
                   })
                 : dividends
             }
+            totalBalance={totalBalance}
             accounts={accounts}
             stocks={stocks}
           />
