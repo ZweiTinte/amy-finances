@@ -51,10 +51,14 @@ export function inputKeyDownAction(e: React.KeyboardEvent<HTMLInputElement>) {
 export function getTransactionSuggestions(
   transactions: Transaction[] | undefined
 ): DropdownItem[] {
-  let suggestionNames: { name: string; amount: number }[] =
-    transactions?.map((trans) => {
-      return { name: trans.name, amount: 0 };
-    }) || [];
+  const names: string[] = [];
+  const suggestionNames: { name: string; amount: number }[] = [];
+  transactions?.forEach((trans) => {
+    if (!names.includes(trans.name)) {
+      names.push(trans.name);
+      suggestionNames.push({ name: trans.name, amount: 0 });
+    }
+  });
   if (transactions) {
     transactions.forEach((trans) => {
       let suggestion = suggestionNames.filter((sug) => {
