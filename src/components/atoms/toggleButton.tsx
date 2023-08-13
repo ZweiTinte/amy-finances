@@ -13,7 +13,6 @@ const ToggleButton = ({
 
   return (
     <div className="toggleButtonWithLabel">
-      {label}
       <div
         className="toggleButtonBackground"
         onClick={() => {
@@ -27,6 +26,7 @@ const ToggleButton = ({
           <div className="toggleCircle2"></div>
         )}
       </div>
+      {label}
     </div>
   );
 };
