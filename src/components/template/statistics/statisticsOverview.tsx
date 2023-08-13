@@ -1,6 +1,7 @@
 import * as React from "react";
 import DateSelections from "../../level2/dateSelections";
 import { euroFormat } from "../../../helpers/helpers";
+import ToggleButton from "../../atoms/toggleButton";
 
 const StatisticsOverview = ({
   categories,
@@ -23,6 +24,7 @@ const StatisticsOverview = ({
   );
   const [income, setIncome] = React.useState<number>(0);
   const [compareIncome, setCompareIncome] = React.useState<number>(0);
+  const [categoryType, setCategoryType] = React.useState(-1);
 
   React.useEffect(() => {
     if (transactions && categories) {
@@ -33,7 +35,7 @@ const StatisticsOverview = ({
         return (
           categories.filter((cat) => {
             return cat.id === trans.category;
-          })[0].type === 1
+          })[0].type === categoryType
         );
       });
       let newIncome = 0;
@@ -42,7 +44,7 @@ const StatisticsOverview = ({
       });
       setIncome(newIncome);
     }
-  }, [selectedDate1, selectedDate2, transactions, categories]);
+  }, [selectedDate1, selectedDate2, transactions, categories, categoryType]);
 
   React.useEffect(() => {
     if (transactions && categories) {
@@ -53,7 +55,7 @@ const StatisticsOverview = ({
         return (
           categories.filter((cat) => {
             return cat.id === trans.category;
-          })[0].type === -1
+          })[0].type === categoryType
         );
       });
       let newIncome = 0;
@@ -62,7 +64,7 @@ const StatisticsOverview = ({
       });
       setCompareIncome(newIncome);
     }
-  }, [compareDate1, compareDate2, transactions, categories]);
+  }, [compareDate1, compareDate2, transactions, categories, categoryType]);
 
   return (
     <div className="gameLayout">
@@ -82,6 +84,14 @@ const StatisticsOverview = ({
           <span className="dateText">compared to</span>
           <span className="dateText">{euroFormat.format(compareIncome)}</span>
         </div>
+        <ToggleButton
+          onClick={() => {
+            const oldCat = categoryType * -1;
+            setCategoryType(oldCat);
+          }}
+          checked={categoryType === 1}
+          label={categoryType === 1 ? "Show Income" : "Show Expenses"}
+        />
       </div>
     </div>
   );
