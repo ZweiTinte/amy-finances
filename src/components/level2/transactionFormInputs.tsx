@@ -6,7 +6,7 @@ import { transTypes } from "../../helpers/transactionConsts";
 import RecurringForm from "../level1/recurringForm";
 import FromToForm from "../level1/fromToForm";
 import FormDropdown from "../level1/formDropdown";
-import DropdownSearch from "../atoms/dropdownSearch";
+import DropdownSearch from "../level1/dropdownSearch";
 import {
   getCategorySuggestions,
   getTransactionSuggestions,

@@ -1,6 +1,11 @@
 import * as React from "react";
-import { inputKeyDownAction, itemAction } from "../../helpers/dropdownHelpers";
+import {
+  inputKeyDownAction,
+  itemAction,
+} from "../../helpers/dropdownKeyNavigation";
 import { DropdownItem, DropdownSearchProps } from "../../dropdownTypes";
+import DropdownElement from "../atoms/dropdownElement";
+import DropdownInput from "../atoms/dropdownInput";
 
 const DropdownSearch = ({
   dropDownItem,
@@ -27,9 +32,8 @@ const DropdownSearch = ({
       dropDownData.filter(function (i) {
         if (strictSearch) {
           return i.value.includes(e.target.value);
-        } else {
-          return i.value.toLowerCase().includes(e.target.value.toLowerCase());
         }
+        return i.value.toLowerCase().includes(e.target.value.toLowerCase());
       })
     );
     setDropdownItem(e.target.value);
@@ -48,14 +52,11 @@ const DropdownSearch = ({
       ref={ref}
     >
       {open ? (
-        <input
-          type="text"
-          className={`${
+        <DropdownInput
+          classes={`${
             filteredData.length > 0 ? "dropdownInput" : "dropdownEmpty"
           }`}
           onChange={(e) => setData(e)}
-          onKeyDown={(e) => inputKeyDownAction(e)}
-          autoFocus
         />
       ) : (
         <div
@@ -72,18 +73,15 @@ const DropdownSearch = ({
         {open &&
           filteredData.map((item) => {
             return (
-              <div
-                tabIndex={0}
-                className={dropdownClass}
-                key={item.id}
+              <DropdownElement
+                dropdownClass={dropdownClass}
+                item={item}
                 onClick={(e) => {
                   setDropdownItem(item.value);
                   setOpen(false);
                 }}
                 onKeyDown={(e) => itemAction(e)}
-              >
-                {item.value}
-              </div>
+              />
             );
           })}
       </div>

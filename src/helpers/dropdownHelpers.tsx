@@ -1,52 +1,5 @@
-import React from "react";
 import { DropdownItem } from "../dropdownTypes";
 import { getDDItem } from "./helpers";
-
-export function itemAction(e: React.KeyboardEvent<HTMLDivElement>) {
-  const target = e.currentTarget as HTMLElement;
-  if (target !== null) {
-    if (e.key === "ArrowDown" && target.nextSibling !== null) {
-      (target.nextSibling as HTMLDivElement)?.focus();
-      setTimeout(() => {
-        (target.nextSibling?.parentElement as HTMLDivElement).scrollTop += 8;
-      }, 1);
-    } else if (e.key === "ArrowUp" && target.previousSibling !== null) {
-      const prevEl = target.previousSibling;
-      (prevEl as HTMLElement).focus();
-      setTimeout(() => {
-        (prevEl?.parentElement as HTMLDivElement).scrollTop -= 8;
-      }, 1);
-    } else if (e.key === "ArrowUp" && target.previousSibling === null) {
-      const prevEl = target.parentElement?.previousSibling;
-      (prevEl as HTMLElement).focus();
-      setTimeout(() => {
-        if (prevEl instanceof HTMLInputElement) {
-          const end = prevEl.value.length;
-          prevEl.setSelectionRange(end, end);
-        }
-      }, 1);
-    } else if (e.key === "Enter") {
-      target.click();
-    }
-  }
-}
-
-export function inputKeyDownAction(e: React.KeyboardEvent<HTMLInputElement>) {
-  const target = e.currentTarget as HTMLElement;
-  if (e.key === "ArrowDown" && target && target.nextSibling !== null) {
-    (target.nextSibling as HTMLDivElement)?.focus();
-  }
-  if (
-    e.key === "ArrowDown" &&
-    target &&
-    target.nextSibling?.firstChild !== null
-  ) {
-    (target.nextSibling?.firstChild as HTMLDivElement)?.focus();
-    setTimeout(() => {
-      (target.nextSibling as HTMLDivElement).scrollTop -= 20;
-    }, 1);
-  }
-}
 
 export function getTransactionSuggestions(
   transactions: Transaction[] | undefined
