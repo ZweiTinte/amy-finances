@@ -8,9 +8,11 @@ import { DropdownItem } from "../../../dropdownTypes";
 const StocksSidebarRight = ({
   stocks,
   setFilteredStocks,
+  setFiltered,
 }: {
   stocks: Stock[];
   setFilteredStocks: React.Dispatch<React.SetStateAction<Stock[]>>;
+  setFiltered: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const stocksData: DropdownItem[] = stocks.map((stock) => {
     return { id: stock.id, value: stock.name };
@@ -52,6 +54,7 @@ const StocksSidebarRight = ({
     );
     localStorage.setItem("showWatchlist", JSON.stringify(showWatchlist));
     setFilteredStocks(newStocks);
+    setFiltered(true);
   }, [selectedStocks, hideEmptyStocks, showWatchlist, hideNonEmptyStocks]);
 
   return (

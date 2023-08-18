@@ -25,6 +25,7 @@ const AccountsOverview = ({
   );
   const [filteredAccounts, setFilteredAccounts] = React.useState<Account[]>([]);
   const [totalBalance, setTotalBalance] = React.useState<number>(0);
+  const [filtered, setFiltered] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     let total = 0;
@@ -68,10 +69,13 @@ const AccountsOverview = ({
     <>
       {accountsReady && (
         <>
-          <Accounts accounts={filteredAccounts} totalBalance={totalBalance} />
+          {filtered && (
+            <Accounts accounts={filteredAccounts} totalBalance={totalBalance} />
+          )}
           <AccountSidebarRight
             accounts={calculatedAccounts}
             setFilteredAccounts={setFilteredAccounts}
+            setFiltered={setFiltered}
           />
         </>
       )}

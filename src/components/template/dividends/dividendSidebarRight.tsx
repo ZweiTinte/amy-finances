@@ -8,11 +8,13 @@ const DividendSidebarRight = ({
   accounts,
   stocks,
   setFilteredDividends,
+  setFiltered,
 }: {
   dividends: Dividend[];
   accounts: DropdownItem[];
   stocks: DropdownItem[];
   setFilteredDividends: React.Dispatch<React.SetStateAction<Dividend[]>>;
+  setFiltered: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [selectedAccounts, setSelectedAccounts] =
     React.useState<DropdownItem[]>(accounts);
@@ -49,6 +51,7 @@ const DividendSidebarRight = ({
       );
     });
     setFilteredDividends(newDividends);
+    setFiltered(true);
   }, [selectedYears, selectedMonths, selectedAccounts, selectedStocks]);
 
   return (

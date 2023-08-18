@@ -18,6 +18,7 @@ const StocksOverview = ({
     stocks || []
   );
   const [filteredStocks, setFilteredStocks] = React.useState<Stock[]>([]);
+  const [filtered, setFiltered] = React.useState<boolean>(false);
 
   function handleError(error: Error): void {
     setError(true);
@@ -65,18 +66,21 @@ const StocksOverview = ({
     <>
       {stocksReady && stocks && (
         <>
-          <Stocks
-            stocks={
-              stocks.length > 1
-                ? filteredStocks.sort((a, b) => {
-                    return a.name.localeCompare(b.name);
-                  })
-                : stocks
-            }
-          />
+          {filtered && (
+            <Stocks
+              stocks={
+                stocks.length > 1
+                  ? filteredStocks.sort((a, b) => {
+                      return a.name.localeCompare(b.name);
+                    })
+                  : stocks
+              }
+            />
+          )}
           <StocksSidebarRight
             stocks={calculatedStocks}
             setFilteredStocks={setFilteredStocks}
+            setFiltered={setFiltered}
           />
         </>
       )}

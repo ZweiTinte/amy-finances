@@ -13,9 +13,11 @@ import {
 const AccountSidebarRight = ({
   accounts,
   setFilteredAccounts,
+  setFiltered,
 }: {
   accounts: Account[];
   setFilteredAccounts: React.Dispatch<React.SetStateAction<Account[]>>;
+  setFiltered: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const accountsData: DropdownItem[] = accounts.map((account) => {
     return { id: account.id, value: account.name };
@@ -45,6 +47,7 @@ const AccountSidebarRight = ({
     setLocalStorage("selectedOverviewAccounts", selectedAccounts);
     setLocalStorage("selectedOverviewAccountTypes", selectedAccountTypes);
     setFilteredAccounts(newAccounts);
+    setFiltered(true);
   }, [selectedAccountTypes, selectedAccounts]);
 
   return (

@@ -15,6 +15,7 @@ const DividendsOverview = ({
     dividends || []
   );
   const [totalBalance, setTotalBalance] = React.useState<number>(0);
+  const [filtered, setFiltered] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     if (dividends) {
@@ -34,18 +35,20 @@ const DividendsOverview = ({
     <>
       {dividends && accounts && stocks && (
         <>
-          <Dividends
-            dividends={
-              dividends.length > 1
-                ? filteredDividends.sort((a, b) => {
-                    return Date.parse(a.payDate) - Date.parse(b.payDate);
-                  })
-                : dividends
-            }
-            totalBalance={totalBalance}
-            accounts={accounts}
-            stocks={stocks}
-          />
+          {filtered && (
+            <Dividends
+              dividends={
+                dividends.length > 1
+                  ? filteredDividends.sort((a, b) => {
+                      return Date.parse(a.payDate) - Date.parse(b.payDate);
+                    })
+                  : dividends
+              }
+              totalBalance={totalBalance}
+              accounts={accounts}
+              stocks={stocks}
+            />
+          )}
           <DividendSidebarRight
             dividends={dividends}
             stocks={stocks.map((stock) => {
@@ -55,6 +58,7 @@ const DividendsOverview = ({
               return { id: account.id, value: account.name };
             })}
             setFilteredDividends={setFilteredDividends}
+            setFiltered={setFiltered}
           />
         </>
       )}
