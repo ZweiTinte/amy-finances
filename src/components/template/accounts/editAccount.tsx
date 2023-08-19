@@ -70,8 +70,8 @@ const EditAccount = ({ id }: { id: string }) => {
     <>
       {templateReady && (
         <div className="gameLayout">
-          <div className="accountsCard">
-            <Headline text="Edit account" style="accountsHeadline" />
+          <div className="overviewCard">
+            <Headline text="Edit account" style="cardHeadline" />
             <AccountForm
               submitHandler={submitHandler}
               name={name}

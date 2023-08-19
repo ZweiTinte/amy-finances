@@ -9,25 +9,25 @@ const Stocks = ({ stocks }: { stocks: Stock[] }) => {
     <>
       {stocks && (
         <div className="gameLayout">
-          <div className="stocksCard">
+          <div className="overviewCard">
             <div className="formRowDefault">
-              <Headline text="Stocks Overview" style="transactionsHeadline" />
+              <Headline text="Stocks Overview" style="cardHeadline" />
               <LinkButton to="/stocks/new" title="add new stock">
                 <PlusIcon className="heroIcon" />
               </LinkButton>
             </div>
-            <div className="stockProps">
-              <span className="stockIsin">ISIN</span>
+            <div className="overviewHead">
+              <span className="overviewIsin">ISIN</span>
               <span className="stockName">Name</span>
-              <span className="orderAmount">Amount</span>
-              <span className="orderPriceHeadline">Price</span>
-              <span className="orderSumHeadline">Sum</span>
+              <span className="overviewAmount">Amount</span>
+              <span className="overviewAmountHeadline">Price</span>
+              <span className="overviewAmountHeadline">Sum</span>
             </div>
             {stocks.map((item, i) => {
               return (
                 <div
                   className={
-                    "stockInfos" +
+                    "overviewRow" +
                     (i !== stocks.length - 1 ? " dottedBorder" : "")
                   }
                   key={item.id}

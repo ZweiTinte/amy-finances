@@ -18,20 +18,20 @@ const TransactionItem = ({
 }: TransactionProps) => {
   return (
     <>
-      <span className="transactionId">{transaction.id?.toString()}</span>
-      <span className="transactionDate">{transaction.transactionType}</span>
-      <span className="transactionDate">{transaction.date}</span>
+      <span className="overviewId">{transaction.id?.toString()}</span>
+      <span className="overviewDate">{transaction.transactionType}</span>
+      <span className="overviewDate">{transaction.date}</span>
       <span className="transactionName">{transaction.name}</span>
-      <span className="transactionCategory">
+      <span className="overviewCategory">
         {getDDItem(transaction.category, categories).value}
       </span>
-      <span className="transactionAmount">
+      <span className="overviewAmount">
         {euroFormat.format(transaction.amount)}
       </span>
-      <span className="transactionFrom">
+      <span className="overviewAccount">
         {getAccountName(transaction.from, accounts)}
       </span>
-      <span className="transactionTo">
+      <span className="overviewAccount">
         {getAccountName(transaction.to, accounts)}
       </span>
       <span>

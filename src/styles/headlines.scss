@@ -50,3 +50,14 @@
   padding-bottom: 0.5rem;
   font-size: 2rem;
 }
+
+.cardHeadline {
+  @include flexSpace;
+  color: $white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 1.5rem;
+  border-bottom: 0.15rem solid $cardBorder;
+  margin-bottom: 2rem;
+  width: max-content;
+}

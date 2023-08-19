@@ -1,0 +1,9 @@
+@import "../_variables";
+
+@mixin overviewInfo {
+  color: $white;
+  font-size: 1rem;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

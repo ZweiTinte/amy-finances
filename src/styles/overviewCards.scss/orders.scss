@@ -1,0 +1,8 @@
+@import "../_variables";
+@import "_overviewMixins";
+@import "../_headlineMixins";
+
+.orderType {
+  @include overviewInfo;
+  width: 3rem;
+}

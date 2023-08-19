@@ -72,8 +72,8 @@ const EditStock = ({ id }: { id: string }) => {
     <>
       {templateReady && (
         <div className="gameLayout">
-          <div className="stocksCard">
-            <Headline text="Edit stock" style="accountsHeadline" />
+          <div className="overviewCard">
+            <Headline text="Edit stock" style="cardHeadline" />
             <StockForm
               submitHandler={submitHandler}
               price={price}

@@ -1,0 +1,7 @@
+@import "../_variables";
+@import "_overviewMixins";
+
+.categoryType {
+  @include overviewInfo;
+  width: 9rem;
+}

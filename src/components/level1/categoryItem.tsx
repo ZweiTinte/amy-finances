@@ -12,8 +12,8 @@ const CategoryItem = ({ category }: CategoryProps) => {
 
   return (
     <>
-      <span className="categoryId">{category.id}</span>
-      <span className="categoryName">{category.name}</span>
+      <span className="overviewId">{category.id}</span>
+      <span className="overviewCategory">{category.name}</span>
       <span className="categoryType">{categoryType}</span>
       <span>
         <LinkButton to={`/categories/${category.id}`} title="edit">

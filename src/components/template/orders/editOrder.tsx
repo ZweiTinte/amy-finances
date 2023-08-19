@@ -57,8 +57,8 @@ const EditOrder = ({
 
   return (
     <div className="gameLayout">
-      <div className="ordersCard">
-        <Headline text="Add a new order" style="transactionsHeadline" />
+      <div className="overviewCard">
+        <Headline text="Add a new order" style="cardHeadline" />
         <OrderForm
           submitHandler={submitHandler}
           date={date}

@@ -1,0 +1,7 @@
+@import "../_variables";
+@import "_overviewMixins";
+
+.dividendsSum {
+  @include overviewInfo;
+  width: 50rem;
+}

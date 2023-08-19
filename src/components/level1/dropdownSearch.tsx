@@ -1,8 +1,5 @@
 import * as React from "react";
-import {
-  inputKeyDownAction,
-  itemAction,
-} from "../../helpers/dropdownKeyNavigation";
+import { itemAction } from "../../helpers/dropdownKeyNavigation";
 import { DropdownItem, DropdownSearchProps } from "../../dropdownTypes";
 import DropdownElement from "../atoms/dropdownElement";
 import DropdownInput from "../atoms/dropdownInput";

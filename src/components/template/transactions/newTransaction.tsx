@@ -56,8 +56,8 @@ const NewTransaction = ({
 
   return (
     <div className="gameLayout">
-      <div className="transactionsCard">
-        <Headline text="Add a new transaction" style="transactionsHeadline" />
+      <div className="overviewCard">
+        <Headline text="Add a new transaction" style="cardHeadline" />
         <TransactionForm
           submitHandler={submitHandler}
           date={date}

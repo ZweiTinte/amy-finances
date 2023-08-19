@@ -15,21 +15,21 @@ const DividendItem = ({ dividend, accounts, stocks }: DividendProps) => {
   const stock: Stock = getStocks(dividend.stock, stocks)[0];
   return (
     <>
-      <span className="transactionId">{dividend.id!.toString()}</span>
-      <span className="transactionDate">{dividend.payDate}</span>
-      <span className="transactionDate">{dividend.exDate}</span>
-      <span className="stockIsin">{stock?.isin}</span>
+      <span className="overviewId">{dividend.id!.toString()}</span>
+      <span className="overviewDate">{dividend.payDate}</span>
+      <span className="overviewDate">{dividend.exDate}</span>
+      <span className="overviewIsin">{stock?.isin}</span>
       <span className="stockName">{stock?.name}</span>
-      <span className="orderAmount">
+      <span className="overviewAmount">
         {euroFormat.format(dividend.amountBeforeTax)}
       </span>
-      <span className="orderPrice">
+      <span className="overviewAmount">
         {euroFormat.format(dividend.taxAmount)}
       </span>
-      <span className="orderSum">
+      <span className="overviewAmount">
         {euroFormat.format(dividend.amountBeforeTax - dividend.taxAmount)}
       </span>
-      <span className="transactionTo">
+      <span className="overviewAccount">
         {getAccountName(dividend.toAccount, accounts)}
       </span>
       <span>

@@ -17,31 +17,31 @@ const Orders = ({
     <>
       {orders && accounts && stocks && (
         <div className="gameLayout">
-          <div className="ordersCard">
+          <div className="overviewCard">
             <div className="formRowDefault">
-              <Headline text="Orders Overview" style="transactionsHeadline" />
+              <Headline text="Orders Overview" style="cardHeadline" />
               <LinkButton to="/orders/new" title="add new order">
                 <PlusIcon className="heroIcon" />
               </LinkButton>
             </div>
-            <div className="orderProps">
-              <span className="transactionId">ID</span>
-              <span className="transactionDate">Date</span>
+            <div className="overviewHead">
+              <span className="overviewId">ID</span>
+              <span className="overviewDate">Date</span>
               <span className="orderType">Type</span>
-              <span className="stockIsin">ISIN</span>
+              <span className="overviewIsin">ISIN</span>
               <span className="stockName">Name</span>
-              <span className="orderAmountHeadline">Amount</span>
-              <span className="orderPriceHeadline">Price</span>
-              <span className="orderCostHeadline">Order Cost</span>
-              <span className="orderSumHeadline">Sum</span>
-              <span className="transactionFrom">From</span>
-              <span className="transactionTo">To</span>
+              <span className="overviewAmountHeadline">Amount</span>
+              <span className="overviewAmountHeadline">Price</span>
+              <span className="overviewAmountHeadline">Order Cost</span>
+              <span className="overviewAmountHeadline">Sum</span>
+              <span className="overviewAccount">From</span>
+              <span className="overviewAccount">To</span>
             </div>
             {orders.map((item, i) => {
               return (
                 <div
                   className={
-                    "orderInfos" +
+                    "overviewRow" +
                     (i !== orders.length - 1 ? " dottedBorder" : "")
                   }
                   key={item.id}

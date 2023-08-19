@@ -14,7 +14,7 @@ const TestPage = () => {
 
   return (
     <div className="gameLayout">
-      <div className="transactionsCard">
+      <div className="overviewCard">
         <Timetable />
         <div className="formRow">
           <FileUpload

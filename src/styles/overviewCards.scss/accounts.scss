@@ -1,0 +1,29 @@
+@import "../_variables";
+@import "_overviewMixins";
+@import "../_headlineMixins";
+
+.accountIban {
+  @include overviewInfo;
+  width: 14rem;
+}
+
+.accountType {
+  @include overviewInfo;
+  width: 6rem;
+}
+
+.accountsSum {
+  @include overviewInfo;
+  width: 30rem;
+}
+
+.accountBalance {
+  @include overviewInfo;
+  width: 8rem;
+  text-align: end;
+}
+
+.accountBalanceHeadline {
+  @include overviewInfo;
+  width: 8rem;
+}

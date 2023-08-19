@@ -62,8 +62,8 @@ const EditTransaction = ({
 
   return (
     <div className="gameLayout">
-      <div className="transactionsCard">
-        <Headline text="Edit transaction" style="transactionsHeadline" />
+      <div className="overviewCard">
+        <Headline text="Edit transaction" style="cardHeadline" />
         <TransactionForm
           submitHandler={submitHandler}
           date={date}

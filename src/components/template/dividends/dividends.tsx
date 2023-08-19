@@ -20,32 +20,29 @@ const Dividends = ({
     <>
       {dividends && accounts && stocks && (
         <div className="gameLayout">
-          <div className="ordersCard">
+          <div className="overviewCard">
             <div className="formRowDefault">
-              <Headline
-                text="Dividends Overview"
-                style="transactionsHeadline"
-              />
+              <Headline text="Dividends Overview" style="cardHeadline" />
               <LinkButton to="/dividends/new" title="add new dividend">
                 <PlusIcon className="heroIcon" />
               </LinkButton>
             </div>
-            <div className="orderProps">
-              <span className="transactionId">ID</span>
-              <span className="transactionDate">Pay-Date</span>
-              <span className="transactionDate">Ex-Date</span>
-              <span className="stockIsin">ISIN</span>
+            <div className="overviewHead">
+              <span className="overviewId">ID</span>
+              <span className="overviewDate">Pay-Date</span>
+              <span className="overviewDate">Ex-Date</span>
+              <span className="overviewIsin">ISIN</span>
               <span className="stockName">Name</span>
-              <span className="orderAmountHeadline">Amount</span>
-              <span className="orderPriceHeadline">Tax</span>
-              <span className="orderSumHeadline">Sum</span>
-              <span className="transactionTo">To</span>
+              <span className="overviewAmountHeadline">Amount</span>
+              <span className="overviewAmountHeadline">Tax</span>
+              <span className="overviewAmountHeadline">Sum</span>
+              <span className="overviewAccount">To</span>
             </div>
             {dividends.map((item, i) => {
               return (
                 <div
                   className={
-                    "orderInfos" +
+                    "overviewRow" +
                     (i !== dividends.length - 1 ? " dottedBorder" : "")
                   }
                   key={item.id}
@@ -58,9 +55,9 @@ const Dividends = ({
                 </div>
               );
             })}
-            <div className="accountsSummary">
+            <div className="overviewSummary">
               <span className="dividendsSum">Total Dividends:</span>
-              <span className="orderSumHeadline">
+              <span className="overviewAmountHeadline">
                 {euroFormat.format(totalBalance)}
               </span>
             </div>

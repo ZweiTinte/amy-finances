@@ -1,0 +1,82 @@
+@import "_overviewMixins";
+@import "../_mixins";
+@import "../_headlineMixins";
+
+.overviewId {
+  @include overviewInfo;
+  width: 3rem;
+}
+
+.overviewDate {
+  @include overviewInfo;
+  width: 6rem;
+}
+
+@media only screen and (min-width: 1980px) {
+  .overviewAccount {
+    @include overviewInfo;
+    width: 10rem;
+  }
+}
+
+@media only screen and (max-width: 1980px) {
+  .overviewAccount {
+    @include overviewInfo;
+    width: 6rem;
+  }
+}
+
+.overviewCategory {
+  @include overviewInfo;
+  width: 10rem;
+}
+
+.overviewCard {
+  min-width: 25rem;
+  margin: 0.5rem 0.5rem 0.5rem;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  display: flex;
+  align-items: left;
+  border-radius: 0.4rem;
+  @include defaultCardBorder;
+  flex-direction: column;
+}
+
+.overviewHead {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  @include bottomBorderHeadline;
+}
+
+.overviewRow {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.overviewIsin {
+  @include overviewInfo;
+  width: 9rem;
+}
+
+.overviewAmount {
+  @include overviewInfo;
+  width: 7rem;
+  text-align: end;
+  padding-right: 1rem;
+}
+
+.overviewAmountHeadline {
+  @include overviewInfo;
+  width: 7rem;
+  padding-right: 1rem;
+}
+
+.overviewSummary {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  border-top: 0.15rem solid $cardBorder;
+  margin-top: 0.15rem;
+}

@@ -21,31 +21,28 @@ const Transactions = ({
     <>
       {transactions && accounts && (
         <div className="gameLayout">
-          <div className="transactionsCard">
+          <div className="overviewCard">
             <div className="formRowDefault">
-              <Headline
-                text="Transactions Overview"
-                style="transactionsHeadline"
-              />
+              <Headline text="Transactions Overview" style="cardHeadline" />
               <LinkButton to="/transactions/new" title="add new transaction">
                 <PlusIcon className="heroIcon" />
               </LinkButton>
             </div>
-            <div className="transactionProps">
-              <span className="transactionId">ID</span>
-              <span className="transactionDate">Type</span>
-              <span className="transactionDate">Date</span>
+            <div className="overviewHead">
+              <span className="overviewId">ID</span>
+              <span className="overviewDate">Type</span>
+              <span className="overviewDate">Date</span>
               <span className="transactionName">Name</span>
-              <span className="transactionCategory">Category</span>
-              <span className="transactionAmountHeadline">Amount</span>
-              <span className="transactionFrom">From</span>
-              <span className="transactionTo">To</span>
+              <span className="overviewCategory">Category</span>
+              <span className="overviewAmountHeadline">Amount</span>
+              <span className="overviewAccount">From</span>
+              <span className="overviewAccount">To</span>
             </div>
             {transactions.map((item, i) => {
               return (
                 <div
                   className={
-                    "transactionInfos" +
+                    "overviewRow" +
                     (i !== transactions.length - 1 ? " dottedBorder" : "")
                   }
                   key={i}
@@ -58,9 +55,9 @@ const Transactions = ({
                 </div>
               );
             })}
-            <div className="accountsSummary">
+            <div className="overviewSummary">
               <span className="transactionsSum">Total Balance:</span>
-              <span className="transactionAmount">
+              <span className="overviewAmount">
                 {euroFormat.format(totalBalance)}
               </span>
             </div>

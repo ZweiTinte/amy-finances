@@ -46,8 +46,8 @@ const NewDividend = ({
 
   return (
     <div className="gameLayout">
-      <div className="ordersCard">
-        <Headline text="Add a new dividend" style="transactionsHeadline" />
+      <div className="overviewCard">
+        <Headline text="Add a new dividend" style="cardHeadline" />
         <DividendForm
           submitHandler={submitHandler}
           payDate={payDate}

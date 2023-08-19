@@ -13,13 +13,13 @@ interface OrderProps {
 const StockItem = ({ stock }: OrderProps) => {
   return (
     <>
-      <span className="stockIsin">{stock.isin}</span>
+      <span className="overviewIsin">{stock.isin}</span>
       <span className="stockName">{stock.name}</span>
-      <span className="orderAmount">{stock.amount}</span>
-      <span className="orderPriceHeadline">
+      <span className="overviewAmount">{stock.amount}</span>
+      <span className="overviewAmountHeadline">
         {euroFormat.format(stock.price)}
       </span>
-      <span className="orderSumHeadline">
+      <span className="overviewAmountHeadline">
         {euroFormat.format(stock.price * stock.amount)}
       </span>
       <span>

@@ -25,8 +25,8 @@ const NewCategory = () => {
 
   return (
     <div className="gameLayout">
-      <div className="categoriesCard">
-        <Headline text="Add a new category" style="categoriesHeadline" />
+      <div className="overviewCard">
+        <Headline text="Add a new category" style="cardHeadline" />
         <CategoryForm
           submitHandler={submitHandler}
           name={name}

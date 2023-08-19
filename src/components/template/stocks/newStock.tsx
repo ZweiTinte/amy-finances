@@ -26,8 +26,8 @@ const NewStock = () => {
 
   return (
     <div className="gameLayout">
-      <div className="stocksCard">
-        <Headline text="Add a new stock" style="transactionsHeadline" />
+      <div className="overviewCard">
+        <Headline text="Add a new stock" style="cardHeadline" />
         <StockForm
           submitHandler={submitHandler}
           price={price}

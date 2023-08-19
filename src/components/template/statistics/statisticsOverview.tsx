@@ -68,7 +68,7 @@ const StatisticsOverview = ({
 
   return (
     <div className="gameLayout">
-      <div className="ordersCard">
+      <div className="overviewCard">
         <DateSelections
           selectedDate1={selectedDate1}
           selectedDate2={selectedDate2}

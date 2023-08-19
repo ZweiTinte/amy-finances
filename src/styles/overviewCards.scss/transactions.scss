@@ -1,0 +1,12 @@
+@import "../_variables";
+@import "_overviewMixins";
+
+.transactionName {
+  @include overviewInfo;
+  width: 15rem;
+}
+
+.transactionsSum {
+  @include overviewInfo;
+  width: 40rem;
+}

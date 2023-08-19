@@ -61,8 +61,8 @@ const EditCategory = ({ id }: { id: string }) => {
     <>
       {templateReady && (
         <div className="gameLayout">
-          <div className="stocksCard">
-            <Headline text="Edit stock" style="accountsHeadline" />
+          <div className="overviewCard">
+            <Headline text="Edit category" style="cardHeadline" />
             <CategoryForm
               submitHandler={submitHandler}
               name={name}

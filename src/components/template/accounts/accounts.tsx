@@ -16,16 +16,16 @@ const Accounts = ({
     <>
       {accounts && (
         <div className="gameLayout">
-          <div className="accountsCard">
+          <div className="overviewCard">
             <div className="formRowDefault">
-              <Headline text="Accounts Overview" style="accountsHeadline" />
+              <Headline text="Accounts Overview" style="cardHeadline" />
               <LinkButton to="/accounts/new" title="add new account">
                 <PlusIcon className="heroIcon" />
               </LinkButton>
             </div>
-            <div className="accountProps">
+            <div className="overviewHead">
               <span className="accountIban">IBAN</span>
-              <span className="accountName">Name</span>
+              <span className="overviewAccount">Name</span>
               <span className="accountType">Type</span>
               <span className="accountBalanceHeadline">Balance</span>
             </div>
@@ -33,7 +33,7 @@ const Accounts = ({
               return (
                 <div
                   className={
-                    "accountInfos" +
+                    "overviewRow" +
                     (i !== accounts.length - 1 ? " dottedBorder" : "")
                   }
                   key={item.id}
@@ -42,7 +42,7 @@ const Accounts = ({
                 </div>
               );
             })}
-            <div className="accountsSummary">
+            <div className="overviewSummary">
               <span className="accountsSum">Total Balance:</span>
               <span className="accountBalance">
                 {euroFormat.format(totalBalance)}

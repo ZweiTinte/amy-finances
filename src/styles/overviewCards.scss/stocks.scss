@@ -1,0 +1,16 @@
+@import "../_variables";
+@import "_overviewMixins";
+
+@media only screen and (min-width: 1920px) {
+  .stockName {
+    @include overviewInfo;
+    width: 10rem;
+  }
+}
+
+@media only screen and (max-width: 1980px) {
+  .stockName {
+    @include overviewInfo;
+    width: 6rem;
+  }
+}

@@ -35,8 +35,8 @@ const NewAccount = () => {
   return (
     <>
       <div className="gameLayout">
-        <div className="accountsCard">
-          <Headline text="Add a new account" style="accountsHeadline" />
+        <div className="overviewCard">
+          <Headline text="Add a new account" style="cardHeadline" />
           <form>
             <div className="formRow">
               <label className="formLabel">IBAN:</label>

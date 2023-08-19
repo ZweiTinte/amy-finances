@@ -9,23 +9,23 @@ const Categories = ({ categories }: { categories: Category[] }) => {
     <>
       {categories && (
         <div className="gameLayout">
-          <div className="categoriesCard">
+          <div className="overviewCard">
             <div className="formRowDefault">
-              <Headline text="Categories Overview" style="categoriesHeadline" />
+              <Headline text="Categories Overview" style="cardHeadline" />
               <LinkButton to="/categories/new" title="add new category">
                 <PlusIcon className="heroIcon" />
               </LinkButton>
             </div>
-            <div className="categoryProps">
-              <span className="categoryId">ID</span>
-              <span className="categoryName">Name</span>
+            <div className="overviewHead">
+              <span className="overviewId">ID</span>
+              <span className="overviewCategory">Name</span>
               <span className="categoryType">Type</span>
             </div>
             {categories.map((item, i) => {
               return (
                 <div
                   className={
-                    "categoryInfos" +
+                    "overviewRow" +
                     (i !== categories.length - 1 ? " dottedBorder" : "")
                   }
                   key={item.id}

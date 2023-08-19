@@ -15,19 +15,19 @@ const OrderItem = ({ order, accounts, stocks }: OrderProps) => {
   const stock: Stock = getStocks(order.stock, stocks)[0];
   return (
     <>
-      <span className="transactionId">{order.id!.toString()}</span>
-      <span className="transactionDate">{order.date}</span>
+      <span className="overviewId">{order.id!.toString()}</span>
+      <span className="overviewDate">{order.date}</span>
       <span className="orderType">{order.orderType}</span>
-      <span className="stockIsin">{stock?.isin}</span>
+      <span className="overviewIsin">{stock?.isin}</span>
       <span className="stockName">{stock?.name}</span>
-      <span className="orderAmount">{order.amount}</span>
-      <span className="orderPrice">{euroFormat.format(order.price)}</span>
-      <span className="orderCost">{euroFormat.format(order.cost)}</span>
-      <span className="orderSum">{euroFormat.format(order.sum)}</span>
-      <span className="transactionFrom">
+      <span className="overviewAmount">{order.amount}</span>
+      <span className="overviewAmount">{euroFormat.format(order.price)}</span>
+      <span className="overviewAmount">{euroFormat.format(order.cost)}</span>
+      <span className="overviewAmount">{euroFormat.format(order.sum)}</span>
+      <span className="overviewAccount">
         {getAccountName(order.from, accounts)}
       </span>
-      <span className="transactionTo">
+      <span className="overviewAccount">
         {getAccountName(order.to, accounts)}
       </span>
       <span>
