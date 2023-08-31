@@ -22,7 +22,7 @@ const StocksSidebarRight = ({
   const [hideEmptyStocks, setHideEmptyStocks] = React.useState<boolean>(
     localStorage.getItem("hideEmptyStocks") !== null
       ? JSON.parse(localStorage.getItem("hideEmptyStocks") as string)
-      : false
+      : true
   );
   const [hideNonEmptyStocks, setHideNonEmptyStocks] = React.useState<boolean>(
     localStorage.getItem("hideNonEmptyStocks") !== null
