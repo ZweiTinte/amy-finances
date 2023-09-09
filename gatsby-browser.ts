@@ -12,6 +12,7 @@ import "./src/styles/timetable.scss";
 import "./src/styles/links.scss";
 import "./src/styles/checkbox.scss";
 import "./src/styles/dateSelection.scss";
+import "./src/styles/sidebar.scss";
 import "./src/styles/overviewCards/overviews.scss";
 import "./src/styles/overviewCards/dividends.scss";
 
