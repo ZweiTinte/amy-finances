@@ -11,6 +11,18 @@
   margin-left: 1rem;
 }
 
+.addLink {
+  @include defaultHover;
+  @include defaultLink;
+  cursor: pointer;
+  max-width: 4rem;
+  width: 2rem;
+  margin-left: 1rem;
+  max-height: 1.5rem;
+  height: 100%;
+  padding: 0.3rem;
+}
+
 .disabledLink {
   @include defaultLink;
   cursor: not-allowed;

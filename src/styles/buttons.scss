@@ -2,6 +2,12 @@
 @import "_variables";
 @import "_mixins";
 
+@mixin centerButton {
+  display: inline-flex;
+  cursor: pointer;
+  justify-content: center;
+}
+
 button {
   @include defaultInputElement;
   justify-content: center;
@@ -9,6 +15,13 @@ button {
   display: inline-flex;
   cursor: pointer;
   padding: 0.5rem;
+}
+
+.downloadButton {
+  @include defaultHover;
+  width: auto;
+  margin-top: 0;
+  height: min-content;
 }
 
 .sidebarButton {
@@ -24,21 +37,17 @@ button {
 .sidebarSmallButton {
   @include defaultHover;
   @include defaultInputElement;
-  justify-content: center;
+  @include centerButton;
   width: 6.75rem;
-  display: inline-flex;
-  cursor: pointer;
   padding: 0.5rem;
 }
 
 .editButton {
   @include defaultHover;
   @include defaultInputElement;
-  justify-content: center;
+  @include centerButton;
   width: 3rem;
   max-height: 2rem;
-  display: inline-flex;
-  cursor: pointer;
   padding: 0.3rem;
   margin-left: 1rem;
   text-decoration: none;
@@ -47,11 +56,9 @@ button {
 .addButton {
   @include defaultHover;
   @include defaultInputElement;
-  justify-content: center;
+  @include centerButton;
   height: 2rem;
   width: 12rem;
-  display: inline-flex;
-  cursor: pointer;
   padding: 0.25rem;
   margin-top: 0.5rem;
   margin-right: 0.5rem;
@@ -85,11 +92,9 @@ button {
 .uploadButton {
   @include defaultHover;
   @include defaultInputElement;
-  justify-content: center;
+  @include centerButton;
   width: 4rem;
   max-height: 1.25rem;
-  display: inline-flex;
-  cursor: pointer;
   padding: 0.25rem;
   margin-left: 1rem;
 }

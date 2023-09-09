@@ -5,6 +5,8 @@ import { euroFormat } from "../../../helpers/helpers";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import LinkButton from "../../atoms/link";
 import { DropdownItem } from "../../../dropdownTypes";
+import Button from "../../atoms/button";
+import { download } from "../../../helpers/downloadService";
 
 const Transactions = ({
   transactions,
@@ -24,9 +26,22 @@ const Transactions = ({
           <div className="overviewCard">
             <div className="formRowDefault">
               <Headline text="Transactions Overview" style="cardHeadline" />
-              <LinkButton to="/transactions/new" title="add new transaction">
-                <PlusIcon className="heroIcon" />
-              </LinkButton>
+              <div className="inlineRow">
+                <Button
+                  onClick={() =>
+                    download("transactions", transactions, categories, accounts)
+                  }
+                  text="Download"
+                  color={"downloadButton"}
+                />
+                <LinkButton
+                  to="/transactions/new"
+                  title="add new transaction"
+                  classes="addLink"
+                >
+                  <PlusIcon className="heroIcon" />
+                </LinkButton>
+              </div>
             </div>
             <div className="overviewHead">
               <span className="overviewId">ID</span>
