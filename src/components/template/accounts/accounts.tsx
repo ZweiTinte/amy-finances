@@ -1,9 +1,13 @@
 import * as React from "react";
 import { euroFormat } from "../../../helpers/helpers";
-import AccountItem from "../../level1/accountItem";
+import AccountItemRow from "../../level1/accountItem";
 import Headline from "../../atoms/headline";
 import LinkButton from "../../atoms/link";
 import { PlusIcon } from "@heroicons/react/24/solid";
+import Button from "../../atoms/button";
+import { getAccountItems } from "../../../helpers/accountsHelper";
+import { accountItemFields } from "../../../helpers/accountsConsts";
+import { download } from "../../../helpers/downloadService";
 
 const Accounts = ({
   accounts,
@@ -12,6 +16,7 @@ const Accounts = ({
   accounts: Account[];
   totalBalance: number;
 }) => {
+  const accountItems = getAccountItems(accounts);
   return (
     <>
       {accounts && (
@@ -19,9 +24,22 @@ const Accounts = ({
           <div className="overviewCard">
             <div className="formRowDefault">
               <Headline text="Accounts Overview" style="cardHeadline" />
-              <LinkButton to="/accounts/new" title="add new account">
-                <PlusIcon className="heroIcon" />
-              </LinkButton>
+              <div className="inlineRow">
+                <Button
+                  onClick={() => {
+                    download("accounts", accountItemFields, accountItems);
+                  }}
+                  text="Download"
+                  color={"downloadButton"}
+                />
+                <LinkButton
+                  to="/accounts/new"
+                  title="add new account"
+                  classes="addLink"
+                >
+                  <PlusIcon className="heroIcon" />
+                </LinkButton>
+              </div>
             </div>
             <div className="overviewHead">
               <span className="accountIban">IBAN</span>
@@ -29,7 +47,7 @@ const Accounts = ({
               <span className="accountType">Type</span>
               <span className="accountBalanceHeadline">Balance</span>
             </div>
-            {accounts.map((item, i) => {
+            {accountItems.map((item, i) => {
               return (
                 <div
                   className={
@@ -38,7 +56,7 @@ const Accounts = ({
                   }
                   key={item.id}
                 >
-                  <AccountItem account={item} />
+                  <AccountItemRow account={item} />
                 </div>
               );
             })}

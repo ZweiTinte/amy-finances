@@ -1,7 +1,7 @@
 import * as React from "react";
 import ErrorInfo from "../level1/errorInfo";
 import { fetchAccounts } from "../../api/accountsApi";
-import { emptyAccountDDItem } from "../../helpers/accountsHelper";
+import { emptyAccountDDItem } from "../../helpers/accountsConsts";
 
 const AccountsFetching = ({
   children,

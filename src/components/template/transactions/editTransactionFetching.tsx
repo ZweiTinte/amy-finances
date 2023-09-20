@@ -1,7 +1,7 @@
 import * as React from "react";
 import { fetchTransaction } from "../../../api/transactionApi";
 import ErrorInfo from "../../level1/errorInfo";
-import { emptyAccountDDItem } from "../../../helpers/accountsHelper";
+import { emptyAccountDDItem } from "../../../helpers/accountsConsts";
 import EditTransaction from "./editTransaction";
 import { recPeriods, transTypes } from "../../../helpers/transactionConsts";
 import { DropdownItem } from "../../../dropdownTypes";

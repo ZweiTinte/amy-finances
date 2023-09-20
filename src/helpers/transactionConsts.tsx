@@ -12,3 +12,14 @@ export const recPeriods: DropdownItem[] = [
   { id: 3, value: "Month" },
   { id: 4, value: "Year" },
 ];
+
+export const transactionItemFields: string[] = [
+  "Id",
+  "Type",
+  "Date",
+  "Name",
+  "Category",
+  "Amount",
+  "From",
+  "To",
+];

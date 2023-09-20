@@ -62,3 +62,7 @@ interface Category {
   name: string;
   type: number; // -1=Expense, 0=MoneyTransfer, 1=Income
 }
+
+interface DownloadItem {
+  [key: string]: string;
+}

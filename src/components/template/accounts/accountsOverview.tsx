@@ -2,7 +2,7 @@ import * as React from "react";
 import Accounts from "./accounts";
 import AccountSidebarRight from "./accountSidebarRight";
 import ErrorInfo from "../../level1/errorInfo";
-import { calculateAccountBalance } from "../../../helpers/accountsHelper";
+import { calculateAccountBalance } from "../../../helpers/accountBalanceCalculation";
 
 const AccountsOverview = ({
   transactions,

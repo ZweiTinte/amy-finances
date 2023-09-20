@@ -1,7 +1,3 @@
-import { DropdownItem } from "../dropdownTypes";
-import { getAccountName } from "./accountsHelper";
-import { euroFormat, getDDItem } from "./helpers";
-
 export function sanitizeCSV(
   text: string,
   char: string = ";",
@@ -12,25 +8,20 @@ export function sanitizeCSV(
 
 export function download(
   filename: string,
-  transactions: Transaction[],
-  categories: DropdownItem[],
-  accounts: Account[]
+  headers: string[],
+  data: DownloadItem[]
 ): void {
   const csvData =
-    "ID;Type;Date;Name;Category;Amount;From;To\n" +
-    transactions
-      .map((transaction) => {
-        const row = [];
-        row.push(sanitizeCSV(transaction.id?.toString() ?? ""));
-        row.push(sanitizeCSV(transaction.transactionType));
-        row.push(sanitizeCSV(transaction.date));
-        row.push(sanitizeCSV(transaction.name));
-        row.push(
-          sanitizeCSV(getDDItem(transaction.category, categories).value)
-        );
-        row.push(sanitizeCSV(euroFormat.format(transaction.amount)));
-        row.push(sanitizeCSV(getAccountName(transaction.from, accounts)));
-        row.push(sanitizeCSV(getAccountName(transaction.to, accounts)));
+    headers.join(";") +
+    "\n" +
+    data
+      .map((item) => {
+        const row: string[] = [];
+        headers.forEach((head) => {
+          row.push(
+            sanitizeCSV(item[head[0].toLowerCase() + head.substring(1)])
+          );
+        });
         return row.join(";");
       })
       .join("\n");

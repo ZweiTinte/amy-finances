@@ -4,7 +4,7 @@ import Headline from "../../atoms/headline";
 import NumberInput from "../../atoms/numberInput";
 import TextInput from "../../atoms/textInput";
 import Dropdown from "../../atoms/dropdown";
-import { accountTypes } from "../../../helpers/accountsHelper";
+import { accountTypes } from "../../../helpers/accountsConsts";
 import { postAccount } from "../../../api/accountsApi";
 import EditFormSubmit from "../../level1/editFormSubmit";
 import { fieldsValid, formValidationMessage } from "../../../helpers/helpers";

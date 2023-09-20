@@ -1,8 +1,8 @@
 import * as React from "react";
 import { fetchTransactions } from "../../api/transactionApi";
 import ErrorInfo from "../level1/errorInfo";
-import { getRecurringTransactions } from "../../helpers/transactionsHelper";
 import { DropdownItem } from "../../dropdownTypes";
+import { getRecurringTransactions } from "../../helpers/transactionsRecurringService";
 
 const TransactionFetching = ({
   children,

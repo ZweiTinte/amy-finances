@@ -7,7 +7,7 @@ import {
 } from "../../../api/accountsApi";
 import Headline from "../../atoms/headline";
 import ErrorInfo from "../../level1/errorInfo";
-import { accountTypes } from "../../../helpers/accountsHelper";
+import { accountTypes } from "../../../helpers/accountsConsts";
 import AccountForm from "../../level2/accountForm";
 import { DropdownItem } from "../../../dropdownTypes";
 

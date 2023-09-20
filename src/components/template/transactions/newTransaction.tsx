@@ -2,7 +2,7 @@ import { navigate } from "gatsby";
 import * as React from "react";
 import Headline from "../../atoms/headline";
 import { postTransaction } from "../../../api/transactionApi";
-import { emptyAccountDDItem } from "../../../helpers/accountsHelper";
+import { emptyAccountDDItem } from "../../../helpers/accountsConsts";
 import TransactionForm from "../../level3/transactionForm";
 import { recPeriods, transTypes } from "../../../helpers/transactionConsts";
 import { DropdownItem } from "../../../dropdownTypes";

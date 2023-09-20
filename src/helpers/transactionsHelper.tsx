@@ -1,6 +1,7 @@
 import { DropdownItem } from "../dropdownTypes";
-import { addMonths } from "./dateHelpers";
-import { getDDItem } from "./helpers";
+import { TransactionItem } from "../transactionTypes";
+import { getAccountName } from "./accountsHelper";
+import { euroFormat, getDDItem } from "./helpers";
 import { recPeriods, transTypes } from "./transactionConsts";
 
 export function getTransactionType(transactionType: string): DropdownItem {
@@ -58,37 +59,21 @@ export function resolveTransactionFetching(
   setTransactionReady(true);
 }
 
-export function getRecurringTransactions(item: Transaction): Transaction[] {
-  let recurringTransactions = [];
-  let recurringDate = new Date(item.date);
-  if (item.recurringPeriod && item.recurringEnd && item.recurringGap) {
-    let loop = 1;
-    while (recurringDate <= new Date(item.recurringEnd)) {
-      const itemCopy = structuredClone(item);
-      itemCopy.date = recurringDate.toISOString().split("T")[0];
-      recurringTransactions.push(itemCopy);
-      if (item.recurringPeriod === "Day") {
-        recurringDate.setDate(recurringDate.getDate() + item.recurringGap);
-      } else if (item.recurringPeriod === "Week") {
-        recurringDate.setDate(recurringDate.getDate() + item.recurringGap * 7);
-      } else if (item.recurringPeriod === "Month") {
-        recurringDate = new Date(
-          addMonths(
-            new Date(item.date).toISOString().split("T")[0],
-            item.recurringGap * loop
-          )
-        );
-      } else if (item.recurringPeriod === "Year") {
-        recurringDate = new Date(
-          addMonths(
-            new Date(item.date).toISOString().split("T")[0],
-            item.recurringGap * 12 * loop
-          )
-        );
-      }
-      loop++;
-    }
-    recurringTransactions.shift();
-  }
-  return recurringTransactions;
+export function getTransactionItems(
+  transactions: Transaction[],
+  accounts: Account[],
+  categories: DropdownItem[]
+): TransactionItem[] {
+  return transactions.map((trans) => {
+    return {
+      id: trans.id?.toString() ?? "",
+      type: trans.transactionType,
+      date: trans.date,
+      name: trans.name,
+      category: getDDItem(trans.category, categories).value,
+      amount: euroFormat.format(trans.amount),
+      from: getAccountName(trans.from, accounts),
+      to: getAccountName(trans.to, accounts),
+    };
+  });
 }

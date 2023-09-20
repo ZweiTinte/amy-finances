@@ -1,5 +1,5 @@
 import * as React from "react";
-import { emptyAccountDDItem } from "../../helpers/accountsHelper";
+import { emptyAccountDDItem } from "../../helpers/accountsConsts";
 import ErrorInfo from "../../components/level1/errorInfo";
 import EditTransactionFetching from "../../components/template/transactions/editTransactionFetching";
 import { fetchAccounts } from "../../api/accountsApi";

@@ -15,3 +15,11 @@ export interface AccountFormProps extends AccountTemplateProps {
 export interface EditAccountProps extends AccountTemplateProps {
   id: string;
 }
+
+export interface AccountItem extends DownloadItem {
+  id: string;
+  iban: string;
+  name: string;
+  type: string;
+  balance: string;
+}

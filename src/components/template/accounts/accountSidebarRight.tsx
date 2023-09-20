@@ -1,7 +1,7 @@
 import * as React from "react";
 import Button from "../../atoms/button";
 import Headline from "../../atoms/headline";
-import { accountTypes } from "../../../helpers/accountsHelper";
+import { accountTypes } from "../../../helpers/accountsConsts";
 import { getAccountTypes } from "../../../helpers/filtersHelper";
 import MultiselectFilter from "../../level2/multiselectFilter";
 import { DropdownItem } from "../../../dropdownTypes";

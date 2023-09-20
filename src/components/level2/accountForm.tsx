@@ -1,6 +1,6 @@
 import * as React from "react";
 import TextInput from "../atoms/textInput";
-import { accountTypes } from "../../helpers/accountsHelper";
+import { accountTypes } from "../../helpers/accountsConsts";
 import { AccountFormProps } from "../../accountTypes";
 import EditFormSubmit from "../level1/editFormSubmit";
 import { fieldsValid, formValidationMessage } from "../../helpers/helpers";

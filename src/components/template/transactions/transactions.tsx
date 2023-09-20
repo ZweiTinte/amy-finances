@@ -1,12 +1,14 @@
 import * as React from "react";
 import Headline from "../../atoms/headline";
-import TransactionItem from "../../level1/transactionItem";
 import { euroFormat } from "../../../helpers/helpers";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import LinkButton from "../../atoms/link";
 import { DropdownItem } from "../../../dropdownTypes";
 import Button from "../../atoms/button";
 import { download } from "../../../helpers/downloadService";
+import { getTransactionItems } from "../../../helpers/transactionsHelper";
+import { transactionItemFields } from "../../../helpers/transactionConsts";
+import TransactionItemRow from "../../level1/transactionItemRow";
 
 const Transactions = ({
   transactions,
@@ -19,6 +21,11 @@ const Transactions = ({
   totalBalance: number;
   categories: DropdownItem[];
 }) => {
+  const transactionItems = getTransactionItems(
+    transactions,
+    accounts,
+    categories
+  );
   return (
     <>
       {transactions && accounts && (
@@ -29,7 +36,11 @@ const Transactions = ({
               <div className="inlineRow">
                 <Button
                   onClick={() =>
-                    download("transactions", transactions, categories, accounts)
+                    download(
+                      "transactions",
+                      transactionItemFields,
+                      transactionItems
+                    )
                   }
                   text="Download"
                   color={"downloadButton"}
@@ -53,7 +64,7 @@ const Transactions = ({
               <span className="overviewAccount">From</span>
               <span className="overviewAccount">To</span>
             </div>
-            {transactions.map((item, i) => {
+            {transactionItems.map((item, i) => {
               return (
                 <div
                   className={
@@ -62,11 +73,7 @@ const Transactions = ({
                   }
                   key={i}
                 >
-                  <TransactionItem
-                    transaction={item}
-                    accounts={accounts}
-                    categories={categories}
-                  />
+                  <TransactionItemRow transactionItem={item} />
                 </div>
               );
             })}

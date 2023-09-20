@@ -1,21 +1,15 @@
 import * as React from "react";
-import { euroFormat } from "../../helpers/helpers";
 import LinkButton from "../atoms/link";
 import { PencilIcon } from "@heroicons/react/24/solid";
+import { AccountItem } from "../../accountTypes";
 
-interface AccountProps {
-  account: Account;
-}
-
-const AccountItem = ({ account }: AccountProps) => {
+const AccountItemRow = ({ account }: { account: AccountItem }) => {
   return (
     <>
       <span className="accountIban">{account.iban}</span>
       <span className="overviewAccount">{account.name}</span>
-      <span className="accountType">{account.accountType}</span>
-      <span className="accountBalance">
-        {euroFormat.format(account.balance)}
-      </span>
+      <span className="accountType">{account.type}</span>
+      <span className="accountBalance">{account.balance}</span>
       <span>
         <LinkButton to={`/accounts/${account.id}`} title="edit">
           <PencilIcon className="heroIcon" />
@@ -25,4 +19,4 @@ const AccountItem = ({ account }: AccountProps) => {
   );
 };
 
-export default AccountItem;
+export default AccountItemRow;

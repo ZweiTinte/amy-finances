@@ -58,3 +58,14 @@ export interface EditTransactionFetchingProps {
   accountsDropdown?: DropdownItem[];
   categoriesDropdown?: DropdownItem[];
 }
+
+export interface TransactionItem extends DownloadItem {
+  id: string;
+  type: string;
+  date: string;
+  name: string;
+  category: string;
+  amount: string;
+  from: string;
+  to: string;
+}
