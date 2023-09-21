@@ -1,4 +1,15 @@
 import { DropdownItem } from "../dropdownTypes";
+import { StockItem } from "../stockTypes";
+import { euroFormat } from "./helpers";
+
+export const stockItemFields: string[] = [
+  "Isin",
+  "Name",
+  "Amount",
+  "Price",
+  "Sum",
+  "Link",
+];
 
 export function getStocks(stockId: number, stocks: Stock[]): Stock[] {
   if (stockId === 0) {
@@ -22,4 +33,17 @@ export function getStockDDItems(
     });
   }
   return [];
+}
+
+export function getStockItems(stocks: Stock[]): StockItem[] {
+  return stocks.map((stock) => {
+    return {
+      isin: stock.isin,
+      name: stock.name,
+      amount: stock.amount.toString(),
+      price: euroFormat.format(stock.price),
+      sum: euroFormat.format(stock.price * stock.amount),
+      link: stock.link ?? "",
+    };
+  });
 }

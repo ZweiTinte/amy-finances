@@ -19,3 +19,12 @@ export interface StockFormProps extends StockTemplateProps {
 export interface EditStockProps extends StockTemplateProps {
   id: string;
 }
+
+export interface StockItem extends DownloadItem {
+  isin: string;
+  name: string;
+  amount: string;
+  price: string;
+  sum: string;
+  link: string;
+}

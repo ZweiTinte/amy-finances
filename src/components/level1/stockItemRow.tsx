@@ -1,27 +1,19 @@
 import * as React from "react";
-import { euroFormat } from "../../helpers/helpers";
 import {
   ArrowTopRightOnSquareIcon,
   PencilIcon,
 } from "@heroicons/react/24/solid";
 import LinkButton from "../atoms/link";
+import { StockItem } from "../../stockTypes";
 
-interface OrderProps {
-  stock: Stock;
-}
-
-const StockItem = ({ stock }: OrderProps) => {
+const StockItemRow = ({ stock }: { stock: StockItem }) => {
   return (
     <>
       <span className="overviewIsin">{stock.isin}</span>
       <span className="stockName">{stock.name}</span>
       <span className="overviewAmount">{stock.amount}</span>
-      <span className="overviewAmountHeadline">
-        {euroFormat.format(stock.price)}
-      </span>
-      <span className="overviewAmountHeadline">
-        {euroFormat.format(stock.price * stock.amount)}
-      </span>
+      <span className="overviewAmountHeadline">{stock.price}</span>
+      <span className="overviewAmountHeadline">{stock.sum}</span>
       <span>
         <LinkButton to={`/stocks/${stock.id}`} title="edit">
           <PencilIcon className="heroIcon" />
@@ -30,7 +22,7 @@ const StockItem = ({ stock }: OrderProps) => {
       <span>
         <LinkButton
           disabled={!stock.link}
-          to={stock.link ? stock.link : ""}
+          to={stock.link}
           target="_blank"
           title="navigate to linked info"
         >
@@ -41,4 +33,4 @@ const StockItem = ({ stock }: OrderProps) => {
   );
 };
 
-export default StockItem;
+export default StockItemRow;
