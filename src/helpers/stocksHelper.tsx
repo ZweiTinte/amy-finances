@@ -44,6 +44,7 @@ export function getStockItems(stocks: Stock[]): StockItem[] {
       price: euroFormat.format(stock.price),
       sum: euroFormat.format(stock.price * stock.amount),
       link: stock.link ?? "",
+      id: stock.id.toString(),
     };
   });
 }

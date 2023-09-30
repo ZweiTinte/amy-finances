@@ -27,4 +27,5 @@ export interface StockItem extends DownloadItem {
   price: string;
   sum: string;
   link: string;
+  id: string;
 }
