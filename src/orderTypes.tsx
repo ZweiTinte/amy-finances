@@ -29,3 +29,17 @@ export interface OrderFormProps extends OrderTemplateProps {
 export interface EditOrderProps extends OrderTemplateProps {
   id: string;
 }
+
+export interface OrderItem extends DownloadItem {
+  id: string;
+  date: string;
+  type: string;
+  isin: string;
+  name: string;
+  amount: string;
+  price: string;
+  cost: string;
+  sum: string;
+  from: string;
+  to: string;
+}

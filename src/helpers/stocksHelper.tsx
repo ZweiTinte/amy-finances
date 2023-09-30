@@ -3,6 +3,7 @@ import { StockItem } from "../stockTypes";
 import { euroFormat } from "./helpers";
 
 export const stockItemFields: string[] = [
+  "Id",
   "Isin",
   "Name",
   "Amount",

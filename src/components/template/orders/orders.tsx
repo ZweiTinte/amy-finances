@@ -1,8 +1,11 @@
 import * as React from "react";
 import Headline from "../../atoms/headline";
-import OrderItem from "../../level1/orderItem";
+import OrderItemRow from "../../level1/orderItemRow";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import LinkButton from "../../atoms/link";
+import { getOrderItems, orderItemFields } from "../../../helpers/ordersHelper";
+import { download } from "../../../helpers/downloadService";
+import Button from "../../atoms/button";
 
 const Orders = ({
   orders,
@@ -13,6 +16,7 @@ const Orders = ({
   accounts: Account[];
   stocks: Stock[];
 }) => {
+  const orderItems = getOrderItems(orders, accounts, stocks);
   return (
     <>
       {orders && accounts && stocks && (
@@ -20,9 +24,22 @@ const Orders = ({
           <div className="overviewCard">
             <div className="formRowDefault">
               <Headline text="Orders Overview" style="cardHeadline" />
-              <LinkButton to="/orders/new" title="add new order">
-                <PlusIcon className="heroIcon" />
-              </LinkButton>
+              <div className="inlineRow">
+                <Button
+                  onClick={() =>
+                    download("orders", orderItemFields, orderItems)
+                  }
+                  text="Download"
+                  color={"downloadButton"}
+                />
+                <LinkButton
+                  to="/orders/new"
+                  title="add new order"
+                  classes="addLink"
+                >
+                  <PlusIcon className="heroIcon" />
+                </LinkButton>
+              </div>
             </div>
             <div className="overviewHead">
               <span className="overviewId">ID</span>
@@ -37,7 +54,7 @@ const Orders = ({
               <span className="overviewAccount">From</span>
               <span className="overviewAccount">To</span>
             </div>
-            {orders.map((item, i) => {
+            {orderItems.map((item, i) => {
               return (
                 <div
                   className={
@@ -46,7 +63,7 @@ const Orders = ({
                   }
                   key={item.id}
                 >
-                  <OrderItem order={item} accounts={accounts} stocks={stocks} />
+                  <OrderItemRow order={item} />
                 </div>
               );
             })}
