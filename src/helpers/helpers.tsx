@@ -37,7 +37,9 @@ export const euroFormat = Intl.NumberFormat("de-DE", {
 export function getYears(transactions: any[]): DropdownItem[] {
   let years: string[] = [];
   transactions.forEach((trans) => {
-    const year = new Date(trans.date).getFullYear().toString();
+    const year = new Date("date" in trans ? trans.date : trans.payDate)
+      .getFullYear()
+      .toString();
     if (!years.includes(year)) {
       years.push(year);
     }
@@ -52,7 +54,9 @@ export function getYears(transactions: any[]): DropdownItem[] {
 export function getMonths(transactions: any[]): DropdownItem[] {
   let months: number[] = [];
   transactions.forEach((trans) => {
-    const month = new Date(trans.date).getMonth();
+    const month = new Date(
+      "date" in trans ? trans.date : trans.payDate
+    ).getMonth();
     if (!months.includes(month)) {
       months.push(month);
     }
