@@ -5,6 +5,7 @@
   .stockName {
     @include overviewInfo;
     width: 10rem;
+    cursor: pointer;
   }
 }
 
@@ -12,5 +13,6 @@
   .stockName {
     @include overviewInfo;
     width: 6rem;
+    cursor: pointer;
   }
 }

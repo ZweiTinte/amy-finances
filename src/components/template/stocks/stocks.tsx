@@ -8,7 +8,15 @@ import { download } from "../../../helpers/downloadService";
 import Button from "../../atoms/button";
 
 const Stocks = ({ stocks }: { stocks: Stock[] }) => {
-  const stockItems = getStockItems(stocks);
+  const [sort, setSort] = React.useState("");
+  const [sortAsc, setSortAsc] = React.useState(true);
+  function sortTable(key: string) {
+    if (sort === key) {
+      setSortAsc(!sortAsc);
+    } else {
+      setSort(key);
+    }
+  }
   return (
     <>
       {stocks && (
@@ -19,7 +27,11 @@ const Stocks = ({ stocks }: { stocks: Stock[] }) => {
               <div className="inlineRow">
                 <Button
                   onClick={() =>
-                    download("stocks", stockItemFields, stockItems)
+                    download(
+                      "stocks",
+                      stockItemFields,
+                      getStockItems(stocks, sort, sortAsc)
+                    )
                   }
                   text="Download"
                   color={"downloadButton"}
@@ -34,13 +46,32 @@ const Stocks = ({ stocks }: { stocks: Stock[] }) => {
               </div>
             </div>
             <div className="overviewHead">
-              <span className="overviewIsin">ISIN</span>
-              <span className="stockName">Name</span>
-              <span className="overviewAmount">Amount</span>
-              <span className="overviewAmountHeadline">Price</span>
-              <span className="overviewAmountHeadline">Sum</span>
+              <span className="overviewIsin" onClick={() => sortTable("isin")}>
+                ISIN
+              </span>
+              <span className="stockName" onClick={() => sortTable("name")}>
+                Name
+              </span>
+              <span
+                className="overviewAmount"
+                onClick={() => sortTable("amount")}
+              >
+                Amount
+              </span>
+              <span
+                className="overviewAmountHeadline"
+                onClick={() => sortTable("price")}
+              >
+                Price
+              </span>
+              <span
+                className="overviewAmountHeadline"
+                onClick={() => sortTable("sum")}
+              >
+                Sum
+              </span>
             </div>
-            {stockItems.map((item, i) => {
+            {getStockItems(stocks, sort, sortAsc).map((item, i) => {
               return (
                 <div
                   className={
