@@ -16,12 +16,6 @@ const OrdersOverview = ({
   );
   const [filtered, setFiltered] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    if (orders) {
-      setFilteredOrders(orders);
-    }
-  }, [orders]);
-
   return (
     <>
       {orders && accounts && stocks && (
