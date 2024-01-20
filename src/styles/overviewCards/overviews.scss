@@ -59,6 +59,11 @@
 .overviewIsin {
   @include overviewInfo;
   width: 9rem;
+}
+
+.overviewIsinHeadline {
+  @include overviewInfo;
+  width: 9rem;
   cursor: pointer;
 }
 
@@ -67,7 +72,6 @@
   width: 7rem;
   text-align: end;
   padding-right: 1rem;
-  cursor: pointer;
 }
 
 .overviewAmountHeadline {

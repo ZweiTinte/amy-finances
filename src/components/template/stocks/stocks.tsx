@@ -46,14 +46,20 @@ const Stocks = ({ stocks }: { stocks: Stock[] }) => {
               </div>
             </div>
             <div className="overviewHead">
-              <span className="overviewIsin" onClick={() => sortTable("isin")}>
+              <span
+                className="overviewIsinHeadline"
+                onClick={() => sortTable("isin")}
+              >
                 ISIN
               </span>
-              <span className="stockName" onClick={() => sortTable("name")}>
+              <span
+                className="stockNameHeadline"
+                onClick={() => sortTable("name")}
+              >
                 Name
               </span>
               <span
-                className="overviewAmount"
+                className="overviewAmountHeadline"
                 onClick={() => sortTable("amount")}
               >
                 Amount

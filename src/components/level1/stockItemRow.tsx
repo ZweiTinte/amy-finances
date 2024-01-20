@@ -12,8 +12,8 @@ const StockItemRow = ({ stock }: { stock: StockItem }) => {
       <span className="overviewIsin">{stock.isin}</span>
       <span className="stockName">{stock.name}</span>
       <span className="overviewAmount">{stock.amount}</span>
-      <span className="overviewAmountHeadline">{stock.price}</span>
-      <span className="overviewAmountHeadline">{stock.sum}</span>
+      <span className="overviewAmount">{stock.price}</span>
+      <span className="overviewAmount">{stock.sum}</span>
       <span>
         <LinkButton to={`/stocks/${stock.id}`} title="edit">
           <PencilIcon className="heroIcon" />

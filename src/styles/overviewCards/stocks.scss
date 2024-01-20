@@ -5,12 +5,20 @@
   .stockName {
     @include overviewInfo;
     width: 10rem;
+  }
+  .stockNameHeadline {
+    @include overviewInfo;
+    width: 10rem;
     cursor: pointer;
   }
 }
 
 @media only screen and (max-width: 1980px) {
   .stockName {
+    @include overviewInfo;
+    width: 6rem;
+  }
+  .stockNameHeadline {
     @include overviewInfo;
     width: 6rem;
     cursor: pointer;
